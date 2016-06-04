@@ -31,7 +31,7 @@ return [
         ],
 
         'request' => [
-            'baseUrl' => '',
+            'baseUrl' => '/backend',
         ],
 
         'urlManager' => [
