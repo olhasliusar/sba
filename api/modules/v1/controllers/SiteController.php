@@ -9,6 +9,7 @@ use yii\behaviors;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\rest\Controller;
+use yii\filters\auth\QueryParamAuth;
 
 /**
  * Class SiteController
@@ -23,6 +24,13 @@ class SiteController extends Controller
     public function behaviors()
     {
         $behaviors = parent::behaviors();
+
+        $behaviors['authenticator'] = [
+            'class' => QueryParamAuth::className(),
+            //'class' => HttpBasicAuth::className();
+            //'class' => CompositeAuth::className();
+            'only' => [],
+        ];
 
         $behaviors['access'] = [
             'class' => AccessControl::className(),
