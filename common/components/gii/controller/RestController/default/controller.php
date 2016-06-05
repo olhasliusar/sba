@@ -34,9 +34,12 @@ class <?= StringHelper::basename($generator->controllerClass) ?> extends Control
         $behaviors = parent::behaviors();
 
         $behaviors['authenticator'] = [
-            'class' => HttpBearerAuth::className(),
-            'only' => [''],
+            'class' => QueryParamAuth::className(),
+            //'class' => HttpBasicAuth::className();
+            //'class' => CompositeAuth::className();
+            'only' => [],
         ];
+
         $behaviors['access'] = [
             'class' => AccessControl::className(),
             'only' => [''],

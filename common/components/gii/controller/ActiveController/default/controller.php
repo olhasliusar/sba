@@ -28,19 +28,28 @@ class <?= StringHelper::basename($generator->controllerClass) ?> extends <?= '\\
         $behaviors = parent::behaviors();
 
         $behaviors['authenticator'] = [
-            'class' => HttpBearerAuth::className(),
-            'only' => ['index','view','create','update','delete','options'],
+            'class' => QueryParamAuth::className(),
+            //'class' => HttpBasicAuth::className();
+            //'class' => CompositeAuth::className();
+            'only' => [],
         ];
 
         $behaviors['access'] = [
-        'class' => AccessControl::className(),
-        'only' => ['index','view','create','update','delete','options'],
+            'class' => AccessControl::className(),
+            'only' => [''],
             'rules' => [
                 [
-                'actions' => ['index','view','create','update','delete','options'],
-                'allow' => true,
-                'roles' => ['@'],
+                    'actions' => [''],
+                    'allow' => true,
+                    'roles' => ['@'],
                 ],
+            ],
+        ];
+
+        $behaviors['verbFilter'] = [
+            'class' => VerbFilter::className(),
+            'actions' => [
+                '' => ['']
             ],
         ];
 
