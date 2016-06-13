@@ -107,6 +107,15 @@ class ExtendedActiveRecord extends ActiveRecord
         ];
     }
 
-
+    /**
+     * @return mixed
+     */
+    public function errors()
+    {
+        foreach ($this->getErrors() as $error) {
+            return $error[0];
+        }
+        return false;
+    }
 }
 
