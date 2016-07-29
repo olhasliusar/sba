@@ -38,13 +38,15 @@ class File extends Object
 {
     const ALIAS_THUMBNAIL = 'thumbnail';
 
+    public $isBase64 = false;
+    public $fileBase64;
+
     public $name;
     public $tempName;
     public $realName;
     public $type;
     public $size;
     public $error;
-
 
 
     /**
@@ -60,8 +62,32 @@ class File extends Object
      */
     public function getExtension()
     {
-        return strtolower(pathinfo($this->name, PATHINFO_EXTENSION));
+        return $this->isBase64 && $this->fileBase64 ? explode('/', finfo_buffer(finfo_open(), $this->fileBase64, FILEINFO_MIME_TYPE))[1] : strtolower(pathinfo($this->name, PATHINFO_EXTENSION));
     }
+
+
+    # upload file to folder
+
+    /**
+     * Save file in path
+     *
+     * @param $file
+     * @param bool $deleteTempFile
+     * @return bool
+     */
+    public function saveAs($file, $deleteTempFile = true)
+    {
+        if ((int)$this->error === UPLOAD_ERR_OK) {
+            if ($deleteTempFile) {
+                return move_uploaded_file($this->tempName, $file);
+            } elseif (is_uploaded_file($this->tempName)) {
+                return copy($this->tempName, $file);
+            }
+        }
+        return false;
+    }
+
+    # help getter path
 
     /**
      * Get full path to file D:\OpenServer\...
@@ -94,7 +120,7 @@ class File extends Object
      */
     public function getThumbnailUrl()
     {
-        return $this->aliasByType(self::ALIAS_THUMBNAIL, true) . $this->realName . '_thumbnail.' . $this->getExtension();
+        return $this->type === Attachment::TYPE_IMAGE ? $this->aliasByType(self::ALIAS_THUMBNAIL, true) . $this->realName . '_thumbnail.' . $this->getExtension() : null;
     }
 
     /**
@@ -118,24 +144,8 @@ class File extends Object
         return UploadFile::$aliases[$alias][$url ? 'folder' : 'fullPath'];
     }
 
-    /**
-     * Save file
-     *
-     * @param $file
-     * @param bool $deleteTempFile
-     * @return bool
-     */
-    public function saveAs($file, $deleteTempFile = true)
-    {
-        if ((int)$this->error === UPLOAD_ERR_OK) {
-            if ($deleteTempFile) {
-                return move_uploaded_file($this->tempName, $file);
-            } elseif (is_uploaded_file($this->tempName)) {
-                return copy($this->tempName, $file);
-            }
-        }
-        return false;
-    }
+
+    # Help getter
 
     /**
      * Get Type By Extension from counts ALL_TYPES

@@ -188,7 +188,7 @@ class User extends ActiveRecord implements IdentityInterface
         $this->password_reset_token = null;
     }
 
-    public static function auth(User $user)
+    public static function auth(IdentityInterface $user)
     {
         return ArrayHelper::toArray($user, ['common\models\User' => [
             'email',

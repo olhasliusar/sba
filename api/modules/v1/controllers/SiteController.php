@@ -29,17 +29,31 @@ class SiteController extends Controller
             'class' => QueryParamAuth::className(),
             //'class' => HttpBasicAuth::className();
             //'class' => CompositeAuth::className();
-            'only' => [],
+            'only' => [
+                'auth'
+            ],
         ];
 
         $behaviors['access'] = [
             'class' => AccessControl::className(),
-            'only' => ['login', 'auth'],
+            'only' => [
+                'login',
+                'auth'
+            ],
             'rules' => [
                 [
-                    'actions' => ['login', 'auth'],
+                    'actions' => [
+                        'login',
+                    ],
                     'allow' => true,
                     'roles' => ['?'],
+                ],
+                [
+                    'actions' => [
+                        'auth',
+                    ],
+                    'allow' => true,
+                    'roles' => ['@'],
                 ],
             ],
         ];
@@ -63,18 +77,17 @@ class SiteController extends Controller
         $model = new LoginForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return ['login' => true, 'user' => User::auth(Yii::$app->user->identity)];
+            return User::auth(Yii::$app->user->identity);
         }
-        return ['login' => false];
+        return ['error' => $model->errors()];
     }
 
+
+    /**
+     * @return array
+     */
     public function actionAuth()
     {
-        /**
-         * @var User $user
-         */
-        $user = User::findIdentityByAccessToken(Yii::$app->request->get('auth'));
-
-        return $user ? ['auth' => true, 'user' => User::auth($user)] : ['auth' => false];
+        return User::auth(Yii::$app->user->identity);
     }
 }

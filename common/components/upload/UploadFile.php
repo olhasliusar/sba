@@ -31,7 +31,7 @@ class UploadFile extends Object
         if (is_string($alias) && $paths) {
             foreach ($paths as $name => $path) {
                 $fullPath = $alias . $path;
-                if (FileHelper::createDirectory($fullPath)) {
+                if (FileHelper::createDirectory($fullPath, 0777)) {
                     self::$aliases[$name] = [
                         'fullPath' => $alias . $path,
                         'folder' => $path

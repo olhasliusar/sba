@@ -2,6 +2,7 @@
 namespace common\components\ActiveRecord;
 
 use Yii;
+use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\helpers\ArrayHelper;
 
@@ -14,21 +15,24 @@ use common\models\User;
 class ExtendedActiveRecord extends ActiveRecord
 {
 
-    const DELETED_ACTIVE = 0;
-    const DELETED_IN_ACTIVE = 1;
+    const STATUS_ACTIVE = 0;
+    const STATUS_IN_ACTIVE = 1;
 
-    const FIELD_STATUS = 'deleted';
+    const FIELD_STATUS = 'status';
 
     /**
      * @param bool $isActive
-     * @return array|\yii\db\ActiveRecord[]
+     * @return ActiveQuery the newly created [[ActiveQuery]] instance.
      */
-    public static function getAll($isActive = true)
+    public static function getActive($isActive = true)
     {
+        $field = self::FIELD_STATUS;
+
         if ($isActive) {
-            return self::find()->where(['deleted' => self::DELETED_ACTIVE])->all();
+            return self::find()->where([$field => self::STATUS_ACTIVE]);
         }
-        return self::find()->all();
+
+        return self::find();
     }
 
     /**
@@ -39,7 +43,7 @@ class ExtendedActiveRecord extends ActiveRecord
     public static function getById($id, $isActive = true)
     {
         if ($isActive) {
-            return self::find()->where(['id' => $id, self::FIELD_STATUS => self::DELETED_ACTIVE])->one();
+            return self::find()->where(['id' => $id, self::FIELD_STATUS => self::STATUS_ACTIVE])->one();
         }
         return self::find()->where(['id' => $id])->one();
     }
@@ -54,9 +58,8 @@ class ExtendedActiveRecord extends ActiveRecord
         $field = self::FIELD_STATUS;
 
         if ($this->hasAttribute($field)) {
-            $this->$field = self::DELETED_IN_ACTIVE;
-            $this->save(false);
-            return $this;
+            $this->$field = self::STATUS_IN_ACTIVE;
+            return $this->save(false);
         }
         return parent::delete();
     }
@@ -69,7 +72,7 @@ class ExtendedActiveRecord extends ActiveRecord
         $field = self::FIELD_STATUS;
 
         if ($this->hasAttribute($field)) {
-            $this->$field = self::DELETED_ACTIVE;
+            $this->$field = self::STATUS_ACTIVE;
             $this->save(false);
         }
         return $this;
@@ -85,11 +88,11 @@ class ExtendedActiveRecord extends ActiveRecord
 
         if ($this->hasAttribute($field)) {
             switch ($this->$field) {
-                case self::DELETED_ACTIVE:
-                    $label = 'aктивный';
+                case self::STATUS_ACTIVE:
+                    $label = 'active';
                     break;
-                case self::DELETED_IN_ACTIVE:
-                    $label = 'aрхивный';
+                case self::STATUS_IN_ACTIVE:
+                    $label = 'not active';
                     break;
             }
         }
@@ -102,8 +105,8 @@ class ExtendedActiveRecord extends ActiveRecord
     public static function getDeletedArr()
     {
         return [
-            self::DELETED_ACTIVE => 'aктивные',
-            self::DELETED_IN_ACTIVE => 'aрхивные'
+            self::STATUS_ACTIVE => 'aктивные',
+            self::STATUS_IN_ACTIVE => 'aрхивные'
         ];
     }
 
@@ -112,10 +115,9 @@ class ExtendedActiveRecord extends ActiveRecord
      */
     public function errors()
     {
-        foreach ($this->getErrors() as $error) {
-            return $error[0];
-        }
-        return false;
+        return $this->getErrors() ? array_shift($this->getErrors())[0] : 'Unknown error!';
     }
+
+
 }
 

@@ -16,12 +16,40 @@ use common\components\ActiveRecord\ExtendedActiveRecord;
  */
 class ExtendedUser extends ExtendedActiveRecord implements IdentityInterface
 {
+
+
+    /**
+     * @param int $role
+     * @param int $status
+     * @return bool
+     *
+     * @throws \yii\base\Exception
+     * @throws \Exception
+     */
+    public function initUser($role, $status = self::STATUS_ACTIVE)
+    {
+        /** @var $this User */
+
+        if (isset($status, $role, $this->password)) {
+
+            $this->password_hash = Yii::$app->security->generatePasswordHash($this->password);
+            $this->status = $status;
+            $this->role = $role;
+
+            $this->generatePasswordResetToken();
+            $this->generateAuthKey();
+
+            return true;
+        }
+        return false;
+    }
+
     /**
      * @inheritdoc
      */
     public static function findIdentity($id)
     {
-        return static::findOne(['id' => $id, 'status' => self::DELETED_IN_ACTIVE]);
+        return User::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
     }
 
     /**
@@ -29,7 +57,7 @@ class ExtendedUser extends ExtendedActiveRecord implements IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        return static::findOne(['auth_key' => $token]);
+        return User::findOne(['auth_key' => $token]);
     }
 
     /**
@@ -40,7 +68,7 @@ class ExtendedUser extends ExtendedActiveRecord implements IdentityInterface
      */
     public static function findByUsername($username)
     {
-        return static::findOne(['username' => $username, 'status' => self::DELETED_IN_ACTIVE]);
+        return User::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
     }
 
     /**
@@ -51,13 +79,13 @@ class ExtendedUser extends ExtendedActiveRecord implements IdentityInterface
      */
     public static function findByPasswordResetToken($token)
     {
-        if (!static::isPasswordResetTokenValid($token)) {
+        if (!User::isPasswordResetTokenValid($token)) {
             return null;
         }
 
-        return static::findOne([
+        return User::findOne([
             'password_reset_token' => $token,
-            'status' => self::DELETED_IN_ACTIVE,
+            'status' => self::STATUS_ACTIVE,
         ]);
     }
 
@@ -146,15 +174,5 @@ class ExtendedUser extends ExtendedActiveRecord implements IdentityInterface
     {
         $this->password_reset_token = null;
     }
-
-    public static function auth(User $user)
-    {
-        return ArrayHelper::toArray($user, ['common\models\User' => [
-            'email',
-            'status',
-            'role'
-        ]]);
-    }
-
 
 }

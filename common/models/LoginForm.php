@@ -49,6 +49,14 @@ class LoginForm extends Model
     }
 
     /**
+     * @return mixed
+     */
+    public function errors()
+    {
+        return $this->getErrors() ? array_shift($this->getErrors())[0] : 'Unknown error!';
+    }
+
+    /**
      * Logs in a user using the provided username and password.
      *
      * @return boolean whether the user is logged in successfully

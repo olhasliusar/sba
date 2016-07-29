@@ -18,12 +18,15 @@ class m160604_212646_attachment extends Migration
             'real_name' => $this->string(255),
 
             'obj_id' => $this->integer()->notNull(),
-            'obj_type' => $this->enum(['factory', 'machine_tool'], true),
+            'obj_type' => $this->enum([''], true),
 
-            'type' => $this->enum(['image', 'unknown', 'document'], true),
+            'type' => $this->enum(['image', 'unknown', 'document', 'video', 'audio'], true),
             'path' => $this->string(255)->notNull(),
-            'thumbnail_path' => $this->string(255)->notNull(),
+            'thumbnail_path' => $this->string(255),
             'ext' => $this->string(10)->notNull(),
+
+
+            'show' => $this->tinyint(),
 
             'created_at' => $this->integer(),
             'created_by' => $this->integer(),
