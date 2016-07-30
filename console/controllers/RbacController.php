@@ -15,6 +15,7 @@ class RbacController extends Controller
 
         $RoleRules = new RoleRules();
 
+        // TODO: Write Role
         $admin = $authManager->createRole('');
 
         $login = $authManager->createPermission('login');
@@ -39,6 +40,7 @@ class RbacController extends Controller
 
         $admin->ruleName = $RoleRules->name;
 
+        // TODO: Write Role to all role
         $authManager->add($admin);
 
         $authManager->addChild($admin, $login);
@@ -48,6 +50,8 @@ class RbacController extends Controller
         $authManager->addChild($admin, $index);
         $authManager->addChild($admin, $view);
 
+
+        // TODO: Write Role to all role
 //        $authManager->addChild($admin, $elseRole);
 
         $this->stdout($this->ansiFormat("\n Role up successfully.\n", Console::FG_GREY), Console::BOLD);

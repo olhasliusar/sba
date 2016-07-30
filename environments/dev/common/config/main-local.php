@@ -16,5 +16,16 @@ return [
             // for the mailer to send real emails.
             'useFileTransport' => true,
         ],
+
+        'authManager' => [
+            'class' => 'yii\rbac\PhpManager',
+            'defaultRoles' => [
+                'ROLE', // TODO: need write role
+            ],
+            'itemFile' => '@common/components/rbac/config/items.php',
+            'assignmentFile' => '@common/components/rbac/config/assignments.php',
+            'ruleFile' => '@common/components/rbac/config/rules.php'
+        ]
+
     ],
 ];
