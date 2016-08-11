@@ -37,6 +37,13 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+
+                [
+                    'pattern' => 'sitemap',
+                    'route' => 'sitemap/index',
+                    'suffix' => '.xml',
+                ],
+
                 '<controller>/<action>' => '<controller>/<action>',
             ],
         ],
