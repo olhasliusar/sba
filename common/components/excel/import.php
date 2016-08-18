@@ -4,7 +4,6 @@ namespace common\components\excel;
 
 use Yii;
 use yii\helpers\ArrayHelper;
-use common\components\helpers\DateHelper;
 
 use PHPExcel;
 use PHPExcel_Style_Alignment;
@@ -14,6 +13,10 @@ use PHPExcel_Style_Font;
 use PHPExcel_Cell;
 use yii\helpers\FileHelper;
 
+/**
+ * Class import
+ * @package common\components\excel
+ */
 class import
 {
 

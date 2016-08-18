@@ -1,8 +1,8 @@
 <?php
 
-use common\components\helpers\migration;
+use common\components\extended\ExtMigration;
 
-class m160604_212646_attachment extends Migration
+class m160604_212646_attachment extends ExtMigration
 {
 
     public function up()
