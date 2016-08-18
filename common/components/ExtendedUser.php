@@ -16,8 +16,6 @@ use common\components\ActiveRecord\ExtendedActiveRecord;
  */
 class ExtendedUser extends ExtendedActiveRecord implements IdentityInterface
 {
-
-
     /**
      * @param int $role
      * @param int $status
@@ -38,7 +36,6 @@ class ExtendedUser extends ExtendedActiveRecord implements IdentityInterface
 
             $this->generatePasswordResetToken();
             $this->generateAuthKey();
-
             return true;
         }
         return false;
@@ -49,7 +46,7 @@ class ExtendedUser extends ExtendedActiveRecord implements IdentityInterface
      */
     public static function findIdentity($id)
     {
-        return User::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
+        return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
     }
 
     /**
@@ -57,7 +54,7 @@ class ExtendedUser extends ExtendedActiveRecord implements IdentityInterface
      */
     public static function findIdentityByAccessToken($token, $type = null)
     {
-        return User::findOne(['auth_key' => $token]);
+        return static::findOne(['auth_key' => $token]);
     }
 
     /**
@@ -68,7 +65,7 @@ class ExtendedUser extends ExtendedActiveRecord implements IdentityInterface
      */
     public static function findByUsername($username)
     {
-        return User::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
+        return static::findOne(['username' => $username, 'status' => self::STATUS_ACTIVE]);
     }
 
     /**
@@ -79,11 +76,11 @@ class ExtendedUser extends ExtendedActiveRecord implements IdentityInterface
      */
     public static function findByPasswordResetToken($token)
     {
-        if (!User::isPasswordResetTokenValid($token)) {
+        if (!static::isPasswordResetTokenValid($token)) {
             return null;
         }
 
-        return User::findOne([
+        return static::findOne([
             'password_reset_token' => $token,
             'status' => self::STATUS_ACTIVE,
         ]);
@@ -97,13 +94,12 @@ class ExtendedUser extends ExtendedActiveRecord implements IdentityInterface
      */
     public static function isPasswordResetTokenValid($token)
     {
-        if (empty($token)) {
-            return false;
+        if (!empty($token)) {
+            $timestamp = (int)substr($token, strrpos($token, '_') + 1);
+            $expire = Yii::$app->params['user.passwordResetTokenExpire'];
+            return $timestamp + $expire >= time();
         }
-
-        $timestamp = (int)substr($token, strrpos($token, '_') + 1);
-        $expire = Yii::$app->params['user.passwordResetTokenExpire'];
-        return $timestamp + $expire >= time();
+        return false;
     }
 
     /**

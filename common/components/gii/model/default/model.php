@@ -85,11 +85,6 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
          return [<?= "\n            " . implode(",\n            ", $rules) . "\n        " ?>];
     }
 
-    public function fields()
-    {
-
-    }
-
     /**
     * @inheritdoc
     */
@@ -122,7 +117,7 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
     */
     public static function find()
     {
-    return new <?= $queryClassFullName ?>(get_called_class());
+        return new <?= $queryClassFullName ?>(get_called_class());
     }
 <?php endif; ?>
 }
