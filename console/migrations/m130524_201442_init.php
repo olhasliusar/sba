@@ -1,8 +1,8 @@
 <?php
 
-use common\components\extended\ExtMigration;
+use yii\db\Migration;
 
-class m130524_201442_init extends ExtMigration
+class m130524_201442_init extends Migration
 {
     public function up()
     {
@@ -14,24 +14,25 @@ class m130524_201442_init extends ExtMigration
 
         $this->createTable('{{%user}}', [
             'id' => $this->primaryKey(),
+
+            'username' => $this->string(45)->notNull()->unique(),
             'full_name' => $this->string(255),
+            'email' => $this->string()->notNull()->unique(),
+            'role' => $this->smallInteger(1)->notNull()->defaultValue(1),
 
-
-
-            'username' => $this->string()->notNull()->unique(),
             'auth_key' => $this->string(32)->notNull(),
             'password_hash' => $this->string()->notNull(),
             'password_reset_token' => $this->string()->unique(),
-            'email' => $this->string()->notNull()->unique(),
 
-
-            'role' => $this->smallInteger()->notNull()->defaultValue(10),
+            'status' => $this->smallInteger(1)->defaultValue(1),
 
             'created_at' => $this->integer(),
             'updated_at' => $this->integer(),
             'created_by' => $this->integer(),
             'updated_by' => $this->integer(),
         ], $tableOptions);
+
+        $this->insert('user', ['username' => 'admin', 'auth_key' => 'SYW_s5r90eW0Gufm9DYC40gaCSb81WfG', 'password_hash' => '$2y$13$C3xHG9OiGhvloz23ApleF.VOGtCQvRQ3pe1T3Vr702/vXMKDXMGTS']);
     }
 
     public function down()

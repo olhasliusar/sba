@@ -1,0 +1,22 @@
+<?php
+return [
+    'Go-go dance' => 'гоу гоу',
+    'Cover bеnds' => 'кавер бенд',
+    'Belly dance' => 'танец живота',
+    'Freak show' => 'фрик шоу',
+    'DJs' => 'диджеи',
+    'big show' => 'большие шоу',
+    'dancers' => 'танцоры',
+    'dancing couples' => 'танцевальные пары',
+    'show ballet' => 'шоу балет',
+    'model' => 'модель',
+    'musicians' => 'музыканты',
+    'animators' => 'аниматоры',
+    'light/fire show' => 'световое/фаер шоу',
+    'hostesses' => 'хостесс',
+    'original genre' => 'оригинальный жанр',
+    'acrobats' => 'акробаты',
+    'pole/strip dance' => 'пол/стрип дэнс',
+    'staff' => 'персонал',
+    'All' => 'Все',
+];

@@ -2,12 +2,12 @@
 
 namespace common\models;
 
+use common\components\ActiveRecord\ExtendedActiveRecord;
 use Yii;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 
-use common\components\extended\ExtActiveRecord;
 use common\components\upload\UploadFile;
 use common\components\upload\File;
 
@@ -43,7 +43,7 @@ use Imagine\Gd\Imagine;
  * @property string $urlThumbnailPath
  * @property string $filePath
  */
-class Attachment extends ExtActiveRecord
+class Attachment extends ExtendedActiveRecord
 {
 
     const SHOW_TRUE = 1;

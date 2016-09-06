@@ -31,20 +31,17 @@ return [
 
         'request' => [
             'baseUrl' => '',
+            'class' => 'frontend\components\LangRequest',
         ],
 
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            'class' => 'frontend\components\LangUrlManager',
             'rules' => [
-
-                [
-                    'pattern' => 'sitemap',
-                    'route' => 'sitemap/index',
-                    'suffix' => '.xml',
-                ],
-
-                '<controller>/<action>' => '<controller>/<action>',
+                '' => 'site/index',
+                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                '<action>' => 'site/<action>',
             ],
         ],
 

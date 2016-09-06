@@ -18,6 +18,9 @@ use yii\filters\auth\QueryParamAuth;
 class SiteController extends Controller
 {
 
+    /**
+     * @return array
+     */
     public function behaviors()
     {
         $behaviors = parent::behaviors();
@@ -66,6 +69,9 @@ class SiteController extends Controller
         return $behaviors;
     }
 
+    /**
+     * @return array
+     */
     public function actionLogin()
     {
         $model = new LoginForm();
@@ -76,6 +82,10 @@ class SiteController extends Controller
         return ['error' => $model->errors()];
     }
 
+
+    /**
+     * @return array
+     */
     public function actionAuth()
     {
         return User::auth(Yii::$app->user->identity);

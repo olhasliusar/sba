@@ -131,14 +131,19 @@ class SiteController extends Controller
         }
     }
 
+    public function actionLookingForAJob()
+    {
+        return $this->render('looking-for-a-job');
+    }
+
     /**
      * Displays about page.
      *
      * @return mixed
      */
-    public function actionAbout()
+    public function actionLookingForArtists()
     {
-        return $this->render('about');
+        return $this->render('looking-for-artists');
     }
 
     /**

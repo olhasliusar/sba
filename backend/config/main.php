@@ -35,12 +35,18 @@ return [
         ],
 
         'urlManager' => [
+            'class' => 'yii\web\UrlManager',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+            //'baseUrl' => '/admin',
             'rules' => [
-                '<controller>/<action>' => '<controller>/<action>',
+                '' => 'site/index',
+                //'/login' => 'site/login',
+                '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                '<action>' => 'site/<action>',
             ],
         ],
+
     ],
     'params' => $params,
 ];

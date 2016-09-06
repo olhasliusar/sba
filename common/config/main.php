@@ -8,6 +8,20 @@ return [
         'formatter' => [
             'dateFormat' => 'd-M-Y',
             'defaultTimeZone' => 'Europe/Kiev', // time zone
-        ]
+        ],
+
+        'i18n' => [
+            'translations' => [
+                '*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@common/messages',
+                    //'sourceLanguage' => 'en-US',
+                    //'fileMap' => [
+                    //    'general' => 'general.php',
+                    //],
+                ],
+
+            ],
+        ],
     ]
 ];
