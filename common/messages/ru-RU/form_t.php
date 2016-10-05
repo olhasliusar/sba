@@ -13,13 +13,13 @@ return [
     'Facebook Link' => 'Ссылка на Facebook',
     'VK Link' => 'Ссылка на ВК',
 
-    'Genre (to select multiple values, press ctrl)' => 'Жанр (для выбора нескольких значений зажмите ctrl)',
+    'Genre (to select multiple genres, press Ctrl)' => 'Жанр (для выбора нескольких жанров удерживайте Ctrl)',
 
     'Wishes' => 'Пожелания',
     'Countries' => 'Страны',
     'USA, India, China (Shanghai), the United Arab Emirates (Dubai), Mexico' => 'США, Индия, Китай (Шанхай), ОАЕ (Дубай), Мексика',
     'Salary' => 'Гонорар',
-    'Duration' => 'Продолжлительность',
+    'Duration' => 'Продолжительность',
     '4-8 months' => '4-8 месяцев',
     'Contract Start Date' => 'Дата начала контракта',
 

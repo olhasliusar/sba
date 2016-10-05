@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\Article;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -12,6 +13,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use common\models\User;
 
 /**
  * Site controller
@@ -136,14 +138,24 @@ class SiteController extends Controller
         return $this->render('looking-for-a-job');
     }
 
-    /**
-     * Displays about page.
-     *
-     * @return mixed
-     */
     public function actionLookingForArtists()
     {
         return $this->render('looking-for-artists');
+    }
+
+    public function actionArticles()
+    {
+        $articles = Article::getArticlesByCurrentLang(User::STATUS_ACTIVE);
+        return $this->render('articles', [
+            'articles' => $articles,
+        ]);
+    }
+
+    public function actionArticle($id)
+    {
+        return $this->render('article', [
+            'article' => Article::findById($id),
+        ]);
     }
 
     /**
@@ -214,5 +226,5 @@ class SiteController extends Controller
         return $this->render('resetPassword', [
             'model' => $model,
         ]);
-    }
+    }  
 }

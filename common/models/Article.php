@@ -16,26 +16,38 @@ use yii\behaviors\BlameableBehavior;
  * @property string $video
  * @property string $lang
  * @property string $author
+ * @property integer $role
  * @property integer $show
  * @property integer $status
  * @property integer $created_at
  * @property integer $updated_at
  * @property integer $created_by
  * @property integer $updated_by
- *
+ * 
  * @property ArticleGenre[] $articleGenres
  * @property Genre[] $genres
  * @property Genre[] $genresList
- * 
+ * @property Attachment[] $images
+ *
  * @property User userCreate
  * @property User userUpdate
+ * @property Attachment mainImage
+ * @property Attachment allImages
+ *
+ * @property string $imageActive
+ * @property array $removeFiles
  */
 class Article extends ActiveRecord
 {
     public $genresform;
+    public $images;
+    public $imageActive;
+    public $removeFiles;
 
-    const ARTICLE_COUNT = 4;
-    
+    const ARTICLE_COUNT = 3;
+    const ROLE_JOB = 1;
+    const ROLE_ARTICLE = 2;
+
     /**
      * @inheritdoc
      */
@@ -51,11 +63,11 @@ class Article extends ActiveRecord
     {
         return [
             [['text', 'lang'], 'string'],
-            [['show', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
+            [['role', 'show', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
             [['name', 'video', 'author'], 'string', 'max' => 255],
             [['show'], 'default', 'value' =>  1],
             [['lang'], 'default', 'value' =>  Lang::getDefaultLangUrl()],
-            [['genresform'], 'safe'],
+            [['genresform', 'images', 'imageActive', 'removeFiles'], 'safe'],
         ];
     }
 
@@ -89,6 +101,7 @@ class Article extends ActiveRecord
 //            'video' => 'Video',
 //            'lang' => 'Lang',
 //            'author' => 'Author',
+//            'role' => 'Role',
 //            'show' => 'Show',
 //            'status' => 'Status',
 //            'created_at' => 'Created At',
@@ -101,6 +114,7 @@ class Article extends ActiveRecord
             'video' => 'Видео',
             'lang' => 'Язык',
             'author' => 'Автор',
+            'role' => 'Роль',
             'show' => 'Публикация',
             'status' => 'Статус',
             'created_at' => 'Создано в',
@@ -113,15 +127,7 @@ class Article extends ActiveRecord
 
     public function afterSave($insert, $changedAttributes)
     {
-        $genres = $this->genresform;
-        if (!empty($genres)) {
-            foreach ($genres as $item) {
-                $genre = new ArticleGenre();
-                $genre->article_id = $this->id;
-                $genre->genre_id = $item;
-                $genre->save();
-            }
-        }
+        $this->saveGenres();
     }
 
     /**
@@ -153,7 +159,6 @@ class Article extends ActiveRecord
         return $list;
     }
 
-
     public function getUserCreate(){
         return User::findOne($this->created_by);
     }
@@ -162,9 +167,61 @@ class Article extends ActiveRecord
         return User::findOne($this->updated_by);
     }
     
+    public function getMainImage(){
+        $images = $this->allImages;
+        foreach ($images as $image){
+            if($image->show == User::STATUS_ACTIVE){
+                return $image;
+            }
+        }
+        return $images[0];
+    }
+
+    public function getAllImages(){
+        return Attachment::getAttachmentsByType($this, Attachment::TYPE_IMAGE);
+    }
+
+    public function changeImages(){
+        Attachment::upload($this);
+        Attachment::changeShowOne($this);
+        !empty($this->removeFiles) ? Attachment::removeFiles($this) : '';
+        return true;
+    }
+    
+    public function checkGenre($genreId){
+        foreach($this->articleGenres as $articleGenre){
+            if($articleGenre->genre_id == $genreId){
+                return 'checked';
+            }
+        }
+        return false;
+    }
+
+    public function saveGenres(){
+        if($this->articleGenres){
+            foreach($this->articleGenres as $articleGenre){
+                $articleGenre->delete();
+            }
+        }
+
+        $genres = explode(',', $this->genresform);
+        if (!empty($genres)) {
+            foreach ($genres as $item) {
+                $genre = new ArticleGenre();
+                $genre->article_id = $this->id;
+                $genre->genre_id = $item;
+                $genre->save();
+            }
+        }
+    }
+    
+    
     public static function getArticlesByCurrentLang($show = User::STATUS_ACTIVE, $limit = null){
         $articles = Article::find()
-            ->where(['lang' => Lang::getCurrent()->url]);
+            ->where([
+                'lang' => Lang::getCurrent()->url,
+                'role' => Article::ROLE_ARTICLE
+            ]);
 
         if($show){
             $articles->andWhere(['show' => $show]);
@@ -175,20 +232,34 @@ class Article extends ActiveRecord
             ->all();
     }
 
-    //TODO: url
     public static function getMenuArticles(){
-        $articles =  self::getArticlesByCurrentLang(User::STATUS_ACTIVE, self::ARTICLE_COUNT);
+        $articles =  Article::getArticlesByCurrentLang(User::STATUS_ACTIVE, Article::ARTICLE_COUNT);
         $menuArticles = [];
         foreach ($articles as $article){
             $menuArticles[] = [
                 'label' => "$article->name",
-                'url' => ['/site/contact'], //id
+                'url' => ['/site/article?id='.$article->id],
                 'linkOptions' => [
                     'class' => 'menu-styling',
-                    'title' => "$article->name",
                 ]
             ];
         }
+        $menuArticles[] = [
+            'label' => '<span><svg class="links__angle-right" viewBox="0 0 11 32" preserveAspectRatio="none"><path class="path1" d="M10.625 17.143q0 0.232-0.179 0.411l-8.321 8.321q-0.179 0.179-0.411 0.179t-0.411-0.179l-0.893-0.893q-0.179-0.179-0.179-0.411t0.179-0.411l7.018-7.018-7.018-7.018q-0.179-0.179-0.179-0.411t0.179-0.411l0.893-0.893q0.179-0.179 0.411-0.179t0.411 0.179l8.321 8.321q0.179 0.179 0.179 0.411z"></path></svg></span>'
+                .\Yii::t('general', 'All articles'),
+            'url' => ['/articles'],
+            'linkOptions' => [
+                'class' => 'menu-styling links__all-articles',
+            ]
+        ];
         return $menuArticles;
+    }
+    
+    public static function findById($id)
+    {      
+        return static::findOne([
+            'id' => $id,
+            'status' => User::STATUS_ACTIVE,
+        ]);
     }
 }

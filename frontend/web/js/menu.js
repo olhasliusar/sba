@@ -1,14 +1,16 @@
 ;(function($) {
 
     var transparentClass = "nav-transparent";
+    var logoSrcDark = window.location.origin + '/frontend/web/img/logo_d.png';
+    var logoSrcLight = window.location.origin + '/frontend/web/img/logo_l.png';
 
     $(document).scroll(function() {
         var menu = $('.nav-main-page');
         var logo = $('.navbar-brand .logo');
-        var logoSrcDark = window.location.origin + '/frontend/web/img/logo_d.png';
-        var logoSrcLight = window.location.origin + '/frontend/web/img/logo_l.png';
-        var pos = $('.position-menu').height() - 50;//для прозрачного меню на главной
 
+        // var pos = $('.position-menu').height() - 50;//для прозрачного меню на главной
+        var pos = $('.position-menu').offset().top - 60;
+        
         if($(this).scrollTop() > 50 && $(this).scrollTop() < pos) {
             menu.addClass('fade')
         }

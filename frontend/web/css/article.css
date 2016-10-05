@@ -1,0 +1,15 @@
+.articles__link{
+    display: block;
+    text-align: center;
+    height: 350px;
+    overflow: hidden;
+}
+.articles__link img{
+    width: 100%;
+}
+.articles__title{
+    color: #14953e;
+}
+.articles__title:hover{
+    text-decoration: none;
+}

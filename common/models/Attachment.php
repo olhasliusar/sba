@@ -45,7 +45,6 @@ use Imagine\Gd\Imagine;
  */
 class Attachment extends ExtendedActiveRecord
 {
-
     const SHOW_TRUE = 1;
     const SHOW_FALSE = 0;
 
@@ -501,5 +500,29 @@ class Attachment extends ExtendedActiveRecord
             ->one();
 
         return $model ? $model->url : self::getDefaultIconUrl($objType, $const);
+    }
+
+    public static function changeShowOne($model)
+    {
+        if($images = $model->allImages) {
+            foreach ($images as $image) {
+                $image->show = User::STATUS_DELETED;
+                $image->save();
+            }
+        }
+        if($imageActive = Attachment::find()->where(['id' => $model->imageActive])->one()){
+            $imageActive->show = User::STATUS_ACTIVE;
+            $imageActive->save();
+        }
+    }
+
+    public static function removeFiles($model)
+    {
+        $attachments = explode(',', $model->removeFiles);
+        foreach ($attachments as $id){
+            $attachment = Attachment::find()->where(['id' => $id])->one();
+            $attachment->removeFile();
+            $attachment->delete();
+        }
     }
 }

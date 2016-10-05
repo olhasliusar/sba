@@ -63,4 +63,13 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 
+    <div class="row">
+    <?php if($images = $model->allImages){
+        foreach ($images as $image){
+            echo '<div class="col-md-3 col-sm-6 col-xs-12">';
+            echo '<img src="'. $image->url .'" class="full-width">';
+            echo '</div>';
+        }
+    }?>
+    </div>
 </div>

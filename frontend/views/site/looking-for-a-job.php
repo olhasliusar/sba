@@ -6,21 +6,22 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 
 $this->title = 'SBA | '. \Yii::t('general', 'Looking for a job');
-$this->params['breadcrumbs'][] = $this->title;
+
+$this->registerJsFile(Yii::$app->request->baseUrl.'/js/menu-transparent.js');
 ?>
 <svg style="display: none;" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs>
         <symbol id="icon-smile" viewBox="0 0 32 32">
             <title>smile</title>
-            <path d="M16.5 29v0c-6.904 0-12.5-5.596-12.5-12.5s5.596-12.5 12.5-12.5c6.904 0 12.5 5.596 12.5 12.5s-5.596 12.5-12.5 12.5zM16.5 28c6.351 0 11.5-5.149 11.5-11.5s-5.149-11.5-11.5-11.5c-6.351 0-11.5 5.149-11.5 11.5s5.149 11.5 11.5 11.5v0zM12 14c0.552 0 1-0.448 1-1s-0.448-1-1-1c-0.552 0-1 0.448-1 1s0.448 1 1 1v0zM21 14c0.552 0 1-0.448 1-1s-0.448-1-1-1c-0.552 0-1 0.448-1 1s0.448 1 1 1v0zM16.497 21c-2.997 0-4.497-1-4.497-1s1 3 4.5 3c3.5 0 4.5-3 4.5-3s-1.506 1-4.503 1v0z"></path>
+            <path d="M16.5 29v0c-6.904 0-12.5-5.596-12.5-12.5s5.596-12.5 12.5-12.5c6.904 0 12.5 5.596 12.5 12.5s-5.596 12.5-12.5 12.5zM16.5 28c6.351 0 11.5-5.149 11.5-11.5s-5.149-11.5-11.5-11.5c-6.351 0-11.5 5.149-11.5 11.5s5.149 11.5 11.5 11.5v0zM16.481 22c-3.481 0-5.481-2-5.481-2v1c0 0 2 2 5.481 2s5.519-2 5.519-2v-1c0 0-2.037 2-5.519 2v0zM18.672 13.793l2.828-2.828 2.828 2.828-0.707 0.707-2.121-2.121-2.121 2.121-0.707-0.707zM8.672 13.793l2.828-2.828 2.828 2.828-0.707 0.707-2.121-2.121-2.121 2.121-0.707-0.707z"></path>
         </symbol>
         <symbol id="icon-earth" viewBox="0 0 32 32">
             <title>earth</title>
             <path d="M16 4c-6.627 0-12 5.373-12 12s5.373 12 12 12c0.811 0 1.603-0.081 2.369-0.234-0.309-0.148-0.342-1.255-0.037-1.887 0.34-0.703 1.406-2.484 0.352-3.082s-0.762-0.867-1.406-1.559-0.381-0.795-0.422-0.973c-0.141-0.609 0.621-1.523 0.656-1.617s0.035-0.445 0.023-0.551-0.48-0.387-0.598-0.398-0.176 0.188-0.34 0.199-0.879-0.434-1.031-0.551-0.223-0.398-0.434-0.609-0.234-0.047-0.563-0.176-1.383-0.516-2.191-0.844-0.879-0.788-0.891-1.113-0.492-0.797-0.718-1.137c-0.225-0.34-0.267-0.809-0.349-0.703s0.422 1.336 0.34 1.371-0.258-0.34-0.492-0.645 0.246-0.141-0.504-1.617 0.234-2.229 0.281-3 0.633 0.281 0.328-0.211 0.023-1.523-0.211-1.898-1.57 0.422-1.57 0.422c0.035-0.363 1.172-0.984 1.992-1.559s1.321-0.129 1.98 0.082 0.703 0.141 0.48-0.070 0.094-0.316 0.609-0.234 0.656 0.703 1.441 0.645 0.082 0.152 0.188 0.352-0.117 0.176-0.633 0.527 0.012 0.352 0.926 1.020 0.633-0.445 0.539-0.938 0.668-0.105 0.668-0.105c0.563 0.375 0.459 0.021 0.869 0.15s1.522 1.069 1.522 1.069c-1.395 0.762-0.516 0.844-0.281 1.020s-0.48 0.516-0.48 0.516c-0.293-0.293-0.34 0.012-0.527 0.117s-0.012 0.375-0.012 0.375c-0.97 0.152-0.75 1.172-0.738 1.418s-0.621 0.621-0.785 0.973 0.422 1.113 0.117 1.16-0.609-1.148-2.25-0.703c-0.495 0.134-1.594 0.703-1.008 1.863s1.559-0.328 1.887-0.164-0.094 0.902-0.023 0.914 0.926 0.032 0.973 1.031 1.301 0.914 1.57 0.938 1.172-0.738 1.301-0.773 0.645-0.469 1.77 0.176 1.699 0.551 2.086 0.82 0.117 0.809 0.48 0.984 1.816-0.059 2.18 0.539-1.5 3.598-2.086 3.926-0.855 1.078-1.441 1.559-1.406 1.075-2.18 1.535c-0.685 0.407-0.808 1.136-1.113 1.367 5.37-1.193 9.386-5.985 9.386-11.714 0-6.627-5.373-12-12-12zM18.813 15.262c-0.164 0.047-0.504 0.352-1.336-0.141s-1.406-0.398-1.477-0.48c0 0-0.070-0.199 0.293-0.234 0.746-0.072 1.688 0.691 1.898 0.703s0.316-0.211 0.691-0.090c0.375 0.121 0.094 0.196-0.070 0.242zM14.887 5.195c-0.082-0.059 0.068-0.128 0.157-0.246 0.051-0.068 0.013-0.182 0.078-0.246 0.176-0.176 1.043-0.422 0.873 0.059s-0.979 0.527-1.108 0.434zM16.984 6.719c-0.293-0.012-0.983-0.085-0.855-0.211 0.495-0.492-0.188-0.633-0.609-0.668s-0.598-0.27-0.387-0.293 1.055 0.012 1.195 0.129 0.902 0.422 0.949 0.645 0 0.41-0.293 0.398zM19.527 6.637c-0.234 0.188-1.414-0.673-1.641-0.867-0.984-0.844-1.512-0.563-1.718-0.703s-0.133-0.328 0.183-0.609 1.207 0.094 1.723 0.152 1.113 0.457 1.125 0.931c0.012 0.474 0.563 0.909 0.328 1.097z"></path>
         </symbol>
-        <symbol id="icon-dollar" viewBox="0 0 20 20">
+        <symbol id="icon-dollar" viewBox="0 0 38 32">
             <title>dollar</title>
-            <path d="M11 16.755v2.245h-2v-2.143c-1.712-0.1-3.066-0.589-4.241-1.797l1.718-1.74c0.859 0.87 2.023 1.16 3.282 1.16 1.565 0 2.405-0.599 2.405-1.702 0-0.483-0.133-0.889-0.42-1.16-0.267-0.251-0.572-0.387-1.202-0.483l-1.642-0.232c-1.164-0.174-2.022-0.541-2.634-1.141-0.648-0.657-0.973-1.546-0.973-2.707 0-2.155 1.382-3.743 3.707-4.1v-1.955h2v1.932c1.382 0.145 2.465 0.62 3.415 1.551l-1.679 1.682c-0.859-0.832-1.889-0.947-2.787-0.947-1.412 0-2.099 0.792-2.099 1.74 0 0.348 0.115 0.716 0.401 0.986 0.267 0.252 0.706 0.464 1.26 0.541l1.602 0.232c1.241 0.174 2.023 0.522 2.596 1.063 0.726 0.696 1.050 1.702 1.050 2.92 0 2.25-1.567 3.662-3.759 4.055z"></path>
+            <path d="M32.509 7.5c0.276 0 0.5-0.224 0.5-0.5v-1.665c0-0.903-0.735-1.638-1.638-1.638h-2.687l-0.613-1.809c-0.086-0.255-0.36-0.397-0.619-0.318l-14.553 4.424c-0.264 0.081-0.413 0.36-0.333 0.624 0.066 0.216 0.264 0.354 0.479 0.354 0.048 0 0.097-0.007 0.146-0.021l14.089-4.284 1.343 3.965c0.089 0.262 0.375 0.404 0.634 0.313 0.262-0.088 0.402-0.373 0.313-0.634l-0.547-1.615h2.349c0.352 0 0.638 0.286 0.638 0.638v1.666c-0.001 0.276 0.223 0.5 0.499 0.5zM36.5 15c-0.276 0-0.5 0.224-0.5 0.5s0.224 0.5 0.5 0.5c0.351 0 0.5 0.149 0.5 0.5v6c0 0.351-0.149 0.5-0.5 0.5h-8c-0.351 0-0.5-0.149-0.5-0.5v-5c0-0.351 0.149-0.5 0.5-0.5h6c0.276 0 0.5-0.224 0.5-0.5v-6c0-0.911-0.589-1.5-1.5-1.5h-30.5c-1.233 0-2-0.767-2-2s0.767-2 2-2h5.076l-3.026 0.998c-0.262 0.086-0.405 0.369-0.319 0.631 0.069 0.21 0.265 0.343 0.475 0.343 0.052 0 0.104-0.008 0.157-0.025l18.119-5.973c0.262-0.087 0.405-0.369 0.318-0.632-0.086-0.262-0.369-0.405-0.632-0.318l-12.1 3.99c-0.023-0.004-0.044-0.014-0.068-0.014h-8c-1.794 0-3 1.206-3 3v22c0 1.794 1.206 3 3 3h30.5c0.911 0 1.5-0.589 1.5-1.5v-5c0-0.276-0.224-0.5-0.5-0.5s-0.5 0.224-0.5 0.5v5c0 0.351-0.149 0.5-0.5 0.5h-30.5c-1.233 0-2-0.767-2-2v-19.688c0.513 0.433 1.192 0.688 2 0.688h30.5c0.351 0 0.5 0.149 0.5 0.5v5.5h-5.5c-0.911 0-1.5 0.589-1.5 1.5v5c0 0.911 0.589 1.5 1.5 1.5h8c0.911 0 1.5-0.589 1.5-1.5v-6c0-0.911-0.589-1.5-1.5-1.5zM31 20c0 0.552 0.448 1 1 1s1-0.448 1-1c0-0.552-0.448-1-1-1s-1 0.448-1 1z"></path>
         </symbol>
         <symbol id="icon-up" viewBox="0 0 18 32">
             <title>up</title>
@@ -48,12 +49,29 @@ $this->params['breadcrumbs'][] = $this->title;
     </defs>
 </svg>
 
-<section class="section_after-light-menu section tac">
+<section class="section section_big good parallax-window tac" data-parallax="scroll"
+         data-image-src="<?= Url::to('../img/background/look-job.jpg') ?>">
+    <div class="bg_dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2><?= \Yii::t('general', 'YOUR WAY TO SUCCESS IS STARTING RIGHT NOW')?></h2>
+                    <h4><?= \Yii::t('general', 'Earn money by performing at the best courts, traveling around the world with us.')?></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section tac position-menu">
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <h2 class="we-are__title"><?= \Yii::t('general', 'YOUR WAY TO SUCCESS IS STARTING RIGHT NOW')?></h2>
-                <h4><?= \Yii::t('general', 'Earn money by performing at the best courts, traveling around the world with us.')?></h4>
+                <h2><?= \Yii::t('general', 'Job openings in our company there almost every day. Therefore, in order to get the most profitable and best offer for you, you only need to fill out a form, then our casting - Department proceed to the selection of contract that best fits your needs.')?></h2>
+                <nav class="cl-effect-7">
+                    <a href="<?= Url::to('/artist/create')?>"><?= \Yii::t('general', 'Fill in the form')?></a>
+                </nav>
+                <p><?= \Yii::t('general', 'Some current vacancies you can see here.')?></p>
             </div>
         </div>
     </div>
@@ -61,16 +79,18 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <section class="section good parallax-window tac" data-parallax="scroll"
          data-image-src="<?= Url::to('../img/background/celebrities.jpg') ?>">
+    <div class="bg_dark">
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <h2 class="good__title">
+                <h2>
                     <?= \Yii::t('general', 'YOUR NEXT PERFORMANCE MIGHT BE ON THE SAME STAGE WITH CELEBRITIES.') ?>
                 </h2>
-                <p><?= \Yii::t('general', 'We cooperate with the best artists from the CIS countries, who perform in the most luxurious places of the world.') ?></p>
+                <p><?= \Yii::t('general', 'We cooperate with the best artists, who perform in the most luxurious places of the world.') ?></p>
                 <p><?= \Yii::t('general', 'You might be the next one.') ?></p>
             </div>
         </div>
+    </div>
     </div>
 </section>
 
@@ -126,15 +146,15 @@ $this->params['breadcrumbs'][] = $this->title;
 </section>
 
 <section class="section good parallax-window tac" data-parallax="scroll"
-         data-image-src="<?= Url::to('../img/background/celebrities.jpg') ?>">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                <h2 class="good__title">
-                    <?= \Yii::t('general', 'WHO DOES WANT TO PERFORM IN THE MOST LUXURIOUS PLACES OF THE WORLD?') ?>
-                </h2>
-                <p><?= \Yii::t('general', 'Do you want to travel?') ?></p>
-                <p><?= \Yii::t('general', 'So it is the best paid vacation that you can imagine.') ?></p>
+         data-image-src="<?= Url::to('../img/background/perform.jpg') ?>">
+    <div class="bg_dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2><?= \Yii::t('general', 'YOU ARE A TRUE PROFESSIONAL?') ?></h2>
+                    <h2><?= \Yii::t('general', 'YOU SERIOUS AND RESPONSIBLE IN YOUR WORK?') ?></h2>
+                    <p><?= \Yii::t('general', 'Then our contracts will be your best paid vacation, you just could imagine.') ?></p>
+                </div>
             </div>
         </div>
     </div>

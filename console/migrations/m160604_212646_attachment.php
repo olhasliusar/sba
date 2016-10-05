@@ -18,13 +18,12 @@ class m160604_212646_attachment extends Migration
             'real_name' => $this->string(255),
 
             'obj_id' => $this->integer()->notNull(),
-            'obj_type' => $this->enum([''], true),
+            'obj_type' => $this->enum(['artist', 'article', 'user'], true),
 
             'type' => $this->enum(['image', 'unknown', 'document', 'video', 'audio'], true),
             'path' => $this->string(255)->notNull(),
             'thumbnail_path' => $this->string(255),
             'ext' => $this->string(10)->notNull(),
-
 
             'show' => $this->tinyint(),
 

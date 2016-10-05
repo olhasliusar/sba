@@ -12,22 +12,14 @@ return [
     'Update' => 'Обновить',
     'Delete' => 'Удалить',
     'View' => 'Вид',
-    'My orders' => 'Мои заказы',
     'Exit' => 'Выйти',
     'Help' => 'Помощь',
-    'New order' => 'Новый заказ',
-    'User' => 'Пользователь',
     'Description' => 'Описание',
-    'Category' => 'Категория',
     'Images' => 'Изображения',
     'Image' => 'Изображение',
     'Status' => 'Статус',
     'Created date' => 'Дата создания',
     'Updated date' => 'Дата редактирования',
-    'Services' => 'Сервисы',
-    'Service' => 'Сервис',
-    'Update Order' => 'Редактировать заказ',
-    'Orders' => 'Заказы',
     'Url' => 'Url',
     'Url of Thumbnail' => 'Url миниатюры',
     'Name' => 'Название',
@@ -178,8 +170,6 @@ return [
     'Do order now' => 'Сделайте заказ сейчас',
     'Select category' => 'Выберите категорию',
     'Show all' => 'Показать все',
-    'Order service form' => 'Форма заказа услуги',
-    'Select service' => 'Выберите услугу',
     'If you have any questions, the answers can be found in the article below' => 'Если у вас есть какие-либо вопросы, ответы можно найти в следующих статьях',
     'Enter your login and password' => 'Введите свой логин и пароль',
     'Waiting' => 'Ожидание',
@@ -208,7 +198,6 @@ return [
     'How well was the work done? Are there any comments?' => 'Как была выполнена работа? Ваши комментарии.',
     'Became a master' => 'Стал мастером',
     'Done works' => 'Выполнено работ',
-    'Contacts' => 'Контакты',
     'Any questions, search for answers in the article below' => 'Если есть вопросы, посмотрите следующие статьи',
     'Key words' => 'Ключевые слова',
     'All' => 'Все',
@@ -223,12 +212,6 @@ return [
     'Verified' => 'Подтверждённо',
     '_User' => 'пользователя',
     '_Article' => 'статью',
-    '_Company' => 'компанию',
-    '_Worker' => 'сотрудника',
-    '_Service' => 'сервис',
-    '_Category' => 'категорию',
-
-    'Articles' => 'Статьи',
 
     'Are you sure you want to delete this item?' => 'Вы уверены что хотите удалить эту запись?',
     'This field must contain ukrainian symbols only' => 'Это поле должно содержать только украинские буквы',
@@ -236,8 +219,6 @@ return [
     'This name has already been taken.' => 'Это имя уже используется.',
 
     'Apply' => 'Применить',
-    'Only company' => 'Только компания',
-    'Only user' => 'Только пользователь',
     'Authorization' => 'Авторизация',
 
 
@@ -247,7 +228,12 @@ return [
 
 
     'Select' => 'Вибрать',
-    'Other Links' => 'Другие ссылки',
+    'Useful Links' => 'Полезные ссылки',
+    
+    'Testimonials' => 'Отзывы',
+    'Our team' => 'Наша команда',
+    '"SBA" OOO (documentation)' => 'ООО "SBA" (документация)',
+    'Contacts' => 'Контакты',
 
     'Looking for a job' => 'Ищу работу',
     'Looking for artists' => 'Ищу артистов',
@@ -256,27 +242,29 @@ return [
     'Be successful with us!' => 'Будьте успешными вместе с нами!',
 
     'Why it is better to apply to us' => 'ПОЧЕМУ СТОИТ ОБРАТИТЬСЯ К НАМ?',
-    'We gained great experience in event-sphere as artists.' => 'Мы сами получили большой опыт работы в event-сфере в качестве артистов.',
-    'We provide information, considering all your requirements.' => 'Мы предоставляем информацию, учитывая все Ваши потребности.',
-    'We cooperate only with reliable people.' => 'Мы сотрудничаем только с надежными и проверенными людьми.',
+    'We gained great experience abroad as artists.' => 'Мы сами получили большой опыт работы за границей в качестве артистов.',
+    'We provide contracts, considering all your wishes.' => 'Мы предоставляем контракты, учитывая все Ваши пожелания.',
+    'We cooperate only with well-tried proven artists and employers.' => 'Мы сотрудничаем только с проверенными артистами и работодателями.',
     'We are the first booking agency in the CIS countries. We are engaged in the official employment of artists, organization of concerts and show-programs.' => 'Мы первое букинговое агентство в СНГ, занимающееся официальным трудоустройством артистов и организацией концертов и шоу программ за границей.',
+    'We are the first booking agency in the CIS countries. We are engaged in the official employment of artists of all genres, also we the select staff for the hotel industry.' => 'Мы первое букинговое агентство в СНГ, занимающееся официальным трудоустройством артистов всех жанров, а также подбором персонала для hotel индустрии.',
 
     'WE ARE INTERESTED IN LONG AND PRODUCTIVE COOPERATION WITH EACH ARTIST AND EMPLOYER, BECAUSE WE – SUCCESSFUL BOOKING AGENCY.' => 'МЫ ЗАИНТЕРЕСОВАНЫ В ДЛИТЕЛЬНОМ И ПРОДУКТИВНОМ СОТРУДНИЧЕСТВЕ С КАЖДЫМ АРТИСТОМ И РАБОТОДАТЕЛЕМ, ВЕДЬ МЫ - УСПЕШНОЕ БУКИНГОВОЕ АГЕНТСТВО.',
-    'For that reason we have developed perfect sequence of actions and we control the whole period of work of an artist, and we can settle relationships with an employer.' => 'Поэтому нами разработан совершенный алгоритм действий, с помощью которого мы полностью контролируем весь период работы артиста, и можем урегулировать отношения с работодателем.',
+    'For that reason we have developed perfect sequence of actions and we have complete control over the entire period of the artist and is constantly in contact with the employer.' => 'Поэтому нами разработан совершенный алгоритм действий, с помощью которого мы полностью контролируем весь период работы артиста и постоянно поддерживаем связь с работодателем.',
 
     'BE THE FIRST WHO WILL FIND OUT ABOUT ALL OPEN VACANCIES' => 'УЗНАВАЙТЕ ПЕРВЫМИ О ВСЕХ АКТУАЛЬНЫХ ВАКАНСИЯХ',
     'YOUR SUCCESS IS IMPORTANT FOR US' => 'ДЛЯ НАС ВАЖЕН ВАШ УСПЕХ',
-    'Do you want to travel?' => 'Вы хотите путешествовать?',
+    'Do you want to develop, to travel and to earn?' => 'Хотите развиваться, путешествовать и зарабатывать?',
+    'Do you want to find a reliable partner?' => 'Хотите найти надежных партнеров?',
+    'We conclude contracts only on the most favorable terms, which allows us to maintain constant cooperation with the artist and the employer.' => 'Мы заключаем контракты только на самых выгодных условиях, что позволяет нам поддерживать постоянное сотрудничество как с артистом, так и с работодателем.',
     'All our clients contact us repeatedly.' => 'Все наши клиенты обращаются к нам повторно!',
-    'We bring the income and benefits to each of them.' => 'Мы приносим доход и выгоду каждому из них.',
 
     'WE ARE ALWAYS AVAILABLE 24/7' => 'МЫ ВСЕГДА НА СВЯЗИ 24/7',
     'Cooperating with us, a personal assistant assigned to You.' => 'Сотрудничая с нами, за Вами закрепляется персональный помощник. ',
     'You can contact him and ask any question at any time, in any convenient manner For you.' => 'Вы сможете связаться с ним и задать любой интересующий Вас вопрос в любое время, любым удобным для Вас способом.',
 
 
-//    'YOUR WAY TO SUCCESS IS STARTING RIGHT NOW' => 'ВАШ ПУТЬ К УСПЕХУ НАЧИНАЕТСЯ ПРЯМО СЕЙЧАС',
-    'YOUR WAY TO SUCCESS IS STARTING RIGHT NOW' => 'Ваш путь к успеху начинается прямо сейчас',
+    'YOUR WAY TO SUCCESS IS STARTING RIGHT NOW' => 'ВАШ ПУТЬ К УСПЕХУ НАЧИНАЕТСЯ ПРЯМО СЕЙЧАС',
+//    'YOUR WAY TO SUCCESS IS STARTING RIGHT NOW' => 'Ваш путь к успеху начинается прямо сейчас',
     'Earn money by performing at the best courts, traveling around the world with us.' => 'Зарабатывайте деньги, выступая на лучших площадках, путешествуя по всему миру вместе с нами.',
 
     'COOPERATE WITH US' => 'РАБОТАЙТЕ С НАМИ',
@@ -290,7 +278,7 @@ return [
     'With our agency your payment will be much higher than your colleagues and other professional artists.' => 'С нами Ваш гонорар будет значительно выше Ваших коллег и других профессиональных артистов.',
 
     'YOUR NEXT PERFORMANCE MIGHT BE ON THE SAME STAGE WITH CELEBRITIES.' => 'ВАШЕ СЛЕДУЮЩЕЕ ВЫСТУПЛЕНИЕ МОЖЕТ БЫТЬ НА ОДНОЙ СЦЕНЕ СО ЗВЕЗДАМИ МИРОВОГО УРОВНЯ.',
-    'We cooperate with the best artists from the CIS countries, who perform in the most luxurious places of the world.' => 'Мы сотрудничаем с лучшими артистами со всех стран СНГ, которые выступают в самых роскошных заведениях планеты.',
+    'We cooperate with the best artists, who perform in the most luxurious places of the world.' => 'Мы сотрудничаем с лучшими артистами, которые выступают в самых роскошных заведениях планеты.',
     'You might be the next one.' => 'Вы можете быть следующим.',
 
     'WHO DOES WANT TO PERFORM IN THE MOST LUXURIOUS PLACES OF THE WORLD?' => 'КТО ХОЧЕТ ВЫСТУПАТЬ В САМЫХ РОСКОШНЫХ ЗАВЕДЕНИЯХ МИРА?',
@@ -312,16 +300,27 @@ return [
 
 
     'GREAT COMPANIES CHOOSE' => 'УСПЕШНЫЕ КОМПАНИИ ВЫБИРАЮТ',
-    'Caring about you, we create the most comfortable conditions for work.' => 'Заботясь о Вас, мы создаем комфортные условия для работы.',
-    'DO YOU WANT TO WORK ONLY WITH PROFESSIONAL ARTISTS?' => 'ХОТИТЕ РАБОТАТЬ ТОЛЬКО С ПРОФЕССИОНАЛЬНЫМИ АРТИСТАМИ?',
+    'We create the most comfortable conditions for work, caring about you.' => 'Мы создаем комфортные условия для работы, заботясь о Вас.',
+    'DO YOU WANT TO WORK ONLY WITH PROFESSIONAL ARTISTS?' => 'ХОТИТЕ РАБОТАТЬ ТОЛЬКО С <span class="word-break">ПРОФЕССИОНАЛЬНЫМИ</span> АРТИСТАМИ?',
     'Our casting department thoroughly selects and approves only professional dancers, musicians, singers, acrobats, models and actors of an original genre with work experience.' => 'Наш кастинг-отдел тщательно отбирает и утверждает только профессиональных танцоров, музыкантов, певцов, акробатов, моделей и артистов оригинального жанра с опытом работы.',
 
     'You will receive a list of suitable artists in the shortest time, according to the contract.' => 'Вы получите список подходящих артистов в кратчайшие сроки, согласно договору.',
-    'You get artists according to the criteria mentioned in the contract.' => 'Вы получаете артистов только согласно критериям, указанных в договоре.',
+    'You get artists according to the criteria mentioned in the contract.' => 'Вы получаете артистов только согласно критериям, указанным в договоре.',
     'You will work only with reliable artists.' => 'Вы будете работать только с надежными и проверенными артистами.',
     'You can essentially save your expenses on artists\' fees, because we work without agents.' => 'Вы существенно сэкономите свои расходы на гонорары артистов, так как мы работаем без посредников и агентов.',
 
-    'SELECTION OF ARTISTS, CONSIDERING ALL YOUR NEEDS AND CRITERIA' => 'ПОДБОР АРТИСТОВ, УЧИТЫВАЯ ВСЕ ВАШИ ПОТРЕБНОСТИ И КРИТЕРИИ',
+    'SELECTION OF ARTISTS, CONSIDERING ALL YOUR NEEDS AND CRITERIA' => 'ПОДБОР АРТИСТОВ, УЧИТЫВАЯ ВСЕ ВАШИ ТРЕБОВАНИЯ И КРИТЕРИИ',
     'We sign a contract with you to pick up artists and also we offer candidates solely according to your criteria.' => 'Мы заключаем с Вами договор по подбору артистов и предлагаем кандидатов исключительно по Вашим критериям. ',
     'Contact us to find out more.' => 'Свяжитесь с нами, чтобы узнать больше.',
+    
+    'Blog' => 'Блог',
+    'Articles' => 'Статьи',
+    'All articles' => 'Все статьи',
+
+    'Job openings in our company there almost every day. Therefore, in order to get the most profitable and best offer for you, you only need to fill out a form, then our casting - Department proceed to the selection of contract that best fits your needs.' => 'Актуальные вакансии в нашей компании появляются практически каждый день. Поэтому, для того чтобы получить самое выгодное и оптимальное для Вас предложение, Вам нужно всего лишь заполнить анкету, после чего наш кастинг - отдел приступит к подбору контракта, наиболее соответствующего Вашим пожеланиям.',
+    'Some current vacancies you can see here.' => 'Некоторые актуальные вакансии Вы можете посмотреть здесь.',
+
+    'YOU ARE A TRUE PROFESSIONAL?' => 'ВЫ НАСТОЯЩИЙ ПРОФЕССИОНАЛ?',
+    'YOU SERIOUS AND RESPONSIBLE IN YOUR WORK?' => 'ВЫ СЕРЬЁЗНО И ОТВЕТСТВЕННО ОТНОСИТЕСЬ К СВОЕЙ РАБОТЕ?',
+    'Then our contracts will be your best paid vacation, you just could imagine.' => 'Тогда наши контракты станут для Вас лучшим оплачеваемым отпуском, который Вы только могли себе представить.',
 ];

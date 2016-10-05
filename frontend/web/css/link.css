@@ -11,11 +11,13 @@ nav.cl-effect-7 a {
     outline: none;
     color: #449d44;
     text-decoration: none;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     letter-spacing: 1px;
     font-weight: 400;
+    font-weight: 700;
     text-shadow: 0 0 1px rgba(255,255,255,0.3);
     font-size: 16px;
+    font-size: 26px;
 }
 .cl-effect-7 a::after {
     opacity: 0;

@@ -32,7 +32,7 @@ class m130524_201442_init extends Migration
             'updated_by' => $this->integer(),
         ], $tableOptions);
 
-        $this->insert('user', ['username' => 'admin', 'auth_key' => 'SYW_s5r90eW0Gufm9DYC40gaCSb81WfG', 'password_hash' => '$2y$13$C3xHG9OiGhvloz23ApleF.VOGtCQvRQ3pe1T3Vr702/vXMKDXMGTS']);
+        $this->insert('user', ['username' => 'admin', 'auth_key' => 'SYW_s5r90eW0Gufm9DYC40gaCSb81WfG', 'password_hash' => '$2y$13$osd9UelnqEh8AJI.p73S0.VLxA9XyekBMxQq/58HPofW0k7i.Bcne']);
     }
 
     public function down()

@@ -12,7 +12,7 @@ use common\models\Article;
  */
 class ArticleSearch extends Article
 {
-    const PAGINATION = 4;
+    const PAGINATION = 10;
     
     /**
      * @inheritdoc

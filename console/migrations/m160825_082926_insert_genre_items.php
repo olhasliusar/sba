@@ -12,7 +12,7 @@ class m160825_082926_insert_genre_items extends Migration
         $this->insert('genre', ['name' => 'Freak show']);
         $this->insert('genre', ['name' => 'DJs']);
         $this->insert('genre', ['name' => 'big show']);
-        $this->insert('genre', ['name' => 'dancing couple']);
+        $this->insert('genre', ['name' => 'dancing couples']);
         $this->insert('genre', ['name' => 'show ballet']);
         $this->insert('genre', ['name' => 'model']);
         $this->insert('genre', ['name' => 'musicians']);

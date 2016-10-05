@@ -4,12 +4,15 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 
 $this->title = "SBA: SUCCESSFUL BOOKING AGENCY ". \Yii::t('general', 'Be successful with us!');
+
+$this->registerJsFile(Yii::$app->request->baseUrl.'/js/menu-transparent.js');
+$this->registerJsFile(Yii::$app->request->baseUrl.'/js/animate.js');
 ?>
-<script>
-    $('.navbar-inverse').addClass('nav-main-page').addClass('nav-transparent');
-    var logoSrcLight = window.location.origin + '/frontend/web/img/logo_l.png';
-    $('.navbar-brand .logo').attr('src', logoSrcLight);
-</script>
+<!--<script>-->
+<!--    $('.navbar-inverse').addClass('nav-main-page').addClass('nav-transparent');-->
+<!--    var logoSrcLight = window.location.origin + '/frontend/web/img/logo_l.png';-->
+<!--    $('.navbar-brand .logo').attr('src', logoSrcLight);-->
+<!--</script>-->
 
 <svg style="display: none;" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs>
@@ -77,7 +80,7 @@ $this->title = "SBA: SUCCESSFUL BOOKING AGENCY ". \Yii::t('general', 'Be success
 </svg>
 
 <div class="site-index">
-    <div class="bg_move_wrapper position-menu">
+    <div class="bg_move_wrapper">
         <div class="bg_move">
             <video muted autoplay="autoplay"  style="width:100%;" loop="loop" id="banner-bg-video">
                 <source src="<?= Url::to('../video/main-bg.mp4')?>" type="video/mp4" />
@@ -86,7 +89,7 @@ $this->title = "SBA: SUCCESSFUL BOOKING AGENCY ". \Yii::t('general', 'Be success
             </video>
         </div>
 
-        <div class="banner_text">
+        <div class="banner__text">
             <div class="row">
                 <div class="col-xs-12">
                     <h1 class="banner__title">SUCCESSFUL BOOKING AGENCY</h1>
@@ -103,7 +106,7 @@ $this->title = "SBA: SUCCESSFUL BOOKING AGENCY ". \Yii::t('general', 'Be success
     </script>
 
     <div class="body-content">
-        <section class="we-are section tac">
+        <section class="we-are section tac position-menu">
 
             <div class="we-are__btn" id="we-are">
                 <a href="#we-are">
@@ -114,7 +117,7 @@ $this->title = "SBA: SUCCESSFUL BOOKING AGENCY ". \Yii::t('general', 'Be success
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
-                        <h2 class="we-are__title"><?= \Yii::t('general', 'We are the first booking agency in the CIS countries. We are engaged in the official employment of artists, organization of concerts and show-programs.')?></h2>
+                        <h2 class="we-are__title animate_index-1"><?= \Yii::t('general', 'We are the first booking agency in the CIS countries. We are engaged in the official employment of artists of all genres, also we the select staff for the hotel industry.')?></h2>
                         <nav class="cl-effect-7">
                             <a href="<?= Url::to('/artist/create')?>"><?= \Yii::t('general', 'Fill in the form')?></a>
                         </nav>
@@ -129,31 +132,31 @@ $this->title = "SBA: SUCCESSFUL BOOKING AGENCY ". \Yii::t('general', 'Be success
                     <div class="col-md-4 col-sm-4 col-xs-12">
                         <div class="advantages">
                             <div class="icon-wrapper">
-                                <svg class="icon-gray">
+                                <svg class="icon-gray animate_index-2">
                                     <use xlink:href="#icon-guest"></use>
                                 </svg>
                             </div>
-                            <p><?= \Yii::t('general', 'We gained great experience in event-sphere as artists.')?></p>
+                            <p><?= \Yii::t('general', 'We gained great experience abroad as artists.')?></p>
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-4 col-xs-12">
                         <div class="advantages">
                             <div class="icon-wrapper">
-                                <svg class="icon-gray">
+                                <svg class="icon-gray animate_index-2">
                                     <use xlink:href="#icon-bubbles"></use>
                                 </svg>
                             </div>
-                            <p><?= \Yii::t('general', 'We provide information, considering all your requirements.')?></p>
+                            <p><?= \Yii::t('general', 'We provide contracts, considering all your wishes.')?></p>
                         </div>
                     </div>
                     <div class="col-md-4 col-sm-4 col-xs-12">
                         <div class="advantages">
                             <div class="icon-wrapper">
-                                <svg class="icon-gray">
+                                <svg class="icon-gray animate_index-2">
                                     <use xlink:href="#icon-umbrella"></use>
                                 </svg>
                             </div>
-                            <p><?= \Yii::t('general', 'We cooperate only with reliable people.')?></p>
+                            <p><?= \Yii::t('general', 'We cooperate only with well-tried proven artists and employers.')?></p>
                         </div>
                     </div>
 <!--                    <div class="col-md-3 col-sm-6 col-xs-12">-->
@@ -171,21 +174,23 @@ $this->title = "SBA: SUCCESSFUL BOOKING AGENCY ". \Yii::t('general', 'Be success
         </section>
 
         <section class="section good parallax-window tac" data-parallax="scroll" data-image-src="<?= Url::to('../img/background/good.jpg')?>">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <h2 class="good__title">
-                            <?= \Yii::t('general', 'WE ARE INTERESTED IN LONG AND PRODUCTIVE COOPERATION WITH EACH ARTIST AND EMPLOYER, BECAUSE WE – SUCCESSFUL BOOKING AGENCY.')?>
-                        </h2>
-                        <p>
-                            <?= \Yii::t('general', 'For that reason we have developed perfect sequence of actions and we control the whole period of work of an artist, and we can settle relationships with an employer.')?>
-                        </p>
+            <div class="bg_dark">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">                            
+                            <h2>
+                                <?= \Yii::t('general', 'WE ARE INTERESTED IN LONG AND PRODUCTIVE COOPERATION WITH EACH ARTIST AND EMPLOYER, BECAUSE WE – SUCCESSFUL BOOKING AGENCY.')?>
+                            </h2>
+                            <p>
+                                <?= \Yii::t('general', 'For that reason we have developed perfect sequence of actions and we have complete control over the entire period of the artist and is constantly in contact with the employer.')?>
+                            </p>                                                    
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="socials light-g section tac">
+        <section class="socials light-g section tac oh">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
@@ -195,28 +200,28 @@ $this->title = "SBA: SUCCESSFUL BOOKING AGENCY ". \Yii::t('general', 'Be success
                 <div class="row">
                     <div class="col-md-3 col-sm-3 col-xs-6">
                         <a class="icon-wrapper" href="https://www.facebook.com/groups/sba.world/" target="_blank">
-                            <svg class="icon-gray">
+                            <svg class="icon-gray animate_index-4">
                                 <use xlink:href="#icon-facebook"></use>
                             </svg>
                         </a>
                     </div>
                     <div class="col-md-3 col-sm-3 col-xs-6">
                         <a class="icon-wrapper" href="https://www.instagram.com/sba_world/" target="_blank">
-                            <svg class="icon-gray">
+                            <svg class="icon-gray animate_index-5">
                                 <use xlink:href="#icon-instagram"></use>
                             </svg>
                         </a>
                     </div>
                     <div class="col-md-3 col-sm-3 col-xs-6">
                         <a class="icon-wrapper" href="http://vk.com/sba.world" target="_blank">
-                            <svg class="icon-gray">
+                            <svg class="icon-gray animate_index-4">
                                 <use xlink:href="#icon-vk"></use>
                             </svg>
                         </a>
                     </div>
                     <div class="col-md-3 col-sm-3 col-xs-6">
                         <a class="icon-wrapper" href="https://www.youtube.com/channel/UCX-A-9l-b-HVk4MpDKu595Q" target="_blank">
-                            <svg class="icon-gray">
+                            <svg class="icon-gray animate_index-5">
                                 <use xlink:href="#icon-youtube"></use>
                             </svg>
                         </a>
@@ -225,19 +230,35 @@ $this->title = "SBA: SUCCESSFUL BOOKING AGENCY ". \Yii::t('general', 'Be success
             </div>
         </section>
 
-        <section class="your-success section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-7"></div>
-                    <div class="col-sm-5 your-success__column">
-                        <h2><?= \Yii::t('general', 'YOUR SUCCESS IS IMPORTANT FOR US')?></h2>
-                        <p><?= \Yii::t('general', 'Do you want to travel?')?></p>
-                        <p><?= \Yii::t('general', 'All our clients contact us repeatedly.')?></p>
-                        <p><?= \Yii::t('general', 'We bring the income and benefits to each of them.')?></p>
+        <section class="section good parallax-window your-success oh" data-parallax="scroll" data-image-src="<?= Url::to('../img/background/good.jpg')?>">
+            <div class="bg_dark">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-5 your-success__column animate_index-3">
+                            <h2><?= \Yii::t('general', 'YOUR SUCCESS IS IMPORTANT FOR US')?></h2>
+                            <p><?= \Yii::t('general', 'Do you want to develop, to travel and to earn?')?></p>
+                            <p><?= \Yii::t('general', 'Do you want to find a reliable partner?')?></p>
+                            <p><?= \Yii::t('general', 'We conclude contracts only on the most favorable terms, which allows us to maintain constant cooperation with the artist and the employer.')?></p>
+                        </div>
+                        <div class="col-sm-7"></div>
                     </div>
                 </div>
             </div>
         </section>
+
+<!--        <section class="your-success section oh">-->
+<!--            <div class="container">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-sm-7"></div>-->
+<!--                    <div class="col-sm-5 your-success__column animate_index-3">-->
+<!--                        <h2>--><?//= \Yii::t('general', 'YOUR SUCCESS IS IMPORTANT FOR US')?><!--</h2>-->
+<!--                        <p>--><?//= \Yii::t('general', 'Do you want to develop, to travel and to earn?')?><!--</p>-->
+<!--                        <p>--><?//= \Yii::t('general', 'Do you want to find a reliable partner?')?><!--</p>-->
+<!--                        <p>--><?//= \Yii::t('general', 'We conclude contracts only on the most favorable terms, which allows us to maintain constant cooperation with the artist and the employer.')?><!--</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </section>-->
 
 <!--        <section class="socials section tac">-->
 <!--            <div class="container">-->
@@ -299,7 +320,7 @@ $this->title = "SBA: SUCCESSFUL BOOKING AGENCY ". \Yii::t('general', 'Be success
 <!--            </div>-->
 <!--        </section>-->
 
-        <section class="socials section tac">
+        <section class="socials section tac oh">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
@@ -310,7 +331,7 @@ $this->title = "SBA: SUCCESSFUL BOOKING AGENCY ". \Yii::t('general', 'Be success
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-2 col-sm-4 col-xs-12">
+                    <div class="col-lg-2 col-sm-4 col-xs-12 animate_index-6">
                         <a class="icon-wrapper" href="tel:+380973818744" target="_blank">
                             <svg class="icon-gray">
                                 <use xlink:href="#icon-whatsapp"></use>
@@ -319,7 +340,7 @@ $this->title = "SBA: SUCCESSFUL BOOKING AGENCY ". \Yii::t('general', 'Be success
                             <p>+38 097 3818 744</p>
                         </a>
                     </div>
-                    <div class="col-lg-2 col-sm-4 col-xs-12">
+                    <div class="col-lg-2 col-sm-4 col-xs-12 animate_index-6">
                         <a class="icon-wrapper" href="tel:+380973818744" target="_blank">
                             <svg class="icon-gray">
                                 <use xlink:href="#icon-viber"></use>
@@ -328,7 +349,7 @@ $this->title = "SBA: SUCCESSFUL BOOKING AGENCY ". \Yii::t('general', 'Be success
                             <p>+38 097 3818 744</p>
                         </a>
                     </div>
-                    <div class="col-lg-2 col-sm-4 col-xs-12">
+                    <div class="col-lg-2 col-sm-4 col-xs-12 animate_index-6">
                         <a class="icon-wrapper" href="tel:+380973818744" target="_blank">
                             <svg class="icon-gray">
                                 <use xlink:href="#icon-wechat"></use>
@@ -337,7 +358,7 @@ $this->title = "SBA: SUCCESSFUL BOOKING AGENCY ". \Yii::t('general', 'Be success
                             <p>+38 097 3818 744</p>
                         </a>
                     </div>
-                    <div class="col-lg-2 col-sm-4 col-xs-12">
+                    <div class="col-lg-2 col-sm-4 col-xs-12 animate_index-7">
                         <a class="icon-wrapper" href="tel:+380973818744" target="_blank">
                             <svg class="icon-gray">
                                 <use xlink:href="#icon-telegram"></use>
@@ -346,7 +367,7 @@ $this->title = "SBA: SUCCESSFUL BOOKING AGENCY ". \Yii::t('general', 'Be success
                             <p>+38 097 3818 744</p>
                         </a>
                     </div>
-                    <div class="col-lg-2 col-sm-4 col-xs-12">
+                    <div class="col-lg-2 col-sm-4 col-xs-12 animate_index-7">
                         <a class="icon-wrapper" href="skype:sba.world?call" target="_blank">
                             <svg class="icon-gray">
                                 <use xlink:href="#icon-skype"></use>
@@ -355,7 +376,7 @@ $this->title = "SBA: SUCCESSFUL BOOKING AGENCY ". \Yii::t('general', 'Be success
                             <p>sba.world</p>
                         </a>
                     </div>
-                    <div class="col-lg-2 col-sm-4 col-xs-12">
+                    <div class="col-lg-2 col-sm-4 col-xs-12 animate_index-7">
                         <a class="icon-wrapper" href="mailto:info@sba.world" target="_blank">
                             <svg class="icon-gray">
                                 <use xlink:href="#icon-mail"></use>

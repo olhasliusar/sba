@@ -6,7 +6,8 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 
 $this->title = 'SBA | '. \Yii::t('general', 'Looking for artists');
-$this->params['breadcrumbs'][] = $this->title;
+
+$this->registerJsFile(Yii::$app->request->baseUrl.'/js/menu-transparent.js');
 ?>
 <svg style="display: none;" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs>
@@ -18,13 +19,13 @@ $this->params['breadcrumbs'][] = $this->title;
             <title>contract</title>
             <path d="M13 5v-1.002c0-1.1 0.898-1.998 2.005-1.998h0.99c1.111 0 2.005 0.895 2.005 1.998v1.002h2.004c0.551 0 0.996 0.447 0.996 0.999v1.002c0 0.556-0.446 0.999-0.996 0.999h-9.009c-0.551 0-0.996-0.447-0.996-0.999v-1.002c0-0.556 0.446-0.999 0.996-0.999h2.004zM12 4h-0.997c-1.104 0-2 0.891-2.003 2h-1.003c-1.103 0-1.997 0.89-1.997 2.004v20.993c0 1.107 0.891 2.004 1.997 2.004h15.005c1.103 0 1.997-0.89 1.997-2.004v-20.993c0-1.107-0.891-2.004-1.997-2.004h-1.003c-0.003-1.105-0.895-2-2.003-2h-0.997c-0.001-1.657-1.35-3-3.009-3h-0.982c-1.661 0-3.008 1.338-3.009 3v0 0zM22 7h1c0.545 0 1 0.449 1 1.003v20.994c0 0.564-0.448 1.003-1 1.003h-15c-0.545 0-1-0.449-1-1.003v-20.994c0-0.564 0.448-1.003 1-1.003h1c0.003 1.105 0.895 2 2.003 2h8.994c1.104 0 2-0.891 2.003-2v0 0zM15.5 5c0.276 0 0.5-0.224 0.5-0.5s-0.224-0.5-0.5-0.5c-0.276 0-0.5 0.224-0.5 0.5s0.224 0.5 0.5 0.5v0zM14 14v1h8v-1h-8zM9 13h3v3h-3v-3zM10 14v1h1v-1h-1zM9 18h3v3h-3v-3zM10 19v1h1v-1h-1zM14 19v1h8v-1h-8zM9 23h3v3h-3v-3zM10 24v1h1v-1h-1zM14 24v1h8v-1h-8z"></path>
         </symbol>
-        <symbol id="icon-dollar" viewBox="0 0 20 20">
+        <symbol id="icon-dollar" viewBox="0 0 38 32">
             <title>dollar</title>
-            <path d="M11 16.755v2.245h-2v-2.143c-1.712-0.1-3.066-0.589-4.241-1.797l1.718-1.74c0.859 0.87 2.023 1.16 3.282 1.16 1.565 0 2.405-0.599 2.405-1.702 0-0.483-0.133-0.889-0.42-1.16-0.267-0.251-0.572-0.387-1.202-0.483l-1.642-0.232c-1.164-0.174-2.022-0.541-2.634-1.141-0.648-0.657-0.973-1.546-0.973-2.707 0-2.155 1.382-3.743 3.707-4.1v-1.955h2v1.932c1.382 0.145 2.465 0.62 3.415 1.551l-1.679 1.682c-0.859-0.832-1.889-0.947-2.787-0.947-1.412 0-2.099 0.792-2.099 1.74 0 0.348 0.115 0.716 0.401 0.986 0.267 0.252 0.706 0.464 1.26 0.541l1.602 0.232c1.241 0.174 2.023 0.522 2.596 1.063 0.726 0.696 1.050 1.702 1.050 2.92 0 2.25-1.567 3.662-3.759 4.055z"></path>
+            <path d="M32.509 7.5c0.276 0 0.5-0.224 0.5-0.5v-1.665c0-0.903-0.735-1.638-1.638-1.638h-2.687l-0.613-1.809c-0.086-0.255-0.36-0.397-0.619-0.318l-14.553 4.424c-0.264 0.081-0.413 0.36-0.333 0.624 0.066 0.216 0.264 0.354 0.479 0.354 0.048 0 0.097-0.007 0.146-0.021l14.089-4.284 1.343 3.965c0.089 0.262 0.375 0.404 0.634 0.313 0.262-0.088 0.402-0.373 0.313-0.634l-0.547-1.615h2.349c0.352 0 0.638 0.286 0.638 0.638v1.666c-0.001 0.276 0.223 0.5 0.499 0.5zM36.5 15c-0.276 0-0.5 0.224-0.5 0.5s0.224 0.5 0.5 0.5c0.351 0 0.5 0.149 0.5 0.5v6c0 0.351-0.149 0.5-0.5 0.5h-8c-0.351 0-0.5-0.149-0.5-0.5v-5c0-0.351 0.149-0.5 0.5-0.5h6c0.276 0 0.5-0.224 0.5-0.5v-6c0-0.911-0.589-1.5-1.5-1.5h-30.5c-1.233 0-2-0.767-2-2s0.767-2 2-2h5.076l-3.026 0.998c-0.262 0.086-0.405 0.369-0.319 0.631 0.069 0.21 0.265 0.343 0.475 0.343 0.052 0 0.104-0.008 0.157-0.025l18.119-5.973c0.262-0.087 0.405-0.369 0.318-0.632-0.086-0.262-0.369-0.405-0.632-0.318l-12.1 3.99c-0.023-0.004-0.044-0.014-0.068-0.014h-8c-1.794 0-3 1.206-3 3v22c0 1.794 1.206 3 3 3h30.5c0.911 0 1.5-0.589 1.5-1.5v-5c0-0.276-0.224-0.5-0.5-0.5s-0.5 0.224-0.5 0.5v5c0 0.351-0.149 0.5-0.5 0.5h-30.5c-1.233 0-2-0.767-2-2v-19.688c0.513 0.433 1.192 0.688 2 0.688h30.5c0.351 0 0.5 0.149 0.5 0.5v5.5h-5.5c-0.911 0-1.5 0.589-1.5 1.5v5c0 0.911 0.589 1.5 1.5 1.5h8c0.911 0 1.5-0.589 1.5-1.5v-6c0-0.911-0.589-1.5-1.5-1.5zM31 20c0 0.552 0.448 1 1 1s1-0.448 1-1c0-0.552-0.448-1-1-1s-1 0.448-1 1z"></path>
         </symbol>
-        <symbol id="icon-check" viewBox="0 0 30 32">
+        <symbol id="icon-check" viewBox="0 0 24 24">
             <title>check</title>
-            <path d="M25.143 16.607v5.679q0 2.125-1.509 3.634t-3.634 1.509h-14.857q-2.125 0-3.634-1.509t-1.509-3.634v-14.857q0-2.125 1.509-3.634t3.634-1.509h14.857q1.125 0 2.089 0.446 0.268 0.125 0.321 0.411 0.054 0.304-0.161 0.518l-0.875 0.875q-0.179 0.179-0.411 0.179-0.054 0-0.161-0.036-0.411-0.107-0.804-0.107h-14.857q-1.179 0-2.018 0.839t-0.839 2.018v14.857q0 1.179 0.839 2.018t2.018 0.839h14.857q1.179 0 2.018-0.839t0.839-2.018v-4.536q0-0.232 0.161-0.393l1.143-1.143q0.179-0.179 0.411-0.179 0.107 0 0.214 0.054 0.357 0.143 0.357 0.518zM29.268 7.875l-14.536 14.536q-0.429 0.429-1.018 0.429t-1.018-0.429l-7.679-7.679q-0.429-0.429-0.429-1.018t0.429-1.018l1.964-1.964q0.429-0.429 1.018-0.429t1.018 0.429l4.696 4.696 11.554-11.554q0.429-0.429 1.018-0.429t1.018 0.429l1.964 1.964q0.429 0.429 0.429 1.018t-0.429 1.018z"></path>
+            <path d="M21 5q0.43 0 0.715 0.285t0.285 0.715q0 0.422-0.289 0.711l-12 12q-0.289 0.289-0.711 0.289t-0.711-0.289l-6-6q-0.289-0.289-0.289-0.711 0-0.43 0.285-0.715t0.715-0.285q0.422 0 0.711 0.289l5.289 5.297 11.289-11.297q0.289-0.289 0.711-0.289z"></path>
         </symbol>
 
         <symbol id="icon-youtube" viewBox="0 0 27 32">
@@ -66,23 +67,30 @@ $this->params['breadcrumbs'][] = $this->title;
             <title>mail</title>
             <path d="M20.638 20h-8.332l2.244 1.98 2.267 0.011-1.697 0.009h3.378l0.020-0.018-0.099 0.001 2.218-1.983zM21.757 19l3.243-2.9v-8.091c0-0.557-0.455-1.009-1-1.009h-15c-0.552 0-1 0.444-1 1.002v8.198l3.173 2.8h10.583zM13.091 6l3.409-3 3.409 3h4.093c1.107 0 1.997 0.895 1.997 2v3.36l3 2.64v14.006c0 1.1-0.897 1.994-2.004 1.994h-20.993c-1.114 0-2.004-0.893-2.004-1.994v-14.006l3-2.64v-3.36c0-1.112 0.894-2 1.997-2h4.093zM18.428 6l-1.928-1.7-1.928 1.7h3.856zM26 12.677v2.656l1.5-1.333-1.5-1.323zM7 15.333v-2.656l-1.5 1.323 1.5 1.333zM13.5 23l-7 6h20l-7-6h-6zM27.685 28.725v0 0c0.194-0.183 0.315-0.442 0.315-0.725v-13l-8 7.017 7.685 6.708zM5.315 28.725l7.685-6.708-8-7.017v13c0 0.283 0.121 0.542 0.315 0.725v0 0zM10 10v1h13v-1h-13zM10 13v1h13v-1h-13zM10 16v1h13v-1h-13z"></path>
         </symbol>
+        <symbol id="icon-telegram" viewBox="0 0 32 32">
+            <title>telegram</title>
+            <path d="M16 0c-8.838 0-16 7.162-16 16s7.162 16 16 16 16-7.163 16-16-7.163-16-16-16zM23.863 10.969l-2.625 12.369c-0.181 0.881-0.712 1.087-1.45 0.681l-4-2.956-1.919 1.869c-0.225 0.219-0.4 0.4-0.8 0.4-0.519 0-0.431-0.194-0.606-0.688l-1.363-4.475-3.956-1.231c-0.856-0.262-0.862-0.85 0.194-1.269l15.412-5.95c0.7-0.319 1.381 0.169 1.113 1.25z"></path>
+        </symbol>
     </defs>
 </svg>
 
-<section class="section_after-light-menu section tac">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-                <h2 class="good__title"><?= \Yii::t('general', 'GREAT COMPANIES CHOOSE')?></h2>
-                <h2 class="good__title">SUCCESSFUL BOOKING AGENCY</h2>
-                <p><?= \Yii::t('general', 'Caring about you, we create the most comfortable conditions for work.')?></p>
+<section class="section_big section good parallax-window tac" data-parallax="scroll"
+         data-image-src="<?= Url::to('../img/background/success.jpg') ?>">
+    <div class="bg_dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2 class="good__title"><?= \Yii::t('general', 'GREAT COMPANIES CHOOSE')?></h2>
+                    <h2 class="good__title">SUCCESSFUL BOOKING AGENCY</h2>
+                    <p><?= \Yii::t('general', 'We create the most comfortable conditions for work, caring about you.')?></p>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
-<section class="section good parallax-window tac" data-parallax="scroll"
-         data-image-src="<?= Url::to('../img/background/celebrities.jpg') ?>">
+<section class="section_after-light-menu section tac position-menu">
+<!--<section class="section tac">-->
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
@@ -114,7 +122,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col-md-3 col-sm-12 col-xs-12">
                 <div class="advantages">
                     <div class="icon-wrapper">
-                        <svg class="icon-gray">
+                        <svg class="icon-gray icon-gray_big">
                             <use xlink:href="#icon-contract"></use>
                         </svg>
                     </div>
@@ -146,19 +154,88 @@ $this->params['breadcrumbs'][] = $this->title;
 </section>
 
 <section class="section good parallax-window tac" data-parallax="scroll"
-         data-image-src="<?= Url::to('../img/background/celebrities.jpg') ?>">
-    <div class="container">
-        <div class="row">
-<!--            <div class="col-sm-7"></div>-->
-            <div class="col-sm-12">
-                <h2><?= \Yii::t('general', 'SELECTION OF ARTISTS, CONSIDERING ALL YOUR NEEDS AND CRITERIA')?></h2>
-                <p><?= \Yii::t('general', 'We sign a contract with you to pick up artists and also we offer candidates solely according to your criteria.')?></p>
-                <p><?= \Yii::t('general', 'Contact us to find out more.')?></p>
+         data-image-src="<?= Url::to('../img/background/artists.jpg') ?>">
+    <div class="bg_dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h2><?= \Yii::t('general', 'SELECTION OF ARTISTS, CONSIDERING ALL YOUR NEEDS AND CRITERIA')?></h2>
+                    <p><?= \Yii::t('general', 'We sign a contract with you to pick up artists and also we offer candidates solely according to your criteria.')?></p>
+                    <p><?= \Yii::t('general', 'Contact us to find out more.')?></p>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
+<!--<section class="socials section tac oh">-->
+<!--    <div class="container">-->
+<!--        <div class="row">-->
+<!--            <div class="col-xs-12">-->
+<!--                <h2 class="socials__title">--><?//= \Yii::t('general', 'WE ARE ALWAYS AVAILABLE 24/7')?><!--</h2>-->
+<!--                <p class="socials__title">--><?//= \Yii::t('general', 'Cooperating with us, a personal assistant assigned to You.')?>
+<!--                    <br>--><?//= \Yii::t('general', 'You can contact him and ask any question at any time, in any convenient manner For you.')?>
+<!--                </p>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="row">-->
+<!--            <div class="col-lg-2 col-sm-4 col-xs-12 animate_index-6">-->
+<!--                <a class="icon-wrapper" href="tel:+380973818744" target="_blank">-->
+<!--                    <svg class="icon-gray">-->
+<!--                        <use xlink:href="#icon-whatsapp"></use>-->
+<!--                    </svg>-->
+<!--                    <h3>WhatsApp</h3>-->
+<!--                    <p>+38 097 3818 744</p>-->
+<!--                </a>-->
+<!--            </div>-->
+<!--            <div class="col-lg-2 col-sm-4 col-xs-12 animate_index-6">-->
+<!--                <a class="icon-wrapper" href="tel:+380973818744" target="_blank">-->
+<!--                    <svg class="icon-gray">-->
+<!--                        <use xlink:href="#icon-viber"></use>-->
+<!--                    </svg>-->
+<!--                    <h3>Viber</h3>-->
+<!--                    <p>+38 097 3818 744</p>-->
+<!--                </a>-->
+<!--            </div>-->
+<!--            <div class="col-lg-2 col-sm-4 col-xs-12 animate_index-6">-->
+<!--                <a class="icon-wrapper" href="tel:+380973818744" target="_blank">-->
+<!--                    <svg class="icon-gray">-->
+<!--                        <use xlink:href="#icon-wechat"></use>-->
+<!--                    </svg>-->
+<!--                    <h3>WeChat</h3>-->
+<!--                    <p>+38 097 3818 744</p>-->
+<!--                </a>-->
+<!--            </div>-->
+<!--            <div class="col-lg-2 col-sm-4 col-xs-12 animate_index-7">-->
+<!--                <a class="icon-wrapper" href="tel:+380973818744" target="_blank">-->
+<!--                    <svg class="icon-gray">-->
+<!--                        <use xlink:href="#icon-telegram"></use>-->
+<!--                    </svg>-->
+<!--                    <h3>Telegram</h3>-->
+<!--                    <p>+38 097 3818 744</p>-->
+<!--                </a>-->
+<!--            </div>-->
+<!--            <div class="col-lg-2 col-sm-4 col-xs-12 animate_index-7">-->
+<!--                <a class="icon-wrapper" href="skype:sba.world?call" target="_blank">-->
+<!--                    <svg class="icon-gray">-->
+<!--                        <use xlink:href="#icon-skype"></use>-->
+<!--                    </svg>-->
+<!--                    <h3>Skype</h3>-->
+<!--                    <p>sba.world</p>-->
+<!--                </a>-->
+<!--            </div>-->
+<!--            <div class="col-lg-2 col-sm-4 col-xs-12 animate_index-7">-->
+<!--                <a class="icon-wrapper" href="mailto:info@sba.world" target="_blank">-->
+<!--                    <svg class="icon-gray">-->
+<!--                        <use xlink:href="#icon-mail"></use>-->
+<!--                    </svg>-->
+<!--                    <h3>Email</h3>-->
+<!--                    <p>info@sba.world</p>-->
+<!--                </a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</section>-->
 <section class="socials section tac">
     <div class="container">
         <div class="row">
@@ -170,7 +247,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-1-5 col-sm-4 col-xs-12">
+            <div class="col-lg-2 col-sm-4 col-xs-12">
                 <a class="icon-wrapper" href="tel:+380973818744" target="_blank">
                     <svg class="icon-gray">
                         <use xlink:href="#icon-whatsapp"></use>
@@ -179,7 +256,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <p>+38 097 3818 744</p>
                 </a>
             </div>
-            <div class="col-lg-1-5 col-sm-4 col-xs-12">
+            <div class="col-lg-2 col-sm-4 col-xs-12">
                 <a class="icon-wrapper" href="tel:+380973818744" target="_blank">
                     <svg class="icon-gray">
                         <use xlink:href="#icon-viber"></use>
@@ -188,7 +265,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <p>+38 097 3818 744</p>
                 </a>
             </div>
-            <div class="col-lg-1-5 col-sm-4 col-xs-12">
+            <div class="col-lg-2 col-sm-4 col-xs-12">
                 <a class="icon-wrapper" href="tel:+380973818744" target="_blank">
                     <svg class="icon-gray">
                         <use xlink:href="#icon-wechat"></use>
@@ -197,7 +274,16 @@ $this->params['breadcrumbs'][] = $this->title;
                     <p>+38 097 3818 744</p>
                 </a>
             </div>
-            <div class="col-lg-1-5 col-sm-6 col-xs-12">
+            <div class="col-lg-2 col-sm-4 col-xs-12">
+                <a class="icon-wrapper" href="tel:+380973818744" target="_blank">
+                    <svg class="icon-gray">
+                        <use xlink:href="#icon-telegram"></use>
+                    </svg>
+                    <h3>Telegram</h3>
+                    <p>+38 097 3818 744</p>
+                </a>
+            </div>
+            <div class="col-lg-2 col-sm-4 col-xs-12">
                 <a class="icon-wrapper" href="skype:sba.world?call" target="_blank">
                     <svg class="icon-gray">
                         <use xlink:href="#icon-skype"></use>
@@ -206,7 +292,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <p>sba.world</p>
                 </a>
             </div>
-            <div class="col-lg-1-5 col-sm-6 col-xs-12">
+            <div class="col-lg-2 col-sm-4 col-xs-12">
                 <a class="icon-wrapper" href="mailto:info@sba.world" target="_blank">
                     <svg class="icon-gray">
                         <use xlink:href="#icon-mail"></use>

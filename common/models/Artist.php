@@ -3,6 +3,9 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
+use yii\behaviors\BlameableBehavior;
 
 /**
  * This is the model class for table "artist".
@@ -20,6 +23,7 @@ use Yii;
  *
  * @property ArtistGenre[] $artistGenres
  * @property Genre[] $genres
+ * @property Attachment[] $images
  *
  * @property integer $birth
  * @property string $height_weight
@@ -56,6 +60,8 @@ class Artist extends \yii\db\ActiveRecord
     public $exp_place;
     public $exp_period;
 
+    public $images;
+
     /**
      * @inheritdoc
      */
@@ -76,6 +82,7 @@ class Artist extends \yii\db\ActiveRecord
             [['email'], 'unique'],
             [['birth', 'height_weight', 'bust_waist_hips', 'country_city', 'citizenship', 'fc', 'vk',
                 'genres',
+                'images',
                 'countries', 'salary', 'duration', 'contract_start_date',
                 'exp_country_city', 'exp_place', 'exp_period',
              ], 'safe'],
@@ -90,7 +97,6 @@ class Artist extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'first_name' => 'First Name',
-            'second_name' => 'Second Name',
             'last_name' => 'Last Name',
             'email' => 'Email',
             'phone' => 'Phone',
@@ -99,6 +105,24 @@ class Artist extends \yii\db\ActiveRecord
             'updated_at' => 'Updated At',
             'created_by' => 'Created By',
             'updated_by' => 'Updated By',
+        ];
+    }
+    
+    public function behaviors()
+    {
+        return [
+            'timestamp' => [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => 'updated_at'
+                ]
+            ],
+            'blameable' => [
+                'class' => BlameableBehavior::className(),
+                'createdByAttribute' => 'created_by',
+                'updatedByAttribute' => 'updated_by'
+            ]
         ];
     }
 

@@ -20,6 +20,8 @@ use yii\helpers\ArrayHelper;
  * @property Article[] $articles
  * @property ArtistGenre[] $artistGenres
  * @property Artist[] $artists
+ * 
+ * @property array $genres
  */
 class Genre extends \yii\db\ActiveRecord
 {
@@ -91,10 +93,10 @@ class Genre extends \yii\db\ActiveRecord
     }
 
 
-//    public static function getAll()
-//    {
-//        return self::find()->where(['status' => 1])->all();
-//    }
+    public static function getGenres()
+    {
+        return self::find()->where(['status' => 1])->all();
+    }
 
     public static function getAllArr()
     {
@@ -105,5 +107,4 @@ class Genre extends \yii\db\ActiveRecord
         }
         return $genres;
     }
-
 }

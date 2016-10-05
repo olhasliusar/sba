@@ -13,12 +13,17 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/fonts.css',
+        'css/form.css',
         'css/site.css',
+        'css/article.css',
         'css/link.css',
+        'css/animate.css',
+        'css/animation.css',
     ];
     public $js = [
         'js/menu.js',
         'js/main.js',
+        'js/form.js',
         'js/lib/parallax.min.js',
     ];
     public $depends = [

@@ -12,6 +12,7 @@ use common\widgets\Alert;
 use frontend\widgets\Langwidget;
 use common\models\Lang;
 use common\models\Article;
+use yii\helpers\Url;
 
 AppAsset::register($this);
 ?>
@@ -26,8 +27,8 @@ AppAsset::register($this);
     <?php $this->head() ?>
     <link href="https://fonts.googleapis.com/css?family=Hind" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:400,500,600&subset=cyrillic" rel="stylesheet">
 
-    
     <link href="https://fonts.googleapis.com/css?family=Arimo|Merriweather|PT+Sans" rel="stylesheet">
 </head>
 <body>
@@ -36,7 +37,6 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-//        'brandLabel' => 'SBA',
         'brandLabel' => '<img class="logo" src="' . Yii::$app->request->BaseUrl . '/frontend/web/img/logo_d.png">',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
@@ -47,7 +47,8 @@ AppAsset::register($this);
         ['label' => 'SBA', 'url' => ['/site/index']],
         ['label' => \Yii::t('general', 'Looking for a job'), 'url' => ['/site/looking-for-a-job']],
         ['label' => \Yii::t('general', 'Looking for artists'), 'url' => ['/site/looking-for-artists']],
-        ['label' => \Yii::t('general', 'Fill in the form'), 'url' => ['/artist/create']],
+        ['label' => \Yii::t('general', 'Blog'), 'url' => ['/site/articles']],
+//        ['label' => \Yii::t('general', 'Fill in the form'), 'url' => ['/artist/create']],
         Langwidget::widget(),
     ];
 
@@ -75,30 +76,30 @@ AppAsset::register($this);
     $menuItemsFooter = [];
     $menuItemsFooter[] =
         [
-            'label' => \Yii::t('general', 'Home'),
-            'url' => ['/'],
+            'label' => \Yii::t('general', 'Testimonials'),
+            'url' => ['/site/index'],
             'linkOptions' => [
                 'class' => 'menu-styling',
             ],
         ];
     $menuItemsFooter[] = [
-        'label' => \Yii::t('general', 'Categories'),
-        'url' => ['/site/category-list'],
+        'label' => \Yii::t('general', 'Our team'),
+        'url' => ['/site/index'],
         'linkOptions' => [
             'class' => 'menu-styling',
             'title' => \Yii::t('general', 'Categories'),
         ]
     ];
     $menuItemsFooter[] = [
-        'label' => \Yii::t('general', 'Companies'),
-        'url' => ['/company/index'],
+        'label' => \Yii::t('general', '"SBA" OOO (documentation)'),
+        'url' => ['/site/index'],
         'linkOptions' => [
             'class' => 'menu-styling',
             'title' => \Yii::t('general', 'Companies'),
         ]
     ];
     $menuItemsFooter[] = [
-        'label' => \Yii::t('general', 'Contact'),
+        'label' => \Yii::t('general', 'Contacts'),
         'url' => ['/site/contact'],
         'linkOptions' => [
             'class' => 'menu-styling',
@@ -121,18 +122,20 @@ AppAsset::register($this);
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 col-xs-12">
-                    <h3 class="links__title"><?= \Yii::t('general', 'Articles')?></h3>
+                    <h3 class="links__title"><?= \Yii::t('general', 'Blog')?></h3>
                     <?php echo Nav::widget([
                         'options' => ['class' => 'links__menu cl-effect-4'],
                         'items' => Article::getMenuArticles(),
                         'encodeLabels' => false,
                     ]); ?>
+<!--                    --><?//= Html::a('<i class="fa fa-angle-right fa-fw" style="color: #2f9f91;"></i>'.
+//                        \Yii::t('general', 'All articles'), Url::to(['/articles']), ['class' => 'cl-effect-4']); ?>
 <!--                    <ul class="links__menu nav cl-effect-4"><li><a class="menu-styling" href="/en">Home</a></li>-->
 <!--                        <li><a class="menu-styling" href="/en/site/contact" title="Contact">Lorem ipsum dolor sit.</a></li></ul>-->
 
                 </div>
                 <div class="col-sm-6 col-xs-12">
-                    <h3 class="links__title"><?= \Yii::t('general', 'Other Links')?></h3>
+                    <h3 class="links__title"><?= \Yii::t('general', 'Useful Links')?></h3>
                     <?php echo Nav::widget([
                         'options' => ['class' => 'links__menu cl-effect-4'],
                         'items' => $menuItemsFooter,

@@ -6,6 +6,11 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
+use yii\helpers\FileHelper;
+use yii\helpers\Json;
+use yii\web\UploadedFile;
+use common\models\Article;
+use common\models\Attachment;
 
 /**
  * Site controller
@@ -26,7 +31,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['logout', 'index', 'image-upload', 'image-delete'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],

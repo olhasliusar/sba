@@ -12,6 +12,7 @@ use common\models\User;
 use yii\web\UploadedFile;
 use yii\helpers\FileHelper;
 use yii\filters\AccessControl;
+use common\models\Attachment;
 
 /**
  * ArticleController implements the CRUD actions for Article model.
@@ -67,7 +68,7 @@ class ArticleController extends Controller
     public function actionView($id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $this->findModel($id)
         ]);
     }
 
@@ -81,6 +82,7 @@ class ArticleController extends Controller
         $model = new Article();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Attachment::upload($model);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -100,6 +102,7 @@ class ArticleController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $model->changeImages();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
@@ -163,8 +166,8 @@ class ArticleController extends Controller
         else {
             $message = "";
 
-            $url = Yii::$app->urlManager->getHostInfo() . '/static/web/images/articles/'.$file;
-            $uploadPath = Yii::getAlias('@static').'/web/images/articles/'.$file;
+            $url = Yii::$app->urlManager->getHostInfo() . '/static/web/article/images/description/'.$file;
+            $uploadPath = Yii::getAlias('@static').'/web/article/images/description/'.$file;
 
             $move = $uploadedFile->saveAs($uploadPath);
             if(!$move)

@@ -1,0 +1,16 @@
+@media(min-width: 1100px) {
+.oh{
+    overflow: hidden;
+}
+
+.animate_index-1,
+.animate_index-2,
+.animate_index-4,
+.animate_index-5,
+.animate_index-6,
+.animate_index-7
+{
+    visibility: hidden;
+}
+
+} /*END @media(min-width: 1100px)*/

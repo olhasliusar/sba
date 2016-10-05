@@ -68,9 +68,9 @@ class ArtistController extends Controller
     public function actionCreate()
     {
         $model = new Artist();
-//        $image = new Attachment();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Attachment::upload($model);
             return $this->redirect(['view', 'id' => $model->id]);
         }
 

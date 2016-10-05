@@ -40,7 +40,7 @@ return [
             'showScriptName' => false,
             //'baseUrl' => '/admin',
             'rules' => [
-                '' => 'site/index',
+                '' => 'article/index',
                 //'/login' => 'site/login',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
                 '<action>' => 'site/<action>',
