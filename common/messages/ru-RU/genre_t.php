@@ -13,10 +13,11 @@ return [
     'musicians' => 'музыканты',
     'animators' => 'аниматоры',
     'light/fire show' => 'световое/фаер шоу',
-    'hostesses' => 'хостесс',
+    'hostess' => 'хостесс',
     'original genre' => 'оригинальный жанр',
     'acrobats' => 'акробаты',
     'pole/strip dance' => 'пол/стрип дэнс',
     'staff' => 'персонал',
+    'other' => 'другое',
     'All' => 'Все',
 ];

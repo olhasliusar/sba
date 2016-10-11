@@ -15,6 +15,8 @@ use Imagine\Image\ImageInterface;
 use Imagine\Image\Box;
 use Imagine\Gd\Imagine;
 
+use yii\helpers\FileHelper;
+
 /**
  * This is the model class for table "attachment".
  *
@@ -399,23 +401,24 @@ class Attachment extends ExtendedActiveRecord
     public static function downloadAll(array $models, $name = null, $type = null)
     {
         $zip = new \ZipArchive();
-        $date = date('d-m-Y', time());
+        $date = date('d-m-Y_H:i:s', time());
         $zip_name = $name ? $name . '_' . $type . '_' . $date . '.zip' : $type . '_' . $date . '.zip';
 
-        if ($zip->open($zip_name, \ZIPARCHIVE::CREATE)) {
+        $zip_name = 'archive/' . $zip_name;
 
+        if ($zip->open($zip_name, \ZipArchive::CREATE)) {
             foreach ($models as $file) {
-                $path = str_replace('/', '\\', $file->filePath);
+                $path = str_replace('/', DIRECTORY_SEPARATOR, $file->filePath);
                 if ($file instanceof Attachment && file_exists($path)) {
                     $zip->addFile($path, basename($file->baseName));
                 }
             }
-
             $zip->close();
 
             if (file_exists($zip_name)) {
                 header('Content-type: application/zip');
                 header('Content-Disposition: attachment; filename="' . $zip_name . '"');
+
                 readfile($zip_name);
 
                 unlink($zip_name);
@@ -444,6 +447,16 @@ class Attachment extends ExtendedActiveRecord
     }
 
 
+    /**
+     * @param ActiveRecord $obj
+     * @param string $const
+     * @return static[]
+     */
+    public static function getAttachments(ActiveRecord $obj)
+    {
+        return static::findAll(['obj_type' => self::getConst($obj), 'obj_id' => $obj->id]);
+    }
+    
     /**
      * @param ActiveRecord $obj
      * @param string $const
@@ -525,4 +538,5 @@ class Attachment extends ExtendedActiveRecord
             $attachment->delete();
         }
     }
+
 }

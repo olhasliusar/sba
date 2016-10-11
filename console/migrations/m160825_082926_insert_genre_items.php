@@ -22,6 +22,7 @@ class m160825_082926_insert_genre_items extends Migration
         $this->insert('genre', ['name' => 'original genre']);
         $this->insert('genre', ['name' => 'pole/strip dance']);
         $this->insert('genre', ['name' => 'staff']);
+        $this->insert('genre', ['name' => 'other']);
     }
 
     public function down()

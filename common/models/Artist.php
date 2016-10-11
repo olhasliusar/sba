@@ -6,6 +6,8 @@ use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\behaviors\BlameableBehavior;
+use common\models\User;
+use yii\helpers\Url;
 
 /**
  * This is the model class for table "artist".
@@ -23,6 +25,7 @@ use yii\behaviors\BlameableBehavior;
  *
  * @property ArtistGenre[] $artistGenres
  * @property Genre[] $genres
+ * @property string $genresString
  * @property Attachment[] $images
  *
  * @property integer $birth
@@ -37,9 +40,18 @@ use yii\behaviors\BlameableBehavior;
  * @property string $duration
  * @property string $contract_start_date
  *
+ * @property string $international_passport
+ * @property string $date_passport
+ * @property string $visa
+ *
  * @property string $exp_country_city
  * @property string $exp_place
  * @property string $exp_period
+ * 
+ * @property string $university
+ * @property string $specialty
+ * @property string $languages
+ * @property string $achievements
  */
 class Artist extends \yii\db\ActiveRecord
 {
@@ -56,9 +68,18 @@ class Artist extends \yii\db\ActiveRecord
     public $duration;
     public $contract_start_date;
 
+    public $international_passport;
+    public $date_passport;
+    public $visa;
+
     public $exp_country_city;
     public $exp_place;
     public $exp_period;
+
+    public $university;
+    public $specialty;
+    public $languages;
+    public $achievements;
 
     public $images;
 
@@ -84,7 +105,9 @@ class Artist extends \yii\db\ActiveRecord
                 'genres',
                 'images',
                 'countries', 'salary', 'duration', 'contract_start_date',
+                'international_passport', 'date_passport', 'visa',
                 'exp_country_city', 'exp_place', 'exp_period',
+                'university', 'specialty', 'languages', 'achievements',
              ], 'safe'],
         ];
     }
@@ -153,5 +176,63 @@ class Artist extends \yii\db\ActiveRecord
     public function getGenres()
     {
         return $this->hasMany(Genre::className(), ['id' => 'genre_id'])->viaTable('artist_genre', ['artist_id' => 'id']);
+    }
+    
+    public function getGenresString()
+    {
+        $genres = $this->genres;
+        $result = '';
+        foreach ($genres as $genre){
+            $nameGenre = Genre::find()->where(['id' => $genre])->one();
+            $result .= "$nameGenre->name";
+            $result .= ', ';
+        }
+        return $result;
+    }
+
+    public function generateAttachContent(){
+        return <<<EOT
+Имя - $this->first_name\r\n
+Фамилия - $this->last_name\r\n
+Email - $this->email\r\n
+Номер телефона - $this->phone\r\n
+Дата рождения - $this->birth\r\n
+Рост/вес - $this->height_weight\r\n
+Грудь/талия/бедра - $this->bust_waist_hips\r\n
+Страна/город проживания - $this->country_city\r\n
+Гражданство - $this->citizenship\r\n
+Ссылка на Facebook - $this->fc\r\n
+Ссылка на ВК - $this->vk\r\n
+Жанр - $this->genresString\r\n
+\r\n-- Пожелания --\r\n
+Страны - $this->countries\r\n
+Гонорар - $this->salary\r\n
+Продолжительность - $this->duration\r\n
+Дата начала контракта - $this->contract_start_date\r\n
+\r\n-- Документы --\r\n
+Наличие загранпаспорта - $this->international_passport\r\n
+Срок действия загранпаспорта - $this->date_passport\r\n
+Наличие открытых виз - $this->visa\r\n
+\r\n-- Опыт работы --\r\n
+Страна/город - $this->exp_country_city\r\n
+Название заведения - $this->exp_place\r\n
+Период работы - $this->exp_period\r\n
+\r\n-- Образование --\r\n
+ВУЗ - $this->university\r\n
+Специальность - $this->specialty\r\n
+Языки - $this->languages\r\n
+Достижения - $this->achievements\r\n
+EOT;
+    }
+
+    public function sendMail()
+    {
+        return \Yii::$app->mailer->compose(['html' => 'createArtist-html', 'text' => 'createArtist-text'], ['model' => $this])
+            ->setFrom(\Yii::$app->params['supportEmail'])
+            ->setTo('olha.sliusar0315@gmail.com')
+            ->setSubject('Зарегистрирован новый артист. ' . \Yii::$app->name)
+            ->attachContent( $this->generateAttachContent(), ['fileName' => 'artist_'.$this->id.'.txt', 'contentType' => 'text/plain'])
+//            ->attach('/home/worldsb/public_html/composer.json')
+            ->send();
     }
 }

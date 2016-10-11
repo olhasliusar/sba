@@ -117,9 +117,9 @@ $this->registerJsFile(Yii::$app->request->baseUrl.'/js/animate.js');
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
-                        <h2 class="we-are__title animate_index-1"><?= \Yii::t('general', 'We are the first booking agency in the CIS countries. We are engaged in the official employment of artists of all genres, also we the select staff for the hotel industry.')?></h2>
+                        <h2 class="we-are__title animate_index-1"><?= \Yii::t('general', 'We are the first international booking agency. We are engaged in the official employment of artists, organization of concerts and show-programs.')?></h2>
                         <nav class="cl-effect-7">
-                            <a href="<?= Url::to('/artist/create')?>"><?= \Yii::t('general', 'Fill in the form')?></a>
+                            <a href="<?= Url::to('artist/create')?>"><?= \Yii::t('general', 'Fill in the form')?></a>
                         </nav>
                     </div>
                 </div>
@@ -234,13 +234,13 @@ $this->registerJsFile(Yii::$app->request->baseUrl.'/js/animate.js');
             <div class="bg_dark">
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-5 your-success__column animate_index-3">
+                        <div class="col-sm-6 your-success__column animate_index-3">
                             <h2><?= \Yii::t('general', 'YOUR SUCCESS IS IMPORTANT FOR US')?></h2>
                             <p><?= \Yii::t('general', 'Do you want to develop, to travel and to earn?')?></p>
                             <p><?= \Yii::t('general', 'Do you want to find a reliable partner?')?></p>
                             <p><?= \Yii::t('general', 'We conclude contracts only on the most favorable terms, which allows us to maintain constant cooperation with the artist and the employer.')?></p>
                         </div>
-                        <div class="col-sm-7"></div>
+                        <div class="col-sm-6"></div>
                     </div>
                 </div>
             </div>

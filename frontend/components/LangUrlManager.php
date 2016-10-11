@@ -32,7 +32,7 @@ class LangUrlManager extends UrlManager
 
         //Добавляем к URL префикс - буквенный идентификатор языка
         if ($url == '/') {
-            return '/' . $lang->url;
+            return '/' . $lang->url .'/';
         } else {
             $baseUrl = $this->getBaseUrl();
             if (strlen($baseUrl) > 0 && strpos($url, $baseUrl) !== false) {

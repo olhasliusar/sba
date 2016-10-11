@@ -77,7 +77,7 @@ AppAsset::register($this);
     $menuItemsFooter[] =
         [
             'label' => \Yii::t('general', 'Testimonials'),
-            'url' => ['/site/index'],
+            'url' => ['/site/testimonials'],
             'linkOptions' => [
                 'class' => 'menu-styling',
             ],

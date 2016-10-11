@@ -15,7 +15,7 @@ return [
 
     'Genre (to select multiple genres, press Ctrl)' => 'Жанр (для выбора нескольких жанров удерживайте Ctrl)',
 
-    'Wishes' => 'Пожелания',
+    'Wishes for vacancies' => 'Пожелания по вакансиям',
     'Countries' => 'Страны',
     'USA, India, China (Shanghai), the United Arab Emirates (Dubai), Mexico' => 'США, Индия, Китай (Шанхай), ОАЕ (Дубай), Мексика',
     'Salary' => 'Гонорар',
@@ -42,4 +42,15 @@ return [
     'Specialty' => 'Специальность',
     'Languages' => 'Языки',
     'Achievements' => 'Достижения',
+    
+    
+    'Information about an employer or agent' => 'Информация о работодателе или агенте',
+    'Information about company' => 'Информация о компании',
+    'Information about an chief or manager' => 'Информация о работодателе или агенте',
+    'Name of company or agent name' => 'Название компании или имя агента',
+    'Address' => 'Адрес',
+    'Contacts of performers who have already worked' => 'Контакты артистов, которые уже работали с Вами',
+    'Contact' => 'Контакт',
+    'Link/Phone number' => 'Ссылка/номер телефона',
+    'Please add documents or licenses that employer or agent has.' => 'Пожалуйста, добавьте документы или лицензии, которые имеет работодатель или агент.',
 ];

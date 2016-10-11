@@ -142,6 +142,11 @@ class SiteController extends Controller
     {
         return $this->render('looking-for-artists');
     }
+    
+    public function actionTestimonials()
+    {
+        return $this->render('testimonials');
+    }
 
     public function actionArticles()
     {

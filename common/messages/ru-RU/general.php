@@ -227,6 +227,7 @@ return [
 
 
 
+    'Add Photo' => 'Добавить фото',
     'Select' => 'Вибрать',
     'Useful Links' => 'Полезные ссылки',
     
@@ -245,13 +246,13 @@ return [
     'We gained great experience abroad as artists.' => 'Мы сами получили большой опыт работы за границей в качестве артистов.',
     'We provide contracts, considering all your wishes.' => 'Мы предоставляем контракты, учитывая все Ваши пожелания.',
     'We cooperate only with well-tried proven artists and employers.' => 'Мы сотрудничаем только с проверенными артистами и работодателями.',
-    'We are the first booking agency in the CIS countries. We are engaged in the official employment of artists, organization of concerts and show-programs.' => 'Мы первое букинговое агентство в СНГ, занимающееся официальным трудоустройством артистов и организацией концертов и шоу программ за границей.',
+    'We are the first international booking agency. We are engaged in the official employment of artists, organization of concerts and show-programs.' => 'Мы первое международное букинговое агентство, занимающееся официальным трудоустройством артистов и организацией концертов и шоу программ за границей.',
     'We are the first booking agency in the CIS countries. We are engaged in the official employment of artists of all genres, also we the select staff for the hotel industry.' => 'Мы первое букинговое агентство в СНГ, занимающееся официальным трудоустройством артистов всех жанров, а также подбором персонала для hotel индустрии.',
 
     'WE ARE INTERESTED IN LONG AND PRODUCTIVE COOPERATION WITH EACH ARTIST AND EMPLOYER, BECAUSE WE – SUCCESSFUL BOOKING AGENCY.' => 'МЫ ЗАИНТЕРЕСОВАНЫ В ДЛИТЕЛЬНОМ И ПРОДУКТИВНОМ СОТРУДНИЧЕСТВЕ С КАЖДЫМ АРТИСТОМ И РАБОТОДАТЕЛЕМ, ВЕДЬ МЫ - УСПЕШНОЕ БУКИНГОВОЕ АГЕНТСТВО.',
     'For that reason we have developed perfect sequence of actions and we have complete control over the entire period of the artist and is constantly in contact with the employer.' => 'Поэтому нами разработан совершенный алгоритм действий, с помощью которого мы полностью контролируем весь период работы артиста и постоянно поддерживаем связь с работодателем.',
 
-    'BE THE FIRST WHO WILL FIND OUT ABOUT ALL OPEN VACANCIES' => 'УЗНАВАЙТЕ ПЕРВЫМИ О ВСЕХ АКТУАЛЬНЫХ ВАКАНСИЯХ',
+    'BE THE FIRST WHO WILL FIND OUT ABOUT ALL OPEN VACANCIES' => 'УЗНАВАЙТЕ ПЕРВЫМИ ОБО ВСЕХ АКТУАЛЬНЫХ ВАКАНСИЯХ',
     'YOUR SUCCESS IS IMPORTANT FOR US' => 'ДЛЯ НАС ВАЖЕН ВАШ УСПЕХ',
     'Do you want to develop, to travel and to earn?' => 'Хотите развиваться, путешествовать и зарабатывать?',
     'Do you want to find a reliable partner?' => 'Хотите найти надежных партнеров?',
@@ -298,6 +299,7 @@ return [
     'I worked abroad for two years and has already seen half of the world. I had a lot of free time to see the many sights and wonders of the world. I\'m glad I found a company that understood my objectives.' => 'Я работал за границей в течение двух лет и уже увидел полмира. У меня было много свободного времени, чтобы увидеть много достопримечательностей и чудес света. Я рад, что нашел компанию, которая с пониманием относится к моим целям.',
     'I worked on various contracts from different agents. I had a lot of difficulties with cooperation and with documents. Having consulting with guys from the SBA I really understood what the true service is. I signed contract through the week later, after I had left the application for the SBA. Six months passed quickly. Now I am going to the next contract.' => 'Я работала на разных контрактах и всегда уезжала через разных агентов. Много было сложностей и в работе, и с документами. Обратившись к ребятам из компании SBA, я впервые ощутила что такое настоящий сервис. Я вылетела на контракт спустя неделю, после того, как я оставила заявку на сайте SBA. Шесть месяцев пролетели незаметно. Сейчас собираюсь на следующий контракт.',
 
+    'You can see the photos and video reviews from our artists.' => 'Также Вы можете ознакомиться с фото и видеоотзывами от наших артистов.',
 
     'GREAT COMPANIES CHOOSE' => 'УСПЕШНЫЕ КОМПАНИИ ВЫБИРАЮТ',
     'We create the most comfortable conditions for work, caring about you.' => 'Мы создаем комфортные условия для работы, заботясь о Вас.',
@@ -323,4 +325,6 @@ return [
     'YOU ARE A TRUE PROFESSIONAL?' => 'ВЫ НАСТОЯЩИЙ ПРОФЕССИОНАЛ?',
     'YOU SERIOUS AND RESPONSIBLE IN YOUR WORK?' => 'ВЫ СЕРЬЁЗНО И ОТВЕТСТВЕННО ОТНОСИТЕСЬ К СВОЕЙ РАБОТЕ?',
     'Then our contracts will be your best paid vacation, you just could imagine.' => 'Тогда наши контракты станут для Вас лучшим оплачеваемым отпуском, который Вы только могли себе представить.',
+
+    'Create Company' => 'Создать компанию',
 ];

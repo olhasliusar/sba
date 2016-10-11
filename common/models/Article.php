@@ -215,6 +215,10 @@ class Article extends ActiveRecord
         }
     }
     
+    public function setStatus($status){
+        $this->status = $status;
+        return $this->save();
+    }
     
     public static function getArticlesByCurrentLang($show = User::STATUS_ACTIVE, $limit = null){
         $articles = Article::find()

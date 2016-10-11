@@ -14,8 +14,8 @@ class m160924_084219_create_employer_table extends Migration
     {
         $this->createTable('employer', [
             'id' => $this->primaryKey(),
-            'company' => $this->int(true),
-            'role' => $this->string(50),
+            'company_id' => $this->int(true),
+            'role' => $this->smallInteger(1),
 
             'first_name' => $this->string(),
             'last_name' => $this->string(),

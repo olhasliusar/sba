@@ -97,15 +97,11 @@ $inputTemplate = '<span class="input input--nao">{input}{label}<svg class="graph
             <?=  $form->field($model, 'fc', ['template' => $inputTemplate ])
                 ->textInput(['id' => 'fc', 'class' => 'input__field input__field--nao', 'autocomplete' => 'off'])
                 ->label('<span class="input__label-content input__label-content--nao">'.\Yii::t('form_t', 'Facebook Link').'</span>', ['class' => 'input__label input__label--nao']); ?>
-
-<!--            --><?//= $form->field($model, 'fc')->textInput(['maxlength' => true])->label(\Yii::t('form_t', 'Facebook Link')) ?>
         </div>
         <div class="col-lg-4 col-sm-6 col-xs-12">
             <?=  $form->field($model, 'vk', ['template' => $inputTemplate ])
                 ->textInput(['id' => 'vk', 'class' => 'input__field input__field--nao', 'autocomplete' => 'off'])
                 ->label('<span class="input__label-content input__label-content--nao">'.\Yii::t('form_t', 'VK Link').'</span>', ['class' => 'input__label input__label--nao']); ?>
-
-<!--            --><?//= $form->field($model, 'vk')->textInput(['maxlength' => true])->label(\Yii::t('form_t', 'VK Link')) ?>
         </div>
         <div class="col-xs-12">
             <?= $form->field($model, 'genres')
@@ -125,73 +121,52 @@ $inputTemplate = '<span class="input input--nao">{input}{label}<svg class="graph
                     'showUpload' => false,
                     'browseClass' => 'btn btn-primary btn-block btn-success',
                     'browseIcon' => '<i class="glyphicon glyphicon-camera"></i> ',
-                    'browseLabel' => 'Add Photo',
+                    'browseLabel' => \Yii::t('general', 'Add Photo'),
                 ]
             ])->label(false) ; ?>
         </div>
     </div>
 
-    <h2 class="fill-in-form__title"><?= \Yii::t('form_t', 'Wishes'); ?></h2>
+    <h2 class="fill-in-form__title"><?= \Yii::t('form_t', 'Wishes for vacancies'); ?></h2>
     <div class="row">
         <div class="col-xs-12">
             <?=  $form->field($model, 'countries', ['template' => $inputTemplate ])
                 ->textInput(['id' => 'countries', 'placeholder' => \Yii::t('form_t', 'USA, India, China (Shanghai), the United Arab Emirates (Dubai), Mexico'), 'class' => 'input__field input__field--nao', 'autocomplete' => 'off'])
                 ->label('<span class="input__label-content input__label-content--nao">'.\Yii::t('form_t', 'Countries').'</span>', ['class' => 'input__label input__label--nao']); ?>
-
-<!--            --><?//= $form->field($model, 'countries')->textInput(['maxlength' => true, 'placeholder' => \Yii::t('form_t', 'USA, India, China (Shanghai), the United Arab Emirates (Dubai), Mexico')])
-//                ->label(\Yii::t('form_t', 'Countries')) ?>
         </div>
         <div class="col-lg-4 col-sm-6 col-xs-12">
             <?=  $form->field($model, 'salary', ['template' => $inputTemplate ])
-                ->textInput(['id' => 'salary', 'placeholder' => '1500$ – 1700$', 'class' => 'input__field input__field--nao', 'autocomplete' => 'off'])
+                ->textInput(['id' => 'salary', 'placeholder' => '500$ – 1500$', 'class' => 'input__field input__field--nao', 'autocomplete' => 'off'])
                 ->label('<span class="input__label-content input__label-content--nao">'.\Yii::t('form_t', 'Salary').'</span>', ['class' => 'input__label input__label--nao']); ?>
-
-<!--            --><?//= $form->field($model, 'salary')->textInput(['maxlength' => true, 'placeholder' => '1500$ – 1700$'])
-//                ->label(\Yii::t('form_t', 'Salary')) ?>
         </div>
         <div class="col-lg-4 col-sm-6 col-xs-12">
             <?=  $form->field($model, 'duration', ['template' => $inputTemplate ])
                 ->textInput(['id' => 'duration', 'placeholder' => \Yii::t('form_t', '4-8 months'), 'class' => 'input__field input__field--nao', 'autocomplete' => 'off'])
                 ->label('<span class="input__label-content input__label-content--nao">'.\Yii::t('form_t', 'Duration').'</span>', ['class' => 'input__label input__label--nao']); ?>
-
-<!--            --><?//= $form->field($model, 'duration')->textInput(['maxlength' => true, 'placeholder' => \Yii::t('form_t', '4-8 months')])
-//                ->label(\Yii::t('form_t', 'Duration')) ?>
         </div>
         <div class="col-lg-4 col-sm-6 col-xs-12">
             <?=  $form->field($model, 'contract_start_date', ['template' => $inputTemplate ])
-                ->textInput(['id' => 'contract_start_date', 'placeholder' => '01.01.'. (date(Y) + 1), 'class' => 'input__field input__field--nao', 'autocomplete' => 'off'])
+                ->textInput(['id' => 'contract_start_date', 'placeholder' => '01.01.'. (date('Y') + 1), 'class' => 'input__field input__field--nao', 'autocomplete' => 'off'])
                 ->label('<span class="input__label-content input__label-content--nao">'.\Yii::t('form_t', 'Contract Start Date').'</span>', ['class' => 'input__label input__label--nao']); ?>
-
-<!--            --><?//= $form->field($model, 'contract_start_date')->textInput(['maxlength' => true, 'placeholder' => '01.01.'. (date(Y) + 1) ])
-//                ->label(\Yii::t('form_t', 'Contract Start Date')) ?>
         </div>
     </div>
 
     <h2 class="fill-in-form__title"><?= \Yii::t('form_t', 'Documentation'); ?></h2>
     <div class="row">
         <div class="col-lg-4 col-sm-6 col-xs-12">
-            <?=  $form->field($model, 'contract_start_date', ['template' => $inputTemplate ])
-                ->textInput(['id' => 'contract_start_date', 'placeholder' => \Yii::t('form_t', 'Yes/No'), 'class' => 'input__field input__field--nao', 'autocomplete' => 'off'])
+            <?=  $form->field($model, 'international_passport', ['template' => $inputTemplate ])
+                ->textInput(['id' => 'international_passport', 'placeholder' => \Yii::t('form_t', 'Yes/No'), 'class' => 'input__field input__field--nao', 'autocomplete' => 'off'])
                 ->label('<span class="input__label-content input__label-content--nao">'.\Yii::t('form_t', 'Availability of passport').'</span>', ['class' => 'input__label input__label--nao']); ?>
-
-<!--            --><?//= $form->field($model, 'contract_start_date')->textInput(['maxlength' => true, 'placeholder' => \Yii::t('form_t', 'Yes/No') ])
-//                ->label(\Yii::t('form_t', 'Availability of passport')) ?>
         </div>
         <div class="col-lg-4 col-sm-6 col-xs-12">
-            <?=  $form->field($model, 'contract_start_date', ['template' => $inputTemplate ])
-                ->textInput(['id' => 'contract_start_date', 'placeholder' => '01.01.'. (date(Y) + 9), 'class' => 'input__field input__field--nao', 'autocomplete' => 'off'])
+            <?=  $form->field($model, 'date_passport', ['template' => $inputTemplate ])
+                ->textInput(['id' => 'date_passport', 'placeholder' => '01.01.'. (date('Y') + 9), 'class' => 'input__field input__field--nao', 'autocomplete' => 'off'])
                 ->label('<span class="input__label-content input__label-content--nao">'.\Yii::t('form_t', 'Validity of passport').'</span>', ['class' => 'input__label input__label--nao']); ?>
-
-<!--            --><?//= $form->field($model, 'contract_start_date')->textInput(['maxlength' => true, 'placeholder' => '01.01.'. (date(Y) + 9) ])
-//                ->label(\Yii::t('form_t', 'Validity of passport')) ?>
         </div>
         <div class="col-lg-4 col-sm-6 col-xs-12">
-            <?=  $form->field($model, 'contract_start_date', ['template' => $inputTemplate ])
-                ->textInput(['id' => 'contract_start_date', 'placeholder' => \Yii::t('form_t', 'Yes/No. US - working, China - Business'), 'class' => 'input__field input__field--nao', 'autocomplete' => 'off'])
+            <?=  $form->field($model, 'visa', ['template' => $inputTemplate ])
+                ->textInput(['id' => 'visa', 'placeholder' => \Yii::t('form_t', 'Yes/No. US - working, China - Business'), 'class' => 'input__field input__field--nao', 'autocomplete' => 'off'])
                 ->label('<span class="input__label-content input__label-content--nao">'.\Yii::t('form_t', 'The presence of open visas').'</span>', ['class' => 'input__label input__label--nao']); ?>
-
-<!--            --><?//= $form->field($model, 'contract_start_date')->textInput(['maxlength' => true, 'placeholder' => \Yii::t('form_t', 'Yes/No. US - working, China - Business') ])
-//                ->label(\Yii::t('form_t', 'The presence of open visas')) ?>
         </div>
     </div>
 
@@ -204,25 +179,16 @@ $inputTemplate = '<span class="input input--nao">{input}{label}<svg class="graph
             <?=  $form->field($model, 'exp_country_city', ['template' => $inputTemplate ])
                 ->textInput(['id' => 'exp_country_city', 'placeholder' => \Yii::t('form_t', 'US/New York'), 'class' => 'input__field input__field--nao', 'autocomplete' => 'off'])
                 ->label('<span class="input__label-content input__label-content--nao">'.\Yii::t('form_t', 'Country/city').'</span>', ['class' => 'input__label input__label--nao']); ?>
-
-<!--            --><?//= $form->field($model, 'exp_country_city')->textInput(['maxlength' => true, 'placeholder' => \Yii::t('form_t', 'US/New York') ])
-//                ->label(\Yii::t('form_t', 'Country/city')) ?>
         </div>
         <div class="col-lg-4 col-sm-6 col-xs-12">
             <?=  $form->field($model, 'exp_place', ['template' => $inputTemplate ])
                 ->textInput(['id' => 'exp_place', 'placeholder' => 'Affinia, Manhattan', 'class' => 'input__field input__field--nao', 'autocomplete' => 'off'])
                 ->label('<span class="input__label-content input__label-content--nao">'.\Yii::t('form_t', 'Name of place').'</span>', ['class' => 'input__label input__label--nao']); ?>
-
-<!--            --><?//= $form->field($model, 'exp_place')->textInput(['maxlength' => true, 'placeholder' => 'Affinia, Manhattan, Bellagio Hotel and Casino' ])
-//                ->label(\Yii::t('form_t', 'Name of place')) ?>
         </div>
         <div class="col-lg-4 col-sm-6 col-xs-12">
             <?=  $form->field($model, 'exp_period', ['template' => $inputTemplate ])
                 ->textInput(['id' => 'exp_period', 'placeholder' => '05.2015 – 05.2016', 'class' => 'input__field input__field--nao', 'autocomplete' => 'off'])
                 ->label('<span class="input__label-content input__label-content--nao">'.\Yii::t('form_t', 'Work period').'</span>', ['class' => 'input__label input__label--nao']); ?>
-
-<!--            --><?//= $form->field($model, 'exp_period')->textInput(['maxlength' => true, 'placeholder' => '05.2015 – 05.2016' ])
-//                ->label(\Yii::t('form_t', 'Work period')) ?>
         </div>
     </div>
     </section>
@@ -232,36 +198,24 @@ $inputTemplate = '<span class="input input--nao">{input}{label}<svg class="graph
     <h2 class="fill-in-form__title"><?= \Yii::t('form_t', 'Education'); ?></h2>
     <div class="row">
         <div class="col-lg-4 col-sm-6 col-xs-12">
-            <?=  $form->field($model, 'exp_place', ['template' => $inputTemplate ])
-                ->textInput(['id' => 'exp_place', 'class' => 'input__field input__field--nao', 'autocomplete' => 'off'])
+            <?=  $form->field($model, 'university', ['template' => $inputTemplate ])
+                ->textInput(['id' => 'university', 'class' => 'input__field input__field--nao', 'autocomplete' => 'off'])
                 ->label('<span class="input__label-content input__label-content--nao">'.\Yii::t('form_t', 'University').'</span>', ['class' => 'input__label input__label--nao']); ?>
-
-<!--            --><?//= $form->field($model, 'contract_start_date')->textInput(['maxlength' => true, ])
-//                ->label(\Yii::t('form_t', 'University')) ?>
         </div>
         <div class="col-lg-4 col-sm-6 col-xs-12">
-            <?=  $form->field($model, 'exp_place', ['template' => $inputTemplate ])
-                ->textInput(['id' => 'exp_place', 'class' => 'input__field input__field--nao', 'autocomplete' => 'off'])
+            <?=  $form->field($model, 'specialty', ['template' => $inputTemplate ])
+                ->textInput(['id' => 'specialty', 'class' => 'input__field input__field--nao', 'autocomplete' => 'off'])
                 ->label('<span class="input__label-content input__label-content--nao">'.\Yii::t('form_t', 'Specialty').'</span>', ['class' => 'input__label input__label--nao']); ?>
-
-<!--            --><?//= $form->field($model, 'contract_start_date')->textInput(['maxlength' => true, ])
-//                ->label(\Yii::t('form_t', 'Specialty')) ?>
         </div>
         <div class="col-lg-4 col-sm-6 col-xs-12">
-            <?=  $form->field($model, 'exp_place', ['template' => $inputTemplate ])
-                ->textInput(['id' => 'exp_place', 'placeholder' => 'Affinia, Manhattan', 'class' => 'input__field input__field--nao', 'autocomplete' => 'off'])
+            <?=  $form->field($model, 'languages', ['template' => $inputTemplate ])
+                ->textInput(['id' => 'languages', 'placeholder' => 'Affinia, Manhattan', 'class' => 'input__field input__field--nao', 'autocomplete' => 'off'])
                 ->label('<span class="input__label-content input__label-content--nao">'.\Yii::t('form_t', 'Languages').'</span>', ['class' => 'input__label input__label--nao']); ?>
-
-<!--            --><?//= $form->field($model, 'contract_start_date')->textInput(['maxlength' => true, ])
-//                ->label(\Yii::t('form_t', 'Languages')) ?>
         </div>
         <div class="col-xs-12">
-            <?=  $form->field($model, 'exp_place', ['template' => $inputTemplate ])
-                ->textInput(['id' => 'exp_place', 'placeholder' => 'Affinia, Manhattan, Bellagio Hotel and Casino', 'class' => 'input__field input__field--nao', 'autocomplete' => 'off'])
+            <?=  $form->field($model, 'achievements', ['template' => $inputTemplate ])
+                ->textInput(['id' => 'achievements', 'placeholder' => 'Affinia, Manhattan, Bellagio Hotel and Casino', 'class' => 'input__field input__field--nao', 'autocomplete' => 'off'])
                 ->label('<span class="input__label-content input__label-content--nao">'.\Yii::t('form_t', 'Achievements').'</span>', ['class' => 'input__label input__label--nao']); ?>
-
-<!--            --><?//= $form->field($model, 'contract_start_date')->textInput(['maxlength' => true, ])
-//                ->label(\Yii::t('form_t', 'Achievements')) ?>
         </div>
     </div>
 

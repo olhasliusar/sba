@@ -248,39 +248,39 @@ $this->registerJsFile(Yii::$app->request->baseUrl.'/js/menu-transparent.js');
         </div>
         <div class="row">
             <div class="col-lg-2 col-sm-4 col-xs-12">
-                <a class="icon-wrapper" href="tel:+380973818744" target="_blank">
+                <a class="icon-wrapper" href="tel:+380950244679" target="_blank">
                     <svg class="icon-gray">
                         <use xlink:href="#icon-whatsapp"></use>
                     </svg>
                     <h3>WhatsApp</h3>
-                    <p>+38 097 3818 744</p>
+                    <p>+38 095 0244 679</p>
                 </a>
             </div>
             <div class="col-lg-2 col-sm-4 col-xs-12">
-                <a class="icon-wrapper" href="tel:+380973818744" target="_blank">
+                <a class="icon-wrapper" href="tel:+380950244679" target="_blank">
                     <svg class="icon-gray">
                         <use xlink:href="#icon-viber"></use>
                     </svg>
                     <h3>Viber</h3>
-                    <p>+38 097 3818 744</p>
+                    <p>+38 095 0244 679</p>
                 </a>
             </div>
             <div class="col-lg-2 col-sm-4 col-xs-12">
-                <a class="icon-wrapper" href="tel:+380973818744" target="_blank">
+                <a class="icon-wrapper" href="tel:+380950244679" target="_blank">
                     <svg class="icon-gray">
                         <use xlink:href="#icon-wechat"></use>
                     </svg>
                     <h3>WeChat</h3>
-                    <p>+38 097 3818 744</p>
+                    <p>+38 095 0244 679</p>
                 </a>
             </div>
             <div class="col-lg-2 col-sm-4 col-xs-12">
-                <a class="icon-wrapper" href="tel:+380973818744" target="_blank">
+                <a class="icon-wrapper" href="tel:+380950244679" target="_blank">
                     <svg class="icon-gray">
                         <use xlink:href="#icon-telegram"></use>
                     </svg>
                     <h3>Telegram</h3>
-                    <p>+38 097 3818 744</p>
+                    <p>+38 095 0244 679</p>
                 </a>
             </div>
             <div class="col-lg-2 col-sm-4 col-xs-12">

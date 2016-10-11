@@ -120,18 +120,14 @@ class ArticleController extends Controller
     public function actionDelete($id)
     {
 //        $this->findModel($id)->delete();
-        $model = $this->findModel($id);
-        $model->status = User::STATUS_DELETED;
-        $model->save();
+        $this->findModel($id)->setStatus(User::STATUS_DELETED);
 
         return $this->redirect(['index']);
     }
     
     public function actionReestablish($id)
     {
-        $model = $this->findModel($id);
-        $model->status = User::STATUS_ACTIVE;
-        $model->save();
+        $this->findModel($id)->setStatus(User::STATUS_ACTIVE);
 
         return $this->redirect(['index']);
     }

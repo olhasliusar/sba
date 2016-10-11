@@ -2,21 +2,19 @@
 
 namespace frontend\controllers;
 
-use common\models\Attachment;
 use Yii;
-use common\models\Artist;
-use common\models\search\ArtistSearch;
+use common\models\Company;
+use common\models\search\CompanySearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use common\models\Genre;
-use yii\helpers\ArrayHelper;
-use common\models\ArtistGenre;
+use common\models\Employer;
+use common\models\Attachment;
 
 /**
- * ArtistController implements the CRUD actions for Artist model.
+ * CompanyController implements the CRUD actions for Company model.
  */
-class ArtistController extends Controller
+class CompanyController extends Controller
 {
     /**
      * @inheritdoc
@@ -34,12 +32,12 @@ class ArtistController extends Controller
     }
 
     /**
-     * Lists all Artist models.
+     * Lists all Company models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new ArtistSearch();
+        $searchModel = new CompanySearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -49,7 +47,7 @@ class ArtistController extends Controller
     }
 
     /**
-     * Displays a single Artist model.
+     * Displays a single Company model.
      * @param integer $id
      * @return mixed
      */
@@ -61,27 +59,45 @@ class ArtistController extends Controller
     }
 
     /**
-     * Creates a new Artist model.
+     * Creates a new Company model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Artist();
+        $model = new Company();
+        $employer = new Employer();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Attachment::upload($model);
-            $model->sendMail();
+            if($employer->load(Yii::$app->request->post())){
+                $employer->company_id = $model->id;
+                $employer->save();
+            }
+            $model->sendMail($employer);
             return $this->redirect(['/site/index']);
+        } else {
+            return $this->render('create', [
+                'model' => $model,
+                'employer' => $employer,
+            ]);
         }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
     }
 
     /**
-     * Updates an existing Artist model.
+     * Creates a new Company model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
+     */
+    public function actionDownloadAttachment($id)
+    {
+        $model = $this->findModel($id);
+        $attachments = $model->attachment;        
+        return Attachment::downloadAll($attachments, 'company', $id);
+    }
+
+    /**
+     * Updates an existing Company model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -100,7 +116,7 @@ class ArtistController extends Controller
     }
 
     /**
-     * Deletes an existing Artist model.
+     * Deletes an existing Company model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -113,18 +129,22 @@ class ArtistController extends Controller
     }
 
     /**
-     * Finds the Artist model based on its primary key value.
+     * Finds the Company model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Artist the loaded model
+     * @return Company the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Artist::findOne($id)) !== null) {
+        if (($model = Company::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+    
+    public function actionTest(){
+        return phpinfo();
     }
 }

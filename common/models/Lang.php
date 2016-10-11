@@ -81,17 +81,12 @@ class Lang extends \yii\db\ActiveRecord
     }
 
 //Получения объекта языка по буквенному идентификатору
-    static function getLangByUrl($url = null)
+    public static function getLangByUrl($url = null)
     {
         if ($url === null) {
             return null;
         } else {
-            $language = Lang::find()->where('url = :url', [':url' => $url])->one();
-            if ($language === null) {
-                return null;
-            } else {
-                return $language;
-            }
+           return Lang::find()->where('url = :url', [':url' => $url])->one();
         }
     }
 }

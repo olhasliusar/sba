@@ -10,8 +10,6 @@ use yii\helpers\Html;
 
 ?>
 
-<!--        <ul id="other-langs"  class="dropdown-menu" aria-labelledby="dropdownMenu2">-->
-
 <div id="navr" class="lang">
     <div class="lang-wrapper">
         <div class="md-fab-actions">

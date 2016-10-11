@@ -164,7 +164,7 @@ ul{
 }
 .bg_dark h4,
 .bg_dark p{
-    font-size: 26px;
+    font-size: 28px;
 }
 @media(max-width:400px) {
     .bg_dark{
@@ -191,13 +191,13 @@ ul{
 
 /*MENU*/
 .navbar-inverse{
-    /*text-transform: uppercase;*/
     font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
+    font-size: 22px;
 }
 .nav-main-page.navbar-inverse.nav-transparent{
     background: transparent;
     border-color: transparent;
+    font-size: 24px;
     opacity: 1;
     transition: opacity .7s ease;
 }
@@ -387,6 +387,7 @@ ul{
     fill: #333;
 }
 .copyrights{
+    color: #555;
     font-size: 16px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -505,7 +506,8 @@ ul{
 }
 .your-success__column p{
     margin-top: 15px;
-    font-size: 22px;
+    font-size: 24px;
+    line-height: 28px;
 }
 @media(max-width:767px) {
     /*.your-success {*/
@@ -556,7 +558,31 @@ ul{
     padding: 0;
     color: #999999;
     padding-top: 10px;
+}
+.section_testimonials nav.testimonials__more-testimonials a{
+    font-size: 28px;
+}
 
+.testimonials__video iframe{
+    width: 100%;
+    /*max-width: 560px;*/
+    min-height: 240px;
+    /*max-height: 315px;*/
+}
+@media(min-width:450px) and (max-width:559px) {
+    .testimonials__video iframe{
+        min-height: 300px;
+    }
+}
+@media(min-width:560px) and (max-width:649px) {
+    .testimonials__video iframe{
+        min-height: 400px;
+    }
+}
+@media(min-width:650px) and (max-width:767px) {
+    .testimonials__video iframe{
+        min-height: 450px;
+    }
 }
 /*END TESTIMONIALS*/
 
@@ -565,19 +591,39 @@ ul{
 .form-group {
      margin-bottom: 0;
 }
-.artist-form {
+.artist-form,
+.company-form{
     font-size: 150%;
-    padding: 3em 0;
+    padding: 20px 0;
 }
 .input__listbox{
     color: #696969;
+    font-size: 26px;
 }
-.artist-create__form{
+.field-artist-genres .form-control {
+    font-size: 20px;
+    color: #000;
+}
+.btn_add-exp:focus,
+.btn_add-exp:active:focus{
+    outline: none;
+}
+.btn_add-exp{
+    padding: 0 10px 30px;
+    font-size: 35px;
+    height: 37px;
+    line-height: 28px;
+}
+.artist-create__form,
+.company-create__form{
     padding-top: 60px;
+}
+.artist-create__form .btn-success,
+.company-create__form .btn-success{
+    font-size: 18px;
 }
 .fill-in-form__title{
     text-align: center;
-    padding-bottom: 15px;
 }
 .form__experience .row{
     position: relative;
@@ -614,6 +660,14 @@ ul{
 }
 .btn-close:after{
     transform: rotate(-45deg);
+}
+
+.field-employer-role{
+    text-align: center;
+    color: #444;
+}
+.field-employer-role label{
+    margin: 0 20px;
 }
 /*END PAGE FORM*/
 

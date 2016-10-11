@@ -50,7 +50,7 @@ $this->registerJsFile(Yii::$app->request->baseUrl.'/js/menu-transparent.js');
 </svg>
 
 <section class="section section_big good parallax-window tac" data-parallax="scroll"
-         data-image-src="<?= Url::to('../img/background/look-job.jpg') ?>">
+         data-image-src="<?= Url::to('../img/background/shankhay.jpg') ?>">
     <div class="bg_dark">
         <div class="container">
             <div class="row">
@@ -69,7 +69,7 @@ $this->registerJsFile(Yii::$app->request->baseUrl.'/js/menu-transparent.js');
             <div class="col-xs-12">
                 <h2><?= \Yii::t('general', 'Job openings in our company there almost every day. Therefore, in order to get the most profitable and best offer for you, you only need to fill out a form, then our casting - Department proceed to the selection of contract that best fits your needs.')?></h2>
                 <nav class="cl-effect-7">
-                    <a href="<?= Url::to('/artist/create')?>"><?= \Yii::t('general', 'Fill in the form')?></a>
+                    <a href="<?= Url::to('artist/create')?>"><?= \Yii::t('general', 'Fill in the form')?></a>
                 </nav>
                 <p><?= \Yii::t('general', 'Some current vacancies you can see here.')?></p>
             </div>
@@ -221,6 +221,14 @@ $this->registerJsFile(Yii::$app->request->baseUrl.'/js/menu-transparent.js');
                     </div>
                     <blockquote class="testimonials__blockquote"><?= \Yii::t('general', 'I worked on various contracts from different agents. I had a lot of difficulties with cooperation and with documents. Having consulting with guys from the SBA I really understood what the true service is. I signed contract through the week later, after I had left the application for the SBA. Six months passed quickly. Now I am going to the next contract.')?></blockquote>
                 </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <nav class="cl-effect-7 testimonials__more-testimonials">
+                    <a href="<?= Url::to('site/testimonials')?>"><?= \Yii::t('general', 'You can see the photos and video reviews from our artists.'); ?></a>
+                </nav>
             </div>
         </div>
     </div>
