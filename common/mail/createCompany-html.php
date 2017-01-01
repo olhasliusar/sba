@@ -8,5 +8,5 @@ use yii\helpers\Url;
 ?>
 <div class="create-company">
     <p>Компания - <?= Html::encode($model->name) ?></p>
-    <a href="<?= $model->urlZip; ?>">Скачать файлы компании</a>
+    <a href="<?= $model->urlZip; ?>">Скачать файлы</a>
 </div>

@@ -18,6 +18,7 @@ return [
     'acrobats' => 'акробаты',
     'pole/strip dance' => 'пол/стрип дэнс',
     'staff' => 'персонал',
+    'circus artists' => 'цирковые артисты',
     'other' => 'другое',
     'All' => 'Все',
 ];

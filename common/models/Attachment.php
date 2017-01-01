@@ -94,6 +94,7 @@ class Attachment extends ExtendedActiveRecord
         self::TYPE_DOCUMENT => [
             'pdf',
             'doc',
+            'docx',
             'txt',
             'xlsx',
             'xls'
@@ -408,7 +409,9 @@ class Attachment extends ExtendedActiveRecord
 
         if ($zip->open($zip_name, \ZipArchive::CREATE)) {
             foreach ($models as $file) {
-                $path = str_replace('/', DIRECTORY_SEPARATOR, $file->filePath);
+//                $path = str_replace('/', DIRECTORY_SEPARATOR, $file->filePath);
+//                $path = str_replace('/', '\\', $file->filePath); - windows
+                $path = $file->filePath;
                 if ($file instanceof Attachment && file_exists($path)) {
                     $zip->addFile($path, basename($file->baseName));
                 }
@@ -442,6 +445,28 @@ class Attachment extends ExtendedActiveRecord
             header('Content-Length: ' . filesize($this->filePath));
 
             readfile($this->filePath);
+        }
+        return false;
+    }
+
+
+    /**
+     * @return bool
+     */
+    public static function downloadByPath($path)
+    {
+        if (file_exists($path)) {
+            header('Content-Description: Reports');
+            header('Last-Modified: ' . gmdate('D,d M YH:i:s') . 'GMT');
+            header('Content-Disposition: attachment; filename=' . basename($path));
+            header('Expires: 0');
+            header('Cache-Control: no-cache, must-revalidate');
+            header('Pragma: no-cache');
+            header('Content-Length: ' . filesize($path));
+            header('Content-Length: ' . filesize($path));
+
+            readfile($path);
+            exit();
         }
         return false;
     }

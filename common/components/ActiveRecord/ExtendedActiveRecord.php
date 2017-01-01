@@ -1,6 +1,8 @@
 <?php
+
 namespace common\components\ActiveRecord;
 
+use common\components\traits\soft;
 use Yii;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
@@ -14,7 +16,8 @@ use common\models\User;
  */
 class ExtendedActiveRecord extends ActiveRecord
 {
-
+    use soft;
+    
     const STATUS_ACTIVE = 0;
     const STATUS_IN_ACTIVE = 1;
 

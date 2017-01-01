@@ -10,7 +10,7 @@
 
         // var pos = $('.position-menu').height() - 50;//для прозрачного меню на главной
         var pos = $('.position-menu').offset().top - 60;
-        
+
         if($(this).scrollTop() > 50 && $(this).scrollTop() < pos) {
             menu.addClass('fade')
         }

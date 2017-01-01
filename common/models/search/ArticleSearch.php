@@ -20,7 +20,7 @@ class ArticleSearch extends Article
     public function rules()
     {
         return [
-            [['id', 'show', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
+            [['id', 'role', 'show', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
             [['lang', 'name', 'text', 'video', 'author'], 'safe'],
         ];
     }
@@ -66,6 +66,7 @@ class ArticleSearch extends Article
         $query->andFilterWhere([
             'id' => $this->id,
             'lang' => $this->lang,
+            'role' => $this->role,
             'show' => $this->show,
             'status' => $this->status,
             'created_at' => $this->created_at,

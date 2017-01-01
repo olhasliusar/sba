@@ -5,6 +5,7 @@ namespace backend\controllers;
 use Yii;
 use common\models\Article;
 use common\models\search\ArticleSearch;
+use yii\base\Exception;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -29,16 +30,10 @@ class ArticleController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['index', 'create', 'view', 'update',  'delete', 'reestablish', 'image-upload'],
+                        'actions' => ['index', 'vacation', 'create', 'view', 'update', 'delete', 'reestablish', 'image-upload', 'create-broadcast'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
-                ],
-            ],
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
                 ],
             ],
         ];
@@ -51,6 +46,24 @@ class ArticleController extends Controller
     public function actionIndex()
     {
         $searchModel = new ArticleSearch();
+        $searchModel->role = Article::ROLE_ARTICLE;
+        $searchModel->status = User::STATUS_ACTIVE;
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+    
+    /**
+     * Lists all Article models.
+     * @return mixed
+     */
+    public function actionVacation()
+    {
+        $searchModel = new ArticleSearch();
+        $searchModel->role = Article::ROLE_JOB;
         $searchModel->status = User::STATUS_ACTIVE;
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -165,14 +178,32 @@ class ArticleController extends Controller
             $url = Yii::$app->urlManager->getHostInfo() . '/static/web/article/images/description/'.$file;
             $uploadPath = Yii::getAlias('@static').'/web/article/images/description/'.$file;
 
-            $move = $uploadedFile->saveAs($uploadPath);
-            if(!$move)
-            {
-                $message = "Error moving uploaded file. Check the script is granted Read/Write/Modify permissions.";
+            try{
+                $move = $uploadedFile->saveAs($uploadPath);
+                if(!$move)
+                {
+                    $message = "Error moving uploaded file. Check the script is granted Read/Write/Modify permissions.";
+                }
+            }catch (\Exception $e) {
+                echo " {$e->getMessage()}";
             }
+            
         }
         $funcNum = $_GET['CKEditorFuncNum'] ;
         echo "<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction($funcNum, '$url', '$message');</script>";
+    }
+
+    public function actionCreateBroadcast($id)
+    {
+        if (Article::createBroadcast($id)) {
+            Yii::$app->session->setFlash('success', \Yii::t('general', 'Добавлено в рассылку.'));
+        } else {
+            Yii::$app->session->setFlash('error',  \Yii::t('general', 'Ошибка. Не добавлено в рассылку.'));
+        }
+        
+        return $this->render('view', [
+            'model' => $this->findModel($id)
+        ]);
     }
 
     /**

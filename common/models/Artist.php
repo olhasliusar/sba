@@ -2,12 +2,13 @@
 
 namespace common\models;
 
+use common\components\ActiveRecord\ExtendedActiveRecord;
+use common\components\traits\exportExcel;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\behaviors\BlameableBehavior;
-use common\models\User;
-use yii\helpers\Url;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "artist".
@@ -28,6 +29,8 @@ use yii\helpers\Url;
  * @property string $genresString
  * @property Attachment[] $images
  *
+ * @property integer $manager
+ *
  * @property integer $birth
  * @property string $height_weight
  * @property string $bust_waist_hips
@@ -44,23 +47,38 @@ use yii\helpers\Url;
  * @property string $date_passport
  * @property string $visa
  *
- * @property string $exp_country_city
- * @property string $exp_place
- * @property string $exp_period
- * 
+ * @property array $exp_country_city
+ * @property array $exp_place
+ * @property array $exp_period
+ * @property array $exp_contact
+ *
  * @property string $university
  * @property string $specialty
  * @property string $languages
  * @property string $achievements
+ *
+ * @property string $video1
+ * @property string $video2
+ * @property Attachment[] $document
+ * @property Attachment[] $passport
+ *
+ * @property Attachment $attachment
+ * @property string $urlZip
+ * @property string $experience
  */
-class Artist extends \yii\db\ActiveRecord
+class Artist extends ExtendedActiveRecord
 {
-    public $birth;
-    public $height_weight;
+    use exportExcel;
+
+    const EMAIL_EOL = "\r\n";
+    public $manager;
+
+//    public $birth;
+//    public $height_weight;
     public $bust_waist_hips;
-    public $country_city;
+//    public $country_city;
     public $citizenship;
-    public $fc;
+//    public $fc;
     public $vk;
     public $genres;
     public $countries;
@@ -75,12 +93,18 @@ class Artist extends \yii\db\ActiveRecord
     public $exp_country_city;
     public $exp_place;
     public $exp_period;
+    public $exp_contact;
 
     public $university;
     public $specialty;
     public $languages;
     public $achievements;
 
+//    public $video1;
+//    public $video2;
+
+    public $document;
+    public $passport;
     public $images;
 
     /**
@@ -102,13 +126,15 @@ class Artist extends \yii\db\ActiveRecord
             [['first_name', 'last_name', 'email', 'phone'], 'string', 'max' => 255],
             [['email'], 'unique'],
             [['birth', 'height_weight', 'bust_waist_hips', 'country_city', 'citizenship', 'fc', 'vk',
+                'manager',
                 'genres',
                 'images',
                 'countries', 'salary', 'duration', 'contract_start_date',
                 'international_passport', 'date_passport', 'visa',
-                'exp_country_city', 'exp_place', 'exp_period',
+                'exp_country_city', 'exp_place', 'exp_period', 'exp_contact',
                 'university', 'specialty', 'languages', 'achievements',
-             ], 'safe'],
+                'video1', 'video2', 'document', 'passport',
+            ], 'safe'],
         ];
     }
 
@@ -119,18 +145,19 @@ class Artist extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'first_name' => 'First Name',
-            'last_name' => 'Last Name',
+            'first_name' => 'Имя',
+            'last_name' => 'Фамилия',
             'email' => 'Email',
-            'phone' => 'Phone',
-            'status' => 'Status',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
-            'created_by' => 'Created By',
-            'updated_by' => 'Updated By',
+            'phone' => 'Телефон',
+            'status' => 'Статус',
+            'created_at' => 'Создано в',
+            'updated_at' => 'Обновлено в',
+            'created_by' => 'Создано',
+            'updated_by' => 'Изменено',
+            'genres' => 'Жанры',
         ];
     }
-    
+
     public function behaviors()
     {
         return [
@@ -177,20 +204,51 @@ class Artist extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Genre::className(), ['id' => 'genre_id'])->viaTable('artist_genre', ['artist_id' => 'id']);
     }
-    
+
     public function getGenresString()
     {
-        $genres = $this->genres;
-        $result = '';
-        foreach ($genres as $genre){
-            $nameGenre = Genre::find()->where(['id' => $genre])->one();
-            $result .= "$nameGenre->name";
-            $result .= ', ';
+        $genres = $this->getGenres()->all() ?: [];
+
+        $nameGenre = [];
+        foreach ($genres as $genre) {
+            $nameGenre[] = $genre->name;
         }
-        return $result;
+        return implode(', ', $nameGenre);
     }
 
-    public function generateAttachContent(){
+    public function getGenresList()
+    {
+        $genres = $this->genres;
+        if (!isset($genres)) {
+            return null;
+        }
+        $list = [];
+        foreach ($genres as $genre) {
+            $list[] = \Yii::t('genre_t', $genre->name);
+        }
+        return $list;
+    }
+
+    public function getAttachment()
+    {
+        return Attachment::getAttachments($this);
+    }
+
+    public function getExperience()
+    {
+        $string = '';
+        $exp_country_city = $this->exp_country_city;
+        foreach ($exp_country_city as $key => $value) {
+            $string .= 'Страна/город - ' . $this->exp_country_city[$key] . "\r\n";
+            $string .= 'Название заведения - ' . $this->exp_place[$key] . "\r\n";
+            $string .= 'Период работы - ' . $this->exp_period[$key] . "\r\n" . "\r\n";
+            $string .= 'Контакты работодателя - ' . $this->exp_contact[$key] . "\r\n" . "\r\n";
+        }
+        return $string;
+    }
+
+    public function generateAttachContent()
+    {
         return <<<EOT
 Имя - $this->first_name\r\n
 Фамилия - $this->last_name\r\n
@@ -198,11 +256,8 @@ Email - $this->email\r\n
 Номер телефона - $this->phone\r\n
 Дата рождения - $this->birth\r\n
 Рост/вес - $this->height_weight\r\n
-Грудь/талия/бедра - $this->bust_waist_hips\r\n
 Страна/город проживания - $this->country_city\r\n
-Гражданство - $this->citizenship\r\n
 Ссылка на Facebook - $this->fc\r\n
-Ссылка на ВК - $this->vk\r\n
 Жанр - $this->genresString\r\n
 \r\n-- Пожелания --\r\n
 Страны - $this->countries\r\n
@@ -214,14 +269,15 @@ Email - $this->email\r\n
 Срок действия загранпаспорта - $this->date_passport\r\n
 Наличие открытых виз - $this->visa\r\n
 \r\n-- Опыт работы --\r\n
-Страна/город - $this->exp_country_city\r\n
-Название заведения - $this->exp_place\r\n
-Период работы - $this->exp_period\r\n
+$this->experience\r\n
 \r\n-- Образование --\r\n
 ВУЗ - $this->university\r\n
 Специальность - $this->specialty\r\n
 Языки - $this->languages\r\n
-Достижения - $this->achievements\r\n
+Видео - $this->video1\r\n
+Видео - $this->video2\r\n
+\r\n-- Ссылка на скачивание файлов --\r\n
+$this->urlZip\r\n
 EOT;
     }
 
@@ -229,10 +285,15 @@ EOT;
     {
         return \Yii::$app->mailer->compose(['html' => 'createArtist-html', 'text' => 'createArtist-text'], ['model' => $this])
             ->setFrom(\Yii::$app->params['supportEmail'])
-            ->setTo('olha.sliusar0315@gmail.com')
+            ->setTo(\Yii::$app->params['supportEmail'])
             ->setSubject('Зарегистрирован новый артист. ' . \Yii::$app->name)
-            ->attachContent( $this->generateAttachContent(), ['fileName' => 'artist_'.$this->id.'.txt', 'contentType' => 'text/plain'])
+            ->attachContent($this->generateAttachContent(), ['fileName' => 'artist_' . $this->id . '.txt', 'contentType' => 'text/plain'])
 //            ->attach('/home/worldsb/public_html/composer.json')
             ->send();
+    }
+
+    public function getUrlZip()
+    {
+        return Yii::$app->request->hostInfo . Yii::$app->request->baseUrl . '/ru/artist/download-attachment?id=' . $this->id;
     }
 }

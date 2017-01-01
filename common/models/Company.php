@@ -27,11 +27,43 @@ use common\models\Attachment;
  * @property Attachment $attachment
  * 
  * @property string $urlZip
+ * 
+ * @property Genre[] $genres
+ * @property string $genresString
  */
 class Company extends \yii\db\ActiveRecord
 {
+    const EMAIL_EOL = "\r\n";
+
     public $licenses;
-    
+
+    public $country_city;
+    public $genres;
+    public $skills;
+    public $schedule;
+    public $salary;
+    public $terms;
+    public $residence;
+    public $food;
+    public $days;
+    public $tickets;
+    public $visas;
+    public $leaving;
+    public $photo;
+    public $consummation;
+
+    public $amount;
+    public $sex_age;
+    public $height_weight;
+    public $education;
+    public $hair;
+    public $marital_status;
+    public $experience;
+    public $language;
+    public $qualities;
+    public $costume;
+    public $citizenship;
+    public $other;
     
     /**
      * @inheritdoc
@@ -51,6 +83,11 @@ class Company extends \yii\db\ActiveRecord
             [['created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
             [['name', 'address', 'worker1', 'worker2', 'worker3'], 'string', 'max' => 255],
             [['licenses'], 'safe'],
+            [['country_city', 'genres', 'skills', 'schedule', 'salary', 'terms',
+                'residence', 'food', 'days', 'tickets', 'visas', 'leaving', 'photo', 'consummation',
+                'amount', 'sex_age', 'height_weight', 'education', 'hair', 'marital_status', 'experience',
+                'language', 'qualities', 'costume', 'citizenship', 'other',
+            ], 'safe'],
         ];
     }
 
@@ -94,32 +131,39 @@ class Company extends \yii\db\ActiveRecord
             ]
         ];
     }
+    
+    public function getGenresString()
+    {
+        $genres = $this->genres;
+        $result = '';
+        foreach ($genres as $genre){
+            $nameGenre = Genre::find()->where(['id' => $genre])->one();
+            $result .= "$nameGenre->name";
+            $result .= ', ';
+        }
+        return $result;
+    }
 
     public function getAttachment(){
         return Attachment::getAttachments($this);
     }
-
 
     /**
      * @property Employer $employer
      * @param null $employer
      * @return string
      */
-    public function generateAttachContent($employer = null){//TODO doc link
+    public function generateAttachContent($employer = null){
         return <<<EOT
 -- Информация о работодателе или агенте --\r\n
 Имя - $employer->first_name\r\n
 Фамилия - $employer->last_name\r\n
-Должность - $employer->roleName\r\n
-Телефон - $employer->phone\r\n
 Email - $employer->email\r\n
-Skype - $employer->skype\r\n
-Facebook - $employer->fc\r\n
-VK - $employer->vk\r\n
-WeChat/WhatsApp/Viber - $employer->wechat\r\n
-\r\n-- Информация о компании --\r\n
-Название компании - $this->name\r\n
 Адрес - $this->address\r\n
+Телефон - $employer->phone\r\n
+Facebook/VK - $employer->fc\r\n
+Ссылка на сайт - $employer->vk\r\n
+WeChat/Viber/WhatsApp/Telegram - $employer->wechat\r\n
 Контакты артистов, которые уже работали:\r\n
 $this->worker1\r\n
 $this->worker2\r\n
@@ -129,16 +173,58 @@ $this->urlZip\r\n
 EOT;
     }
 
+    /**
+     * @return string
+     */
+    public function generateVacationContent(){
+        return "
+\r\n-- Information about vocation --\r\n
+Country/city - $this->country_city\r\n
+Performer's genres - $this->genresString\r\n
+Performer's skills - $this->skills\r\n
+Schedule - $this->schedule\r\n
+Amount and form of currency of performers (salary) - $this->salary\r\n
+Residence - $this->residence\r\n
+Food - $this->food\r\n
+Days off - $this->days\r\n
+Plane tickets - $this->tickets\r\n
+Visas - $this->visas\r\n
+Prospective days of leaving - $this->leaving\r\n
+Photo where live and work - $this->urlZip\r\n
+Schedule of work - $this->consummation\r\n
+\r\n-- The requirements for candidate(s) --\r\n
+Number of artists - $this->amount\r\n
+Sex, age - $this->sex_age\r\n
+Education - $this->education\r\n
+Country of residence, citizenship - $this->citizenship\r\n
+Color and length of hair - $this->food\r\n
+Experience - $this->experience\r\n
+Foreign language skills - $this->language\r\n
+Costume is required - $this->costume\r\n
+Other requirements - $this->other\r\n
+";
+    }
+
     public function sendMail($employer = null)
     {
-//        http://sba.world/ru/company/download-attachment?id=10
-        return \Yii::$app->mailer->compose(['html' => 'createCompany-html', 'text' => 'createCompany-text'],
+        $fileName = Attachment::getConst($this).'_'.$this->id.'.txt';
+        $vacationName = 'vacation_'.$this->name.'.txt';
+
+        $message = \Yii::$app->mailer->compose(['html' => 'createCompany-html', 'text' => 'createCompany-text'],
             ['model' => $this, 'link' => Yii::$app->request->hostInfo])
             ->setFrom(\Yii::$app->params['supportEmail'])
-            ->setTo('olha.sliusar0315@gmail.com')
-            ->setSubject('Зарегистрирована новая компания. ' . \Yii::$app->name)
-            ->attachContent( $this->generateAttachContent($employer), ['fileName' => 'company_'.$this->id.'.txt', 'contentType' => 'text/plain'])
-//            ->attach('/home/worldsb/public_html/composer.json')
+            ->setTo(\Yii::$app->params['supportEmail']);
+        
+        if ($employer->first_name) {
+            $message->setSubject('Новая компания. ' . \Yii::$app->name)
+                ->attachContent( $this->generateAttachContent($employer), 
+                    ['fileName' => $fileName, 'contentType' => 'text/plain']);            
+        } else {
+            $message->setSubject('Новая вакансия. ' . \Yii::$app->name);
+        }
+        
+        return $message->attachContent( $this->generateVacationContent(), 
+            ['fileName' => $vacationName, 'contentType' => 'text/plain'])
             ->send();
     }
     

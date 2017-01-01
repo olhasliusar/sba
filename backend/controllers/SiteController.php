@@ -6,11 +6,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
-use yii\helpers\FileHelper;
-use yii\helpers\Json;
-use yii\web\UploadedFile;
-use common\models\Article;
-use common\models\Attachment;
+use common\models\Queue;
 
 /**
  * Site controller
@@ -31,7 +27,7 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index', 'image-upload', 'image-delete'],
+                        'actions' => ['logout', 'index', 'image-upload', 'image-delete', 'broadcast'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],
@@ -61,6 +57,12 @@ class SiteController extends Controller
     public function actionIndex()
     {
         return $this->render('index');
+    }
+    
+    public function actionBroadcast()
+    {
+        Queue::startSend();
+        return 'Messages\'ve been sent';
     }
 
     public function actionLogin()

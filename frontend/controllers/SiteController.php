@@ -74,41 +74,19 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        \Yii::$app->view->registerMetaTag([
+            'name' => 'description',
+            'content' => 'Мы первое международное букинговое агентство, занимающееся официальным трудоустройством артистов всех жанров, а также подбором персонала для hotel индустрии.'
+        ]);
+
+        \Yii::$app->view->registerMetaTag([
+            'name' => 'name="keywords" ',
+            'content' => 'букинговое агентство, работа за границей, легальная работа за границей, для артистов, для персонала, агенство SBA'
+        ]);
+
         return $this->render('index');
     }
 
-    /**
-     * Logs in a user.
-     *
-     * @return mixed
-     */
-    public function actionLogin()
-    {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        } else {
-            return $this->render('login', [
-                'model' => $model,
-            ]);
-        }
-    }
-
-    /**
-     * Logs out the current user.
-     *
-     * @return mixed
-     */
-    public function actionLogout()
-    {
-        Yii::$app->user->logout();
-
-        return $this->goHome();
-    }
 
     /**
      * Displays contact page.
@@ -120,12 +98,12 @@ class SiteController extends Controller
         $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
-                Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
+                return $this->redirect(['/site/thanks']);
+//                Yii::$app->session->setFlash('success', \Yii::t('general', 'Thank you for contacting us. We will respond to you as soon as possible.'));
             } else {
-                Yii::$app->session->setFlash('error', 'There was an error sending email.');
+                Yii::$app->session->setFlash('error',  \Yii::t('general', 'There was an error sending email.'));
+                return $this->refresh();
             }
-
-            return $this->refresh();
         } else {
             return $this->render('contact', [
                 'model' => $model,
@@ -140,19 +118,38 @@ class SiteController extends Controller
 
     public function actionLookingForArtists()
     {
+        \Yii::$app->view->registerMetaTag([
+            'name' => 'name="description" ',
+            'content' => 'Актуальные вакансии для артистов за границу. Работа по контракту за границей. Заполнить анкету!'
+        ]);
+
+        \Yii::$app->view->registerMetaTag([
+            'name' => 'name="keywords" ',
+            'content' => 'ищу работу за границей ищу работу, вакансии за границей, за рубежом'
+        ]);
+
         return $this->render('looking-for-artists');
     }
     
     public function actionTestimonials()
     {
+        \Yii::$app->view->registerMetaTag([
+            'name' => 'name="description" ',
+            'content' => 'Видеоотзывы артистов о компании SBA. Наши артисты за границей. Смотреть отзывы!'
+        ]);
+
+        \Yii::$app->view->registerMetaTag([
+            'name' => 'name="keywords" ',
+            'content' => 'видеоотзывы, отзывы артистов'
+        ]);
+
         return $this->render('testimonials');
     }
 
     public function actionArticles()
     {
-        $articles = Article::getArticlesByCurrentLang(User::STATUS_ACTIVE);
         return $this->render('articles', [
-            'articles' => $articles,
+            'articles' => Article::getArticlesByCurrentLang(User::STATUS_ACTIVE, Article::ROLE_ARTICLE),
         ]);
     }
 
@@ -160,76 +157,51 @@ class SiteController extends Controller
     {
         return $this->render('article', [
             'article' => Article::findById($id),
+            'articles' => Article::getArticlesByCurrentLang(
+                User::STATUS_ACTIVE, Article::ROLE_ARTICLE, Article::ARTICLES_SIDEBAR)
+        ]);
+    }
+    
+    public function actionVacancies()
+    {
+        return $this->render('vacancies', [
+            'articles' => Article::getArticlesByCurrentLang(User::STATUS_ACTIVE, Article::ROLE_JOB)
+        ]);
+    }
+    
+    public function actionVacancy($id)
+    {
+        return $this->render('vacancy', [
+            'article' => Article::findById($id),
         ]);
     }
 
-    /**
-     * Signs user up.
-     *
-     * @return mixed
-     */
-    public function actionSignup()
+    public function actionThanks()
     {
-        $model = new SignupForm();
-        if ($model->load(Yii::$app->request->post())) {
-            if ($user = $model->signup()) {
-                if (Yii::$app->getUser()->login($user)) {
-                    return $this->goHome();
-                }
-            }
-        }
-
-        return $this->render('signup', [
-            'model' => $model,
-        ]);
+        return $this->render('thanks');
+    }
+    
+    public function actionAddress()
+    {
+        return $this->render('address');
     }
 
     /**
-     * Requests password reset.
+     * Displays contact page.
      *
      * @return mixed
      */
-    public function actionRequestPasswordReset()
+    public function actionContactHead()
     {
-        $model = new PasswordResetRequestForm();
+        $model = new ContactForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->sendEmail()) {
-                Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
-
-                return $this->goHome();
-            } else {
-                Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for email provided.');
-            }
+            $model->subject = 'SBA | Руководитель коллектива';
+            $model->sendEmail(Yii::$app->params['adminEmail']);
+            return $this->redirect(['/site/thanks']);
         }
 
-        return $this->render('requestPasswordResetToken', [
+        return $this->render('contact-head', [
             'model' => $model,
         ]);
     }
-
-    /**
-     * Resets password.
-     *
-     * @param string $token
-     * @return mixed
-     * @throws BadRequestHttpException
-     */
-    public function actionResetPassword($token)
-    {
-        try {
-            $model = new ResetPasswordForm($token);
-        } catch (InvalidParamException $e) {
-            throw new BadRequestHttpException($e->getMessage());
-        }
-
-        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
-            Yii::$app->session->setFlash('success', 'New password was saved.');
-
-            return $this->goHome();
-        }
-
-        return $this->render('resetPassword', [
-            'model' => $model,
-        ]);
-    }  
 }

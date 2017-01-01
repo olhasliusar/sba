@@ -21,7 +21,6 @@ class AppAsset extends AssetBundle
         'css/animation.css',
     ];
     public $js = [
-        'js/menu.js',
         'js/main.js',
         'js/form.js',
         'js/lib/parallax.min.js',

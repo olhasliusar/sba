@@ -6,7 +6,6 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 
 $this->title = 'SBA | '. \Yii::t('general', 'Articles');
-$this->params['breadcrumbs'][] = $this->title;
 ?>
 <svg style="display: none;" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs>
@@ -35,26 +34,36 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <h2><?= \Yii::t('general', 'Articles')?></h2>
+                <h2><?= \Yii::t('general', 'Useful articles')?></h2>
 
                 <div class="row">
-                <?php foreach ($articles as $article) { ?>
-                    <div class="col-md-6 col-xs-12">
+                <?php $i = 0;
+                foreach ($articles as $article) {
+                    $i++; ?>
+                    <div class="col-lg-4 col-md-6 col-xs-12">
 
-                        <div class="articles__wrapper">
+                        <article class="articles__wrapper">
+                            <?php if($article->mainImage){ ?>
                             <a href="<?= Url::to(['/article', 'id' => $article->id]) ?>" class="articles__link">
                                 <img src="<?= $article->mainImage->url ?>" alt="<?= $article->name ?>">
                             </a>
+                            <?php } ?>
                             <h3>
                                 <a href="<?= Url::to(['/article', 'id' => $article->id]) ?>" class="articles__title">
                                     <?= $article->name ?>
                                 </a>
                             </h3>
-                        </div>
+                        </article>
 
                         <hr>
 
                     </div>
+                    <?php
+                    if($i == 3){
+                        $i = 0;
+                        echo '</div><div class="row">';
+                    }
+                    ?>
                 <?php } ?>
                 </div>
 

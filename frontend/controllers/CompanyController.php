@@ -35,28 +35,28 @@ class CompanyController extends Controller
      * Lists all Company models.
      * @return mixed
      */
-    public function actionIndex()
-    {
-        $searchModel = new CompanySearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
-    }
+//    public function actionIndex()
+//    {
+//        $searchModel = new CompanySearch();
+//        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+//
+//        return $this->render('index', [
+//            'searchModel' => $searchModel,
+//            'dataProvider' => $dataProvider,
+//        ]);
+//    }
 
     /**
      * Displays a single Company model.
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
+//    public function actionView($id)
+//    {
+//        return $this->render('view', [
+//            'model' => $this->findModel($id),
+//        ]);
+//    }
 
     /**
      * Creates a new Company model.
@@ -75,7 +75,7 @@ class CompanyController extends Controller
                 $employer->save();
             }
             $model->sendMail($employer);
-            return $this->redirect(['/site/index']);
+            return $this->redirect(['/site/thanks']);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -92,8 +92,12 @@ class CompanyController extends Controller
     public function actionDownloadAttachment($id)
     {
         $model = $this->findModel($id);
-        $attachments = $model->attachment;        
-        return Attachment::downloadAll($attachments, 'company', $id);
+        if ($attachments = $model->attachment) {
+            return Attachment::downloadAll($attachments, 'company', $id);
+        }
+
+        Yii::$app->session->setFlash('error', 'У компании нет файлов.');
+        return Yii::$app->session->getFlash('error');
     }
 
     /**
@@ -102,18 +106,18 @@ class CompanyController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        }
-    }
+//    public function actionUpdate($id)
+//    {
+//        $model = $this->findModel($id);
+//
+//        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+//            return $this->redirect(['view', 'id' => $model->id]);
+//        } else {
+//            return $this->render('update', [
+//                'model' => $model,
+//            ]);
+//        }
+//    }
 
     /**
      * Deletes an existing Company model.
@@ -121,12 +125,12 @@ class CompanyController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
-    }
+//    public function actionDelete($id)
+//    {
+//        $this->findModel($id)->delete();
+//
+//        return $this->redirect(['index']);
+//    }
 
     /**
      * Finds the Company model based on its primary key value.

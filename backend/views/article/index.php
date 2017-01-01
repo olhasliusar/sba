@@ -3,12 +3,13 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use common\models\User;
+use common\models\Article;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\search\ArticleSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Articles';
+$this->title = $searchModel->role == Article::ROLE_JOB ? 'Вакансии' : 'Статьи';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="article-index">
@@ -17,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Создать статью', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,

@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -36,8 +36,11 @@ AppAsset::register($this);
     ]);
     $menuItems = [
 //        ['label' => 'Главная', 'url' => ['/site/index']],
+        ['label' => 'Вакансии', 'url' => ['/article/vacation']],
         ['label' => 'Статьи', 'url' => ['/article/index']],
-        ['label' => 'Создать статью', 'url' => ['/article/create']],
+        ['label' => 'Создать статью/вакансию', 'url' => ['/article/create']],
+        ['label' => 'Менеджеры', 'url' => ['/manager/index']],
+        ['label' => 'Артисты', 'url' => ['/artist/index']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];

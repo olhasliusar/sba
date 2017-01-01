@@ -6,6 +6,7 @@ use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\behaviors\BlameableBehavior;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "article".
@@ -17,13 +18,14 @@ use yii\behaviors\BlameableBehavior;
  * @property string $lang
  * @property string $author
  * @property integer $role
+ * @property integer $broadcast
  * @property integer $show
  * @property integer $status
  * @property integer $created_at
  * @property integer $updated_at
  * @property integer $created_by
  * @property integer $updated_by
- * 
+ *
  * @property ArticleGenre[] $articleGenres
  * @property Genre[] $genres
  * @property Genre[] $genresList
@@ -36,6 +38,8 @@ use yii\behaviors\BlameableBehavior;
  *
  * @property string $imageActive
  * @property array $removeFiles
+ *
+ * @property string $shortName
  */
 class Article extends ActiveRecord
 {
@@ -45,8 +49,11 @@ class Article extends ActiveRecord
     public $removeFiles;
 
     const ARTICLE_COUNT = 3;
+    const ARTICLES_SIDEBAR = 10;
     const ROLE_JOB = 1;
     const ROLE_ARTICLE = 2;
+
+    const SHORT_NAME_LETTERS = 150;
 
     /**
      * @inheritdoc
@@ -65,8 +72,9 @@ class Article extends ActiveRecord
             [['text', 'lang'], 'string'],
             [['role', 'show', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
             [['name', 'video', 'author'], 'string', 'max' => 255],
-            [['show'], 'default', 'value' =>  1],
-            [['lang'], 'default', 'value' =>  Lang::getDefaultLangUrl()],
+            [['broadcast'], 'default', 'value' => User::STATUS_DELETED],
+            [['show'], 'default', 'value' => User::STATUS_ACTIVE],
+            [['lang'], 'default', 'value' => Lang::getDefaultLangUrl()],
             [['genresform', 'images', 'imageActive', 'removeFiles'], 'safe'],
         ];
     }
@@ -115,6 +123,7 @@ class Article extends ActiveRecord
             'lang' => 'Язык',
             'author' => 'Автор',
             'role' => 'Роль',
+            'broadcast' => 'Рассылка',
             'show' => 'Публикация',
             'status' => 'Статус',
             'created_at' => 'Создано в',
@@ -145,7 +154,7 @@ class Article extends ActiveRecord
     {
         return $this->hasMany(Genre::className(), ['id' => 'genre_id'])->viaTable('article_genre', ['article_id' => 'id']);
     }
-    
+
     /**
      * @return \yii\db\ActiveQuery
      */
@@ -153,53 +162,60 @@ class Article extends ActiveRecord
     {
         $genres = $this->genres;
         $list = [];
-        foreach ($genres as $genre){
+        foreach ($genres as $genre) {
             $list[] = \Yii::t('genre_t', $genre->name);
         }
         return $list;
     }
 
-    public function getUserCreate(){
+    public function getUserCreate()
+    {
         return User::findOne($this->created_by);
     }
 
-    public function getUserUpdate(){
+    public function getUserUpdate()
+    {
         return User::findOne($this->updated_by);
     }
-    
-    public function getMainImage(){
+
+    public function getMainImage()
+    {
         $images = $this->allImages;
-        foreach ($images as $image){
-            if($image->show == User::STATUS_ACTIVE){
+        foreach ($images as $image) {
+            if ($image->show == User::STATUS_ACTIVE) {
                 return $image;
             }
         }
-        return $images[0];
+        return $images ? $images[0] : '';
     }
 
-    public function getAllImages(){
+    public function getAllImages()
+    {
         return Attachment::getAttachmentsByType($this, Attachment::TYPE_IMAGE);
     }
 
-    public function changeImages(){
+    public function changeImages()
+    {
         Attachment::upload($this);
         Attachment::changeShowOne($this);
         !empty($this->removeFiles) ? Attachment::removeFiles($this) : '';
         return true;
     }
-    
-    public function checkGenre($genreId){
-        foreach($this->articleGenres as $articleGenre){
-            if($articleGenre->genre_id == $genreId){
+
+    public function checkGenre($genreId)
+    {
+        foreach ($this->articleGenres as $articleGenre) {
+            if ($articleGenre->genre_id == $genreId) {
                 return 'checked';
             }
         }
         return false;
     }
 
-    public function saveGenres(){
-        if($this->articleGenres){
-            foreach($this->articleGenres as $articleGenre){
+    public function saveGenres()
+    {
+        if ($this->articleGenres) {
+            foreach ($this->articleGenres as $articleGenre) {
                 $articleGenre->delete();
             }
         }
@@ -214,20 +230,23 @@ class Article extends ActiveRecord
             }
         }
     }
-    
-    public function setStatus($status){
+
+    public function setStatus($status)
+    {
         $this->status = $status;
         return $this->save();
     }
-    
-    public static function getArticlesByCurrentLang($show = User::STATUS_ACTIVE, $limit = null){
+
+    public static function getArticlesByCurrentLang($show = User::STATUS_ACTIVE, $role = Article::ROLE_ARTICLE, $limit = null)
+    {
         $articles = Article::find()
             ->where([
                 'lang' => Lang::getCurrent()->url,
-                'role' => Article::ROLE_ARTICLE
+                'role' => $role,
+                'status' => User::STATUS_ACTIVE
             ]);
 
-        if($show){
+        if ($show) {
             $articles->andWhere(['show' => $show]);
         }
 
@@ -236,13 +255,15 @@ class Article extends ActiveRecord
             ->all();
     }
 
-    public static function getMenuArticles(){
-        $articles =  Article::getArticlesByCurrentLang(User::STATUS_ACTIVE, Article::ARTICLE_COUNT);
+
+    public static function getMenuArticles()
+    {
+        $articles = Article::getArticlesByCurrentLang(User::STATUS_ACTIVE, Article::ROLE_ARTICLE, Article::ARTICLE_COUNT);
         $menuArticles = [];
-        foreach ($articles as $article){
+        foreach ($articles as $article) {
             $menuArticles[] = [
                 'label' => "$article->name",
-                'url' => ['/site/article?id='.$article->id],
+                'url' => ['/site/article?id=' . $article->id],
                 'linkOptions' => [
                     'class' => 'menu-styling',
                 ]
@@ -250,7 +271,7 @@ class Article extends ActiveRecord
         }
         $menuArticles[] = [
             'label' => '<span><svg class="links__angle-right" viewBox="0 0 11 32" preserveAspectRatio="none"><path class="path1" d="M10.625 17.143q0 0.232-0.179 0.411l-8.321 8.321q-0.179 0.179-0.411 0.179t-0.411-0.179l-0.893-0.893q-0.179-0.179-0.179-0.411t0.179-0.411l7.018-7.018-7.018-7.018q-0.179-0.179-0.179-0.411t0.179-0.411l0.893-0.893q0.179-0.179 0.411-0.179t0.411 0.179l8.321 8.321q0.179 0.179 0.179 0.411z"></path></svg></span>'
-                .\Yii::t('general', 'All articles'),
+                . \Yii::t('general', 'All articles'),
             'url' => ['/articles'],
             'linkOptions' => [
                 'class' => 'menu-styling links__all-articles',
@@ -258,12 +279,69 @@ class Article extends ActiveRecord
         ];
         return $menuArticles;
     }
-    
+
+    public function getShortName()
+    {
+        return strlen($this->name) < self::SHORT_NAME_LETTERS ?
+            $this->name :
+            mb_substr(strip_tags($this->name), 0, self::SHORT_NAME_LETTERS, "UTF-8") . '...';
+    }
+
     public static function findById($id)
-    {      
+    {
         return static::findOne([
             'id' => $id,
             'status' => User::STATUS_ACTIVE,
         ]);
+    }
+
+    public static function createBroadcast($id)
+    {
+        $article = Article::findById($id);
+        $artists = Artist::find();
+
+        if (isset($article->genres)) {
+            $genres = $article->genres;
+            $genresArr = [];
+
+            foreach ($genres as $genre) {
+                $genresArr[] = $genre->id;
+            }
+            $artistsUnigue = ArtistGenre::find()
+                ->where(['genre_id' => $genresArr])
+                ->select('artist_id')
+                ->groupBy(['artist_id'])
+//                ->asArray()
+                ->all();
+
+            $artistsId = [];
+            foreach ($artistsUnigue as $item) {
+                $artistsId[] = $item->artist_id;
+            }
+
+            $artists->where([
+                'id' => $artistsId
+            ]);
+        }
+
+        $artists = $artists->all();
+
+        /**
+         * @var $artist \common\models\Artist
+         */
+        foreach ($artists as $artist) {
+            $queue = new Queue();
+            $queue->subject = $article->name;
+            $queue->to_email = $artist->email;
+            $queue->content = $article->text;
+            if (!$queue->save()) {
+                return false;
+            }
+        }
+
+        $article->broadcast = User::STATUS_ACTIVE;
+        $article->save();
+
+        return true;
     }
 }

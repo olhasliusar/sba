@@ -8,11 +8,11 @@ use yii\helpers\Html;
 /* @var $employer common\models\Employer */
 
 $this->title = 'SBA | '. \Yii::t('general', 'Create Company');
-//$this->params['breadcrumbs'][] = ['label' => 'Companies', 'url' => ['index']];
-//$this->params['breadcrumbs'][] = $this->title;
+
+$this->registerJsFile(Yii::$app->request->baseUrl.'/js/form-company.js');
 ?>
 
-<div class="company-create">
+<div class="company-create form_big">
     <div class="container">
         <section class="company-create__form">
 

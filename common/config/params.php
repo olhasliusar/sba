@@ -1,6 +1,9 @@
 <?php
 return [
-    'adminEmail' => 'olha.sliusar0315@gmail.com',//TODO email
-    'supportEmail' => 'olha.sliusar0315@gmail.com',
+    'adminEmail' => 'info@sba.world',
+    'supportEmail' => 'info@sba.world',
+    'broadcastEmail' => 'info.sba.world@gmail.com',
+//    'adminEmail' => 'maria.smm.sba@gmail.com',
+//    'supportEmail' => 'maria.smm.sba@gmail.com',
     'user.passwordResetTokenExpire' => 3600,
 ];

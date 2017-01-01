@@ -14,9 +14,8 @@
             }, 900, 'swing', function () {
                 // window.location.hash = target;
             });
-        });
-
-
+        });  
+        
 
         var exp = $('.form__experience').html();
         $('#add-exp').on('click', function(){
@@ -25,9 +24,7 @@
         })
 
         $(document).on('click', '.btn-close', function () {
-            console.log(3);
             $(this).closest('.row').remove();
         })
-
     });
 })(jQuery);

@@ -26,6 +26,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     'method' => 'post',
             ],
         ]) ?>
+
+        <?php  ?>
+        <?=
+        $model->broadcast == 0 ?
+            Html::a('Добавить в рассылку', ['create-broadcast', 'id' => $model->id], ['class' => 'btn btn-success'])
+            :
+            Html::a('Добавлено в рассылку', ['create-broadcast', 'id' => $model->id], ['class' => 'btn btn-success disabled'])
+        ?>
     </p>
 
     <?= DetailView::widget([
@@ -34,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             [
                 'attribute' => 'genres',
-                'value' => implode(', ', $model->getGenresList())
+                'value' => $model->getGenresList() ? implode(', ', $model->getGenresList()) : ''
             ],
             [
                 'attribute' => 'text',
@@ -50,7 +58,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'status',
-                'value' => $model->status == 1 ? 'Активная статья' : 'Архивная статья (удалена)'
+                'value' => $model->status == 1 ? 'Активная' : 'Архивная (удалена)'
             ],
             [
                 'attribute' => 'created_by',
@@ -58,7 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'updated_by',
-                'value' => date('Y-m-d H:i:s', $model->created_at) .', '. $model->userUpdate->username
+                'value' => date('Y-m-d H:i:s', $model->updated_at) .', '. $model->userUpdate->username
             ],
         ],
     ]) ?>

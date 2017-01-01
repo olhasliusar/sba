@@ -15,12 +15,17 @@ class m160810_112411_create_artist_table extends Migration
         $this->createTable('artist', [
             'id' => $this->primaryKey(),
 
-            'first_name' => $this->string(255),
-            'last_name' => $this->string(255),
+            'first_name' => $this->string(),
+            'last_name' => $this->string(),
+            'email' => $this->string(),
+            'phone' => $this->string(),
 
-            'email' => $this->string()->notNull()->unique(),
-
-            'phone' => $this->string(255),
+            'birth' => $this->string(),
+            'height_weight' => $this->string(),
+            'country_city' => $this->string(),
+            'fc' => $this->string(),
+            'video1' => $this->string(),
+            'video2' => $this->string(),
 
             'status' => $this->smallInteger(1)->defaultValue(1),
 

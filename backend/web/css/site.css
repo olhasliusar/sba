@@ -211,3 +211,7 @@ a.desc:after {
 .genres__label:hover{
     border-bottom: 1px solid #4cae4c;
 }
+
+.disabled{
+    pointer-events: none;
+}

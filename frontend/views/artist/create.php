@@ -11,7 +11,7 @@ $this->title = 'SBA | '. \Yii::t('general', 'Fill in the form');
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div class="artist-create">
+<div class="artist-create form_big">
     <div class="container">
         <section class="artist-create__form">
 

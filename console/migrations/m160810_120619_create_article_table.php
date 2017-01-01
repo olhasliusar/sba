@@ -22,6 +22,7 @@ class m160810_120619_create_article_table extends Migration
             'author' => $this->string(255),
 
             'role' => $this->smallInteger(1),
+            'broadcast' => $this->smallInteger(1)->defaultValue(0),
             'show' => $this->smallInteger(1)->defaultValue(1),
             'status' => $this->smallInteger(1)->defaultValue(1),
 

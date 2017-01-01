@@ -9,6 +9,7 @@ use yii\web\AssetBundle;
  */
 class AppAsset extends AssetBundle
 {
+    public $sourcePath = '@dosamigos/ckeditor/assets';
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
@@ -22,3 +23,4 @@ class AppAsset extends AssetBundle
         'yii\bootstrap\BootstrapAsset',
     ];
 }
+

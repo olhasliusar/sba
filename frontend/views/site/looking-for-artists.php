@@ -7,6 +7,7 @@ use yii\helpers\Url;
 
 $this->title = 'SBA | '. \Yii::t('general', 'Looking for artists');
 
+$this->registerJsFile(Yii::$app->request->baseUrl.'/js/menu.js');
 $this->registerJsFile(Yii::$app->request->baseUrl.'/js/menu-transparent.js');
 ?>
 <svg style="display: none;" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -90,12 +91,34 @@ $this->registerJsFile(Yii::$app->request->baseUrl.'/js/menu-transparent.js');
 </section>
 
 <section class="section_after-light-menu section tac position-menu">
-<!--<section class="section tac">-->
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <h2 class="good__title"><?= \Yii::t('general', 'DO YOU WANT TO WORK ONLY WITH PROFESSIONAL ARTISTS?') ?></h2>
-                <p><?= \Yii::t('general', 'Our casting department thoroughly selects and approves only professional dancers, musicians, singers, acrobats, models and actors of an original genre with work experience.') ?></p>
+                <h2><?= \Yii::t('general', 'SBA is the best booking Agency in Ukraine. One of the most important things about our company is that we care about the safety of our performers, and therefore we work only with reliable employers. We also understand that time is the most expensive resource, so in order to save it, please fill in our application form. After you do it we can offer you artists that meets your criteria. If you have any questions, do not hesitate to contact Director of external relations.') ?></h2>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <nav class="cl-effect-7">
+                    <a href="<?= Url::to('company/create')?>"><?= \Yii::t('general', 'Fill in the form')?></a>
+                </nav>
+            </div>
+            <div class="col-sm-6 col-xs-12">
+                <nav class="cl-effect-7">
+                    <a href="<?= Url::to('site/contact-head')?>"><?= \Yii::t('general', 'Contact Head')?></a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section good parallax-window tac" data-parallax="scroll"
+         data-image-src="<?= Url::to('../img/background/perfomers.jpg') ?>">
+    <div class="bg_dark">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2 class="good__title"><?= \Yii::t('general', 'DO YOU WANT TO WORK ONLY WITH PROFESSIONAL ARTISTS?') ?></h2>
+                    <p><?= \Yii::t('general', 'Our casting department thoroughly selects and approves only professional dancers, musicians, singers, acrobats, models and actors of an original genre with work experience.') ?></p>
+                </div>
             </div>
         </div>
     </div>
@@ -158,7 +181,7 @@ $this->registerJsFile(Yii::$app->request->baseUrl.'/js/menu-transparent.js');
     <div class="bg_dark">
         <div class="container">
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-xs-12">
                     <h2><?= \Yii::t('general', 'SELECTION OF ARTISTS, CONSIDERING ALL YOUR NEEDS AND CRITERIA')?></h2>
                     <p><?= \Yii::t('general', 'We sign a contract with you to pick up artists and also we offer candidates solely according to your criteria.')?></p>
                     <p><?= \Yii::t('general', 'Contact us to find out more.')?></p>

@@ -12,6 +12,8 @@ use common\models\Artist;
  */
 class ArtistSearch extends Artist
 {
+    const PAGINATION = 100;
+    
     /**
      * @inheritdoc
      */
@@ -19,7 +21,7 @@ class ArtistSearch extends Artist
     {
         return [
             [['id', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['first_name', 'second_name', 'last_name', 'email', 'phone'], 'safe'],
+            [['first_name', 'last_name', 'email', 'phone'], 'safe'],
         ];
     }
 
@@ -47,6 +49,9 @@ class ArtistSearch extends Artist
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => self::PAGINATION,
+            ],
         ]);
 
         $this->load($params);
@@ -68,7 +73,6 @@ class ArtistSearch extends Artist
         ]);
 
         $query->andFilterWhere(['like', 'first_name', $this->first_name])
-            ->andFilterWhere(['like', 'second_name', $this->second_name])
             ->andFilterWhere(['like', 'last_name', $this->last_name])
             ->andFilterWhere(['like', 'email', $this->email])
             ->andFilterWhere(['like', 'phone', $this->phone]);

@@ -1,10 +1,26 @@
 .articles__link{
     display: block;
     text-align: center;
-    height: 350px;
+    height: 335px;
     overflow: hidden;
 }
-.articles__link img{
+.vacancies__link{
+    display: block;
+    text-align: center;
+    overflow: hidden;
+}
+@media(min-width:992px) {
+    .articles__link{
+        height: 220px;
+    }
+}
+@media(min-width:992px) {
+    .vacancies__link{
+        height: 400px;
+    }
+}
+.articles__link img,
+.vacancies__link img{
     width: 100%;
 }
 .articles__title{
@@ -12,4 +28,22 @@
 }
 .articles__title:hover{
     text-decoration: none;
+}
+.articles__box img{
+    width: 100%;
+}
+@media(min-width:768px) {
+    .articles__box{
+        float: left;
+        width: 50%;
+        margin: 5px 20px 20px 0;
+    }
+}
+.article__title{
+    color: #14953e;
+    margin-bottom: 30px;
+}
+.article__text{
+    text-align: justify;
+    font-family: 'PT Sans';
 }

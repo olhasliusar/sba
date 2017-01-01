@@ -37,28 +37,28 @@ class ArtistController extends Controller
      * Lists all Artist models.
      * @return mixed
      */
-    public function actionIndex()
-    {
-        $searchModel = new ArtistSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
-    }
+//    public function actionIndex()
+//    {
+//        $searchModel = new ArtistSearch();
+//        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+//
+//        return $this->render('index', [
+//            'searchModel' => $searchModel,
+//            'dataProvider' => $dataProvider,
+//        ]);
+//    }
 
     /**
      * Displays a single Artist model.
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
+//    public function actionView($id)
+//    {
+//        return $this->render('view', [
+//            'model' => $this->findModel($id),
+//        ]);
+//    }
 
     /**
      * Creates a new Artist model.
@@ -72,12 +72,28 @@ class ArtistController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             Attachment::upload($model);
             $model->sendMail();
-            return $this->redirect(['/site/index']);
+            return $this->redirect(['/site/thanks']);
         }
 
         return $this->render('create', [
             'model' => $model,
         ]);
+    }
+    
+    /**
+     * Creates a new Company model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
+     */
+    public function actionDownloadAttachment($id)
+    {
+        $model = $this->findModel($id);
+        if ($attachments = $model->attachment) {
+            return Attachment::downloadAll($attachments, 'artist', $id);
+        }
+        
+        Yii::$app->session->setFlash('error', 'У артиста нет файлов.');
+        return Yii::$app->session->getFlash('error');
     }
 
     /**
@@ -86,18 +102,18 @@ class ArtistController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        }
-    }
+//    public function actionUpdate($id)
+//    {
+//        $model = $this->findModel($id);
+//
+//        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+//            return $this->redirect(['view', 'id' => $model->id]);
+//        } else {
+//            return $this->render('update', [
+//                'model' => $model,
+//            ]);
+//        }
+//    }
 
     /**
      * Deletes an existing Artist model.
@@ -105,12 +121,12 @@ class ArtistController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
-    }
+//    public function actionDelete($id)
+//    {
+//        $this->findModel($id)->delete();
+//
+//        return $this->redirect(['index']);
+//    }
 
     /**
      * Finds the Artist model based on its primary key value.
