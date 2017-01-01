@@ -187,6 +187,9 @@ ul{
 .align-left{
     text-align: left;
 }
+.uppercase{
+    text-transform: uppercase;
+}
 .vertical-middle-item{
     -webkit-transform: translateY(-50%);
     -moz-transform: translateY(-50%);
@@ -817,6 +820,7 @@ ul{
 /*#vk_comments{*/
     /*padding-bottom: 20px;*/
 /*}*/
+
 /*SIDEBAR*/
 .sidebar__title{
     font-size: 20px;
@@ -834,3 +838,66 @@ ul{
     color: #333;
 }
 /*END SIDEBAR*/
+
+/*OUR TEAM*/
+.team__blockquote-wrapper{
+    float: left;
+}
+.blockquote{
+    font-size: 200px;
+    color: #449d44;
+    line-height: 130px;
+    padding-left: 10px;
+    float: left;
+}
+@media(max-width:767px) {
+    .team__blockquote-wrapper{
+        position: relative;
+        padding-top: 50px;
+    }
+    .blockquote{
+        padding-left: 0;
+        position: absolute;
+        top: -10px;
+    }
+}
+.team__item{
+    background: #f0f2f1;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+.team__img-wrapper{
+    float: left;
+    margin: 0 15px 15px 0;
+    max-width: 250px;
+}
+.team__img-wrapper img{
+    width: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.team__blockquote{
+    padding: 0;
+    margin: 0;
+    font-size: inherit;
+    border-left: 0;
+    font-style: italic;
+    text-align: justify;
+}
+.team__cite{
+    margin-top: 15px;
+    text-align: right;
+    display: block;
+    font-size: 22px;
+}
+.team__cite:before{
+    content: '- ';
+    display: inline;
+}
+/*END OUR TEAM*/
+
+.agents__contact{
+    padding-top: 20px;
+    font-size: 30px !important;
+}

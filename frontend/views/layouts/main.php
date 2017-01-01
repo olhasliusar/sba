@@ -91,6 +91,7 @@ AppAsset::register($this);
         ['label' => 'SBA', 'url' => ['/site/index']],
         ['label' => \Yii::t('general', 'Looking for a job'), 'url' => ['/site/looking-for-a-job']],
         ['label' => \Yii::t('general', 'Looking for artists'), 'url' => ['/site/looking-for-artists']],
+        ['label' => \Yii::t('general', 'Agents'), 'url' => ['/site/agents']],
         ['label' => \Yii::t('general', 'Blog'), 'url' => ['/site/articles']],
         Langwidget::widget(),
     ];
@@ -133,28 +134,28 @@ AppAsset::register($this);
             'title' => \Yii::t('general', 'Current vacancies'),
         ],
     ];
-//    $menuItemsFooter[] = [
-//        'label' => \Yii::t('general', 'Our Address'),
-//        'url' => ['/site/address'],
-//        'linkOptions' => [
-//            'class' => 'menu-styling',
-//            'title' => \Yii::t('general', 'Our Address'),
-//        ]
-//    ];
-//    $menuItemsFooter[] = [
-//        'label' => \Yii::t('general', '"SBA" OOO (documentation)'),
-//        'url' => ['/site/index'],
-//        'linkOptions' => [
-//            'class' => 'menu-styling',
-//            'title' => \Yii::t('general', 'Companies'),
-//        ]
-//    ];
+    $menuItemsFooter[] = [
+        'label' => \Yii::t('general', 'Our team'),
+        'url' => ['/site/our-team'],
+        'linkOptions' => [
+            'class' => 'menu-styling',
+            'title' => \Yii::t('general', 'Our team'),
+        ]
+    ];
     $menuItemsFooter[] = [
         'label' => \Yii::t('general', 'Contacts'),
         'url' => ['/site/contact'],
         'linkOptions' => [
             'class' => 'menu-styling',
             'title' => \Yii::t('general', 'Contact'),
+        ]
+    ];
+    $menuItemsFooter[] = [
+        'label' => \Yii::t('general', 'Guest book'),
+        'url' => ['/site/guest-book'],
+        'linkOptions' => [
+            'class' => 'menu-styling',
+            'title' => \Yii::t('general', 'Guest book'),
         ]
     ];
     ?>
@@ -173,7 +174,7 @@ AppAsset::register($this);
         <div class="container">
             <div class="row">
                 <div class="col-sm-6 col-xs-12">
-                    <h3 class="links__title"><?= \Yii::t('general', 'Blog')?></h3>
+                    <h3 class="links__title uppercase"><?= \Yii::t('general', 'Blog')?></h3>
                     <?php echo Nav::widget([
                         'options' => ['class' => 'links__menu cl-effect-4'],
                         'items' => Article::getMenuArticles(),
@@ -186,7 +187,7 @@ AppAsset::register($this);
 
                 </div>
                 <div class="col-sm-6 col-xs-12">
-                    <h3 class="links__title"><?= \Yii::t('general', 'Useful Links')?></h3>
+                    <h3 class="links__title uppercase"><?= \Yii::t('general', 'Useful Links')?></h3>
                     <?php echo Nav::widget([
                         'options' => ['class' => 'links__menu cl-effect-4'],
                         'items' => $menuItemsFooter,
@@ -229,7 +230,7 @@ AppAsset::register($this);
                 </a>
             </li>
         </ul>
-        <p class="copyrights tac">&copy; <?= date('Y') ?> SBA. All rights reserved.</p>
+        <p class="copyrights tac">&copy; 2016 - <?= date('Y') ?> SBA. All rights reserved.</p>
     </div>
 </footer>
 

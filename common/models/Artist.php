@@ -73,12 +73,8 @@ class Artist extends ExtendedActiveRecord
     const EMAIL_EOL = "\r\n";
     public $manager;
 
-//    public $birth;
-//    public $height_weight;
     public $bust_waist_hips;
-//    public $country_city;
     public $citizenship;
-//    public $fc;
     public $vk;
     public $genres;
     public $countries;

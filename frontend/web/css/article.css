@@ -38,6 +38,9 @@
         width: 50%;
         margin: 5px 20px 20px 0;
     }
+    .articles__box_agents{
+        width: 35%;
+    }
 }
 .article__title{
     color: #14953e;

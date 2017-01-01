@@ -186,6 +186,30 @@ class SiteController extends Controller
         return $this->render('address');
     }
 
+    public function actionOurTeam()
+    {
+        return $this->render('our-team');
+    }
+
+    public function actionAgents()
+    {
+        return $this->render('agents');
+    }
+
+    public function actionGuestBook()
+    {
+        $model = new ContactForm();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $model->subject = 'SBA | Гостевая книга';
+            $model->sendEmail(Yii::$app->params['adminEmail']);
+            return $this->redirect(['/site/thanks']);
+        }
+
+        return $this->render('guest-book', [
+            'model' => $model,
+        ]);
+    }
+
     /**
      * Displays contact page.
      *
