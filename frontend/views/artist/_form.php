@@ -32,10 +32,15 @@ $inputTemplate = '<span class="input input--nao">{input}{label}<svg class="graph
     <h2 class="fill-in-form__title"><?= \Yii::t('form_t', 'Personal Details'); ?></h2>
     <div class="row">
         <div class="col-lg-4 col-sm-6 col-xs-12">
-            <?= $form->field($model, 'manager')
+            <?= $form->field($model, 'manager_id')
                 ->dropDownList(Manager::getAllArr())->error(false)
                 ->label(\Yii::t('form_t', 'Who is your manager?'), ['class' => 'input__listbox input__dropdown']) ?>
         </div>
+<!--        <div class="col-lg-4 col-sm-6 col-xs-12">-->
+<!--            --><?//= $form->field($model, 'manager')
+//                ->dropDownList(Manager::getAllArr())->error(false)
+//                ->label(\Yii::t('form_t', 'Who is your manager?'), ['class' => 'input__listbox input__dropdown']) ?>
+<!--        </div>-->
 
         <div class="col-lg-4 col-sm-6 col-xs-12">
             <?=  $form->field($model, 'first_name', ['template' => $inputTemplate ])

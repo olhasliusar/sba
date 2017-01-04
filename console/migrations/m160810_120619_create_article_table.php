@@ -20,6 +20,8 @@ class m160810_120619_create_article_table extends Migration
             'video' => $this->string(255),
             'lang' => $this->string(4),
             'author' => $this->string(255),
+            'meta_keywords' => $this->string(255),
+            'meta_description' => $this->string(255),
 
             'role' => $this->smallInteger(1),
             'broadcast' => $this->smallInteger(1)->defaultValue(0),

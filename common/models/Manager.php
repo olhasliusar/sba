@@ -82,11 +82,21 @@ class Manager extends \yii\db\ActiveRecord
 
     public static function getAllArr()
     {
-        return ArrayHelper::map(Manager::getManager(), 'name_' . Lang::getCurrent()->url, 'name_' . Lang::getCurrent()->url);
+        return ArrayHelper::map(Manager::getManager(), 'id', 'name_' . Lang::getCurrent()->url);
+//        return ArrayHelper::map(Manager::getManager(), 'name_' . Lang::getCurrent()->url, 'name_' . Lang::getCurrent()->url);
     }
 
     public function setStatus($status){
         $this->status = $status;
         return $this->save();
+    }
+
+    
+    public static function findById($id)
+    {
+        return static::findOne([
+            'id' => $id,
+            'status' => User::STATUS_ACTIVE,
+        ]);
     }
 }

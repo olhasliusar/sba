@@ -155,8 +155,22 @@ class SiteController extends Controller
 
     public function actionArticle($id)
     {
+        $article = Article::findById($id);
+        if(isset($article->meta_keywords)){            
+            \Yii::$app->view->registerMetaTag([
+                'name' => 'name="keywords" ',
+                'content' => $article->meta_keywords
+            ]);
+        }
+        if(isset($article->meta_description)){
+            \Yii::$app->view->registerMetaTag([
+                'name' => 'name="description" ',
+                'content' => $article->meta_description
+            ]);
+        }
+
         return $this->render('article', [
-            'article' => Article::findById($id),
+            'article' => $article,
             'articles' => Article::getArticlesByCurrentLang(
                 User::STATUS_ACTIVE, Article::ROLE_ARTICLE, Article::ARTICLES_SIDEBAR)
         ]);
@@ -171,8 +185,22 @@ class SiteController extends Controller
     
     public function actionVacancy($id)
     {
+        $article = Article::findById($id);
+        if(isset($article->meta_keywords)){
+            \Yii::$app->view->registerMetaTag([
+                'name' => 'name="keywords" ',
+                'content' => $article->meta_keywords
+            ]);
+        }
+        if(isset($article->meta_description)){
+            \Yii::$app->view->registerMetaTag([
+                'name' => 'name="description" ',
+                'content' => $article->meta_description
+            ]);
+        }
+
         return $this->render('vacancy', [
-            'article' => Article::findById($id),
+            'article' => $article,
         ]);
     }
 

@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Изменить', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
 
         <?= Html::a($model->status == 1 ? 'Удалить' : 'Восстановить',
             [$model->status == 1 ? 'delete' : 'reestablish', 'id' => $model->id],
@@ -27,13 +27,12 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
 
-        <?php  ?>
-        <?=
-        $model->broadcast == 0 ?
-            Html::a('Добавить в рассылку', ['create-broadcast', 'id' => $model->id], ['class' => 'btn btn-success'])
-            :
-            Html::a('Добавлено в рассылку', ['create-broadcast', 'id' => $model->id], ['class' => 'btn btn-success disabled'])
-        ?>
+<!--        --><?//=
+//        $model->broadcast == 0 ?
+//            Html::a('Добавить в рассылку', ['create-broadcast', 'id' => $model->id], ['class' => 'btn btn-success'])
+//            :
+//            Html::a('Добавлено в рассылку', ['create-broadcast', 'id' => $model->id], ['class' => 'btn btn-success disabled'])
+//        ?>
     </p>
 
     <?= DetailView::widget([
@@ -49,6 +48,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => $model->text,
                 'format' => 'raw',
             ],
+            'meta_keywords',
+            'meta_description',
             'video',
             'lang',
             'author',

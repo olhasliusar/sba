@@ -19,6 +19,7 @@ class m160810_112411_create_artist_table extends Migration
             'last_name' => $this->string(),
             'email' => $this->string(),
             'phone' => $this->string(),
+            'manager_id' => $this->integer(),
 
             'birth' => $this->string(),
             'height_weight' => $this->string(),

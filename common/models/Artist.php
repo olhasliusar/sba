@@ -71,9 +71,16 @@ class Artist extends ExtendedActiveRecord
     use exportExcel;
 
     const EMAIL_EOL = "\r\n";
-    public $manager;
+//    public $manager;
+//    public $manager_id;
+//
+//    public $birth;
+//    public $height_weight;
+//    public $country_city;
+//    public $fc;
+//    public $video1;
+//    public $video2;
 
-    public $bust_waist_hips;
     public $citizenship;
     public $vk;
     public $genres;
@@ -118,8 +125,8 @@ class Artist extends ExtendedActiveRecord
     {
         return [
             [['email'], 'required'],
-            [['status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['first_name', 'last_name', 'email', 'phone'], 'string', 'max' => 255],
+            [['manager_id', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
+            [['first_name', 'last_name', 'email', 'phone', 'birth'], 'string', 'max' => 255],
             [['email'], 'unique'],
             [['birth', 'height_weight', 'bust_waist_hips', 'country_city', 'citizenship', 'fc', 'vk',
                 'manager',
@@ -225,6 +232,11 @@ class Artist extends ExtendedActiveRecord
         return $list;
     }
 
+    public function getManager()
+    {
+        return Manager::findById($this->manager_id);
+    }
+    
     public function getAttachment()
     {
         return Attachment::getAttachments($this);
@@ -279,7 +291,10 @@ EOT;
 
     public function sendMail()
     {
-        return \Yii::$app->mailer->compose(['html' => 'createArtist-html', 'text' => 'createArtist-text'], ['model' => $this])
+        return \Yii::$app->mailer->compose(['html' => 'createArtist-html', 'text' => 'createArtist-text'], [
+                'model' => $this,
+                'manager' => Manager::findById($this->manager_id)
+            ])
             ->setFrom(\Yii::$app->params['supportEmail'])
             ->setTo(\Yii::$app->params['supportEmail'])
             ->setSubject('Зарегистрирован новый артист. ' . \Yii::$app->name)

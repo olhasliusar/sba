@@ -17,6 +17,8 @@ use yii\helpers\ArrayHelper;
  * @property string $video
  * @property string $lang
  * @property string $author
+ * @property string $meta_keywords
+ * @property string $meta_description
  * @property integer $role
  * @property integer $broadcast
  * @property integer $show
@@ -71,7 +73,7 @@ class Article extends ActiveRecord
         return [
             [['text', 'lang'], 'string'],
             [['role', 'show', 'status', 'created_at', 'updated_at', 'created_by', 'updated_by'], 'integer'],
-            [['name', 'video', 'author'], 'string', 'max' => 255],
+            [['name', 'video', 'author', 'meta_keywords', 'meta_description'], 'string', 'max' => 255],
             [['broadcast'], 'default', 'value' => User::STATUS_DELETED],
             [['show'], 'default', 'value' => User::STATUS_ACTIVE],
             [['lang'], 'default', 'value' => Lang::getDefaultLangUrl()],
@@ -119,6 +121,8 @@ class Article extends ActiveRecord
 //            'genres' => 'Genres',
             'name' => 'Заголовок',
             'text' => 'Текст',
+            'meta_keywords' => 'Мета-тег keywords',
+            'meta_description' => 'Мета-тег description',
             'video' => 'Видео',
             'lang' => 'Язык',
             'author' => 'Автор',

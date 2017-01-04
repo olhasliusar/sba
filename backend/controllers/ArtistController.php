@@ -5,6 +5,7 @@ namespace backend\controllers;
 use common\models\Attachment;
 use Yii;
 use common\models\Artist;
+use common\models\Manager;
 use common\models\search\ArtistSearch;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
@@ -143,6 +144,9 @@ class ArtistController extends Controller
             'last_name',
             'email',
             'phone',
+            'manager' => function ($model) {
+                return $model->manager_id ? $model->manager->name_ru : null;
+            },
             'field_genres' => function ($model) {
                 return $model->genresString;
             },
@@ -155,6 +159,7 @@ class ArtistController extends Controller
                 'last_name' => 'Last name',
                 'email' => 'Email',
                 'phone' => 'Phone',
+                'manager' => 'Manager',
                 'field_genres' => 'Genres'
             ]
         ]);

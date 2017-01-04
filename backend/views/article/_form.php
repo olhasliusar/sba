@@ -32,6 +32,10 @@ use common\models\Article;
         ]
     ]) ?>
 
+    <?= $form->field($model, 'meta_keywords')->textInput(['maxlength' => true])->label('Мета-тег keywords') ?>
+    
+    <?= $form->field($model, 'meta_description')->textInput(['maxlength' => true])->label('Мета-тег description') ?>
+    
     <?= $form->field($model, 'video')->textInput(['maxlength' => true])->label('Ссылка на видео youtube') ?>
 
     <?= $form->field($model, 'lang')->dropDownList(ArrayHelper::map(Lang::find()->all(), 'url', 'name'), ['size' => 2, 'value' => 'ru'])->label('Язык') ?>
