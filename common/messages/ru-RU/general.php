@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Ksusha
- * Date: 30.03.2015
- * Time: 17:30
- */
+
 return [
     'Email' => 'Эл.адрес',
     'Edit' => 'Редактировать',
@@ -116,7 +111,7 @@ return [
     'Add Photo' => 'Добавить фото',
     'Select' => 'Вибрать',
     'Useful Links' => 'Полезные ссылки',
-    
+
     'Testimonials' => 'Отзывы',
     'Our team' => 'Наша команда',
     '"SBA" OOO (documentation)' => 'ООО "SBA" (документация)',
@@ -203,7 +198,7 @@ return [
     'SELECTION OF ARTISTS, CONSIDERING ALL YOUR NEEDS AND CRITERIA' => 'ПОДБОР АРТИСТОВ, УЧИТЫВАЯ ВСЕ ВАШИ ТРЕБОВАНИЯ И КРИТЕРИИ',
     'We sign a contract with you to pick up artists and also we offer candidates solely according to your criteria.' => 'Мы заключаем с Вами договор по подбору артистов и предлагаем кандидатов исключительно по Вашим критериям. ',
     'Contact us to find out more.' => 'Свяжитесь с нами, чтобы узнать больше.',
-    
+
     'Blog' => 'Блог',
     'Articles' => 'Статьи',
     'All articles' => 'Все статьи',
@@ -234,11 +229,13 @@ return [
     'Our artists abroad' => 'Наши артисты за границей',
 
     'Create Company' => 'Создать компанию',
-    'Thank you for joining SBA community, pick up our casting department deal for you, according to your wishes on the form and will contact you within 2 working days.' => 'Спасибо за то, что присоединились к сообществу SBA, наш кастинг-отдел подберёт для Вас контракт, согласно Вашим пожеланиям в анкете и свяжется с Вами в течении 2-х рабочих дней.',
+    'Thank you for joining SBA community, pick up our casting department deal for you, according to your wishes on the form and will contact you within 2 working days.' => 'Спасибо за доверие к компании SBA. Наш кастинг-отдел рассмотрит резюме и свяжется с Вами при необходимости получения дополнительной информации. Хорошего дня :)',
 
     'Daria Murzina' => 'Мурзина Дарья',
     'Head of External Relations' => 'руководитель отдела внешних связей',
     'Drozdovsky Vadim' => 'Дроздовский Вадим',
+    'Vadym Drozdovskyi' => 'Вадим Дроздовский',
+    'Head of Company' => 'Руководитель компании',
     'Director of company' => 'руководитель компании',
     'Belomar Vadim' => 'Беломар Вадим',
     'General manager' => 'главный менеджер',
@@ -296,7 +293,7 @@ return [
     'Since I myself am a musician. the easiest to work with creative people. And since all people are creative (to varying degrees), work with each person in their own interest)' => 'Так как сам я музыкант. легче всего работать с творческими людьми. А так как все люди творческие(в разной степени), работа с каждым человеком по-своему интересна)',
     'Generalist. Job manager for SBA involves not only communication with diametrically different people (which already implies a knowledge of psychology bases, ability to analyze the human), and a basic knowledge of execution of various documents to work abroad, the constant analysis of the market.' => 'Широкопрофильность. Работа менеджером в компании SBA предполагает собой не только общение с полярно разными людьми,( что уже подразумевает знание основ психологии, умение анализировать человека), а и знание основ оформления различных документов для работы за границей, постоянный анализ рынка.',
     'Of course I like! This work is very close to me in my primary profession musician, and I really like the excellent team led c Big Boss:)' => 'Конечно нравится! Эта работа очень близка мне по моей основной профессии музыканта, также мне очень нравится классный коллектив во главе c Big Boss : )',
-    
+
     'Once again, going to the job site, in search of normal operation manager or accountant (as I have a bachelor\'s degree in this specialty), I came across a special, creative proposal. Without hesitation, I called, and I was invited for an interview.' => 'В очередной раз зайдя на сайт вакансий, в поисках обычной работы менеджером или бухгалтером ( так как имею диплом бакалавра по данной специальности ), я наткнулась на особенное, креативное предложение. Не долго думая, я позвонила, и меня пригласили на собеседование.',
     'The interview did not last long, with interesting issues, for example - what kind of music I like)). It impressed me very much! So I became a part of the SBA family.' => 'Собеседование было не долгим, с интересными вопросами, например -  какую музыку я люблю)). Это меня очень поразило! Так я и стала частью семьи SBA.',
     'I began with the position of manager, but not the "manager" that you could imagine. It was not a chore, repeated day after day. Every day in front of me were new problems, problems which needed to find an individual approach. Over time, suggesting the concept of development, I headed remote management department.' => 'Начала я с должности менеджера, но не того "менеджера ", что Вы могли бы себе представить. Это не было рутинной работой, повторяющейся изо дня в день. Каждый день передо мной были новые задачи, проблемы, к которым нужно было найти индивидуальный подход. Со временем, предложив концепцию развития, я возглавила отдел удаленных менеджеров. ',
@@ -306,7 +303,7 @@ return [
     'A family. This word describes my department and our entire company. Each of the employees at any time may come to help or give advice. We help each other to grow in different directions, as our whole company consists of creative people. (I love you guys!)' => 'Семья. Данное слово характеризует как мой отдел, так и всю нашу компанию. Каждый из сотрудников в любой момент может прийти на помощь или дать совет. Мы помогаем друг другу развиваться в разных направлениях, так как вся наша компания состоит из креативных людей. ( Люблю Вас ребятки!)',
     'I think the paragraph above, I opened my attitude to the company. Again, the SBA - it\'s family, it\'s a lifestyle, not just an ordinary work you just work.' => 'Думаю пунктом выше я раскрыла свое отношение к компании. Повторюсь, что SBA - это семья, это стиль жизни, а не просто заурядная работа, которую ты просто работаешь',
     'Here you can develop as a person, as well as contribute to the development of their environment and the company as a whole!' => 'Здесь ты можешь развиваться как личность, а также способствовать развитию своего окружения и компании в целом!',
-    
+
     'Troyanov Denis' => 'Троянов Денис',
     'I was in search of work. Director Vadim Drozdovsky companies found my resume and asked me for an interview with other candidates. Internship passed, not all, and I\'m glad I was in the SBA team.' => 'Я находился в поиске работы. Руководитель компании Вадим Дроздовский нашел мое резюме и пригласил меня на собеседование вместе с другими соискателями. Стажировку прошли далеко не все, и я рад, что оказался в команде SBA. ',
     'The position was held by me - Manager recruitment in the service sector. Company SBA is committed to the growth and expansion of horizons, which is why we started as officially employ staff. I\'ve been searching, selection and recruitment of personnel for hotels around the world. I also supervise the distribution department, which promotes the popularization of the brand on different platforms.' => 'Занимаемая мною должность - менеджер по набору персонала в сфере обслуживания. Компания SBA  стремится к росту и расширению горизонтов, именно поэтому мы начали так же официально трудоустраивать персонал. Я занимаюсь поиском, подбором и рекрутингом персонала для отелей по всему миру. Так же я курирую отдел рассылки, который стимулирует популяризацию бренда на разных площадках. ',
@@ -315,7 +312,7 @@ return [
     'Not surprisingly, I like to work with the staff as my methods of recruiting, do well with the aim of recruiting, and are not suitable for finding artists. Interpreting the question for my scope, I like most of hotel staff to pick up the scope of the premium. Since there are only needed by professionals, which is always a pleasure to work with.' => 'Не удивительно, что мне больше нравится работать с персоналом, так как мои методы рекрутинга, хорошо справляются с целью  поиска персонала, и не совсем подходят для поиска артистов.  Интерпретируя вопрос для моей сферы деятельности, мне больше всего нравится подбирать персонал для отельной сферы премиум класса. Так как туда необходимы только профессионалы, с которыми всегда приятно работать. ',
     'Spotlight. My responsibilities include coverage (search) of candidates and conduct of the applicants to the desired goal - the dream!' => 'Прожектор. В мои обязанности входит освещение (поиск) ценных соискателей и проведение этих соискателей к желанной цели - работе мечты! ',
     'Of course, in this positive collective impossible to miss, it is impossible not committed to the success and goals. These people are simply doomed to success!' => 'Конечно, в этом позитивном коллективе невозможно скучать, невозможно не стремится к успеху и поставленной цели. Такие люди просто обречены на удачу!',
-    
+
     'Kantemirova Yana' => 'Кантемирова Яна',
     'With the company I met online job search, open, interesting position described. Position Manager with top artists' => 'С компанией я познакомилась на сайте по поиску работы, открыв, интересно описанную вакансию. Должность менеджера с топ-артистами',
     'The successful agency, which ranks first in the ranking bukingovyh agencies, providing quality and reliable services, with a friendly attitude, and the agency that provides training, courses and even staging the show, the artists prepare for the show world and projects.' => 'Успешное агенство, которое занимает первое место в рейтинге букинговых агенств, предоставление качественных и надежных услуг, с дружеским отношением, также агенство, которое проводит тренинги, курсы и даже постановки шоу, подготовку артистов для мировых шоу и проектов.',

@@ -149,7 +149,7 @@ class SiteController extends Controller
     public function actionArticles()
     {
         return $this->render('articles', [
-            'articles' => Article::getArticlesByCurrentLang(User::STATUS_ACTIVE, Article::ROLE_ARTICLE),
+            'articles' => Article::getArticlesByCurrentLang(User::STATUS_ACTIVE, Article::ROLE_ARTICLE, 10),
         ]);
     }
 

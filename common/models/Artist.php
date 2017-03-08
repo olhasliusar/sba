@@ -236,7 +236,7 @@ class Artist extends ExtendedActiveRecord
     {
         return Manager::findById($this->manager_id);
     }
-    
+
     public function getAttachment()
     {
         return Attachment::getAttachments($this);
@@ -292,9 +292,9 @@ EOT;
     public function sendMail()
     {
         return \Yii::$app->mailer->compose(['html' => 'createArtist-html', 'text' => 'createArtist-text'], [
-                'model' => $this,
-                'manager' => Manager::findById($this->manager_id)
-            ])
+            'model' => $this,
+            'manager' => Manager::findById($this->manager_id)
+        ])
             ->setFrom(\Yii::$app->params['supportEmail'])
             ->setTo(\Yii::$app->params['supportEmail'])
             ->setSubject('Зарегистрирован новый артист. ' . \Yii::$app->name)

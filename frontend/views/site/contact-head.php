@@ -19,23 +19,23 @@ $inputTemplate = '<span class="input input--nao">{input}{label}<svg class="graph
         <div class="row">
             <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12 contacts__link-column">
                 <p class="tac">
-                    <?= \Yii::t('general', 'Daria Murzina') ?>
+                    <?= \Yii::t('general', 'Vadym Drozdovskyi') ?>
                     -
-                    <?= \Yii::t('general', 'Head of External Relations') ?>
+                    <?= \Yii::t('general', 'Head of Company') ?>
                 </p>
             </div>
 
             <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-xs-12 contacts__link-column">
                 <nav class="cl-effect-4">
-                    <a href="tel:+3800950244679" target="_blank" class="contacts__link">
+                    <a href="tel:+3800973818744" target="_blank" class="contacts__link">
                         <h3>WhatsApp / Viber / WeChat / Telegram</h3>
-                        <p>+38 095 024 46 79</p>
+                        <p>+38 097 381 87 44</p>
                     </a>
                 </nav>
                 <nav class="cl-effect-4">
-                    <a class="contacts__link" href="mailto:daria@sba.world" target="_blank">
+                    <a class="contacts__link" href="mailto:vadosax@sba.world" target="_blank">
                         Email:<br>
-                        daria@sba.world
+                        vadosax@sba.world
                     </a>
                 </nav>
             </div>

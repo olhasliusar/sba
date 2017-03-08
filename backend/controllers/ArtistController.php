@@ -145,7 +145,7 @@ class ArtistController extends Controller
             'email',
             'phone',
             'manager' => function ($model) {
-                return $model->manager_id ? $model->manager->name_ru : null;
+                return isset($model->manager_id) ? $model->manager->name_ru : null;
             },
             'field_genres' => function ($model) {
                 return $model->genresString;

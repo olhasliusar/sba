@@ -267,19 +267,19 @@ $inputTemplate = '<span class="input input--nao">{input}{label}<svg class="graph
                     'browseLabel' => \Yii::t('general', 'Add Photo') .' ('. \Yii::t('form_t', 'To add more than 1 photo press CTRL') . ')',
                 ]
             ])->label(false); ?>
-            <?= $form->field($model, 'document[]')->widget(FileInput::classname(''), [
-                'options' =>
-                    [
-                        'multiple' => true,
-                    ],
-                'pluginOptions' => [
-                    'showCaption' => false,
-                    'showRemove' => false,
-                    'showUpload' => false,
-                    'browseClass' => 'btn btn-primary btn-block btn-success',
-                    'browseLabel' => 'Track List (' . \Yii::t('form_t', 'only for musicians') .')',
-                ]
-            ])->label(false); ?>
+<!--            --><?//= $form->field($model, 'document[]')->widget(FileInput::classname(''), [
+//                'options' =>
+//                    [
+//                        'multiple' => true,
+//                    ],
+//                'pluginOptions' => [
+//                    'showCaption' => false,
+//                    'showRemove' => false,
+//                    'showUpload' => false,
+//                    'browseClass' => 'btn btn-primary btn-block btn-success',
+//                    'browseLabel' => 'Track List (' . \Yii::t('form_t', 'only for musicians') .')',
+//                ]
+//            ])->label(false); ?>
         </div>
     </div>
 
