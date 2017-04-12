@@ -144,7 +144,9 @@ ul{
 .nav > li > form > button:hover {
     text-decoration: none;
 }
-
+.site-error{
+    padding: 80px 50px;
+}
 .section{
     padding: 40px 0;
 }

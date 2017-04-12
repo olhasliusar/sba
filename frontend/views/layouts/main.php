@@ -150,14 +150,14 @@ AppAsset::register($this);
             'title' => \Yii::t('general', 'Contact'),
         ]
     ];
-    $menuItemsFooter[] = [
-        'label' => \Yii::t('general', 'Guest book'),
-        'url' => ['/site/guest-book'],
-        'linkOptions' => [
-            'class' => 'menu-styling',
-            'title' => \Yii::t('general', 'Guest book'),
-        ]
-    ];
+//    $menuItemsFooter[] = [
+//        'label' => \Yii::t('general', 'Guest book'),
+//        'url' => ['/site/guest-book'],
+//        'linkOptions' => [
+//            'class' => 'menu-styling',
+//            'title' => \Yii::t('general', 'Guest book'),
+//        ]
+//    ];
     ?>
 
 <!--    <div class="container">-->
